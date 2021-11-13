@@ -1,0 +1,82 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+img {
+  width: 100%;
+}
+
+@import url("https://use.typekit.net/znh5rcn.css");
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px;
+$bp-small: 37.5em; // 600px;
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%;
+  }
+
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: interstate, sans-serif;
+  line-height: 1.4;
+  color: $maintext;
+  background: linear-gradient(to bottom, aliceblue 0%, #f9fcff 24%, white 73%);
+}
+
+p {
+  line-height: 1.6;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: inherit;
+}
+
+/* visited link */
+a:visited {
+  color: inherit;
+}
+
+/* mouse over link */
+a:hover {
+  color: inherit;
+}
+
+/* selected link */
+a:active {
+  color: inherit;
+}
+
+.container {
+  display: grid;
+
+  @include gridTempColumn;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+// .heading-2 {
+//   text-align: center;
+//   width: 100%;
+// }
+
+

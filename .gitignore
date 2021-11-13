@@ -1,0 +1,19 @@
+/scss/pages/_home copy.scss
+/components/Header copy.js
+/.next
+/.vscode
+/node_modules
+/package-lock.json
+/test.json
+/next.config.js
+/components/auth/ProfileUpdate-temp.js
+/components/blog/Search.-copy.js
+/components/crud/BlogCreatev2.js
+/components/crud/BlogUpdate copy.js
+/components/hero/Otherstories copy.jsx
+/components/pageelements/Modal copy.js
+/help
+/reducers
+/scss/base/_base copy.scss
+/data.js
+/keys.txt

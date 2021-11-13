@@ -1,0 +1,443 @@
+.hero {
+  grid-column: full-start / full-end;
+  height: 85rem;
+  overflow: hidden;
+  position: relative;
+
+  display: grid;
+  @include gridTempColumn;
+  align-content: center;
+  justify-content: center;
+  padding-top: 7rem;
+
+  @include respond(bp-medium) {
+    padding: 19rem 0 12rem 0;
+    height: auto;
+  }
+
+
+  .herobg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+
+    @include respond(bp-medium) {
+      background-color: rgba(0, 0, 0, 0.57);
+    }
+  }
+
+ 
+  .content {
+    grid-column: col-start 2 / col-end 11;
+    display: grid;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+   
+
+    @include respond(bp-medium) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 32rem min-content;
+      height: 100%;
+    }
+
+    @include respond(bp-small) {
+      grid-template-rows: 24rem min-content;
+      margin-top: 7rem;
+    }
+
+
+    .currentslideinfo {
+      color: $white;
+      display: grid;
+      align-content: start;
+
+      .heading-2 {
+        font-size: 5.8rem;
+        color: #fff;
+        text-align: left;
+        width: 73%;
+
+        @include respond(bp-large) {
+          font-size: 6rem;
+        }
+
+        @include respond(bp-medium) {
+          width: 100%;
+          font-size: 5.5rem;
+        }
+
+        @include respond(bp-small) {
+          font-size: 4rem;
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
+
+      p {
+        font-size: 2.3rem;
+        color: $thirdcolor;;
+        width: 80%;
+        font-weight: bold;
+
+        @include respond(bp-small) {
+          font-size: 2rem;
+          color: #fa9c50;
+          width: 90%;
+        }
+      }
+
+      .readmore {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 15rem;
+
+
+        .readstory {
+          color: $secondary;
+          font-weight: bold;
+
+          a {
+            text-decoration: none;
+          }
+        }
+
+        .readmoreicon {
+          fill: #FA9C50;
+          width: 4.5rem;
+          height: 4.5rem;
+        }
+      }
+
+    }
+
+    .otherstories {
+      color: $white;
+      display: grid;
+      height: 100%;
+      justify-content: center;
+      align-content: center;
+      position: relative;
+
+
+      &::after {
+        content: " ";
+        display: block;
+        height: 100%;
+        padding-top: 1rem;
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        position: absolute;
+
+        @include respond(bp-medium) {
+          display: none;
+        }
+      }
+
+      ul {
+        display: grid;
+        grid-template-rows: repeat(4, 8rem);
+        grid-row-gap: 3rem;
+        position: relative;
+        width: 90%;
+        justify-self: center;
+
+        @include respond(bp-medium) {
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: max-content;
+          grid-column-gap: 2rem;
+          justify-self: start;
+          width: 100%;
+        }
+
+        @include respond(bp-small) {
+          grid-template-columns: 1fr;
+          grid-template-rows: max-content;
+          grid-row-gap: 1rem
+        }
+
+        .story {
+          display: grid;
+          grid-template-columns: 30% 65%;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          position: relative;
+          transition: all 300ms linear;
+          background-color: rgba(240,248,255,0.00);
+
+          @include respond(bp-medium) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 11rem min-content;
+          }
+
+          @include respond(bp-small) {
+            grid-template-columns: 10rem 70%;
+            grid-template-rows: 9rem;
+          }
+
+          @include respond(bp-tiny) {
+            grid-template-columns: 10rem 60%;
+          }
+
+          &:hover {
+             background-color: rgba(240, 248, 255, 0.329);
+          }
+
+
+          &::after {
+            content: " ";
+            display: block;
+            width: 100%;
+            padding-top: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            position: absolute;
+            margin-top: 10rem;
+
+            @include respond(bp-medium) {
+              display: none;
+            }
+          }
+
+          img {
+            height: 100%;
+            object-fit: cover;
+            overflow: hidden;
+          }
+
+          p {
+            font-size: 1.4rem;
+            width: 90%;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            @include respond(bp-medium) {
+              padding: 2rem 0;
+            }
+
+          }
+        }
+
+        .story:last-of-type {
+
+           &::after {
+             content: " ";
+             display: block;
+             width: 100%;
+             padding-top: 1rem;
+             border-bottom: none;
+             position: absolute;
+             margin-top: 10rem;
+
+             @include respond(bp-medium) {
+               display: none;
+             }
+           }
+        }
+      }
+
+      .heading-3 {
+        text-align: center;
+      }
+    }
+  }
+
+  .col-2 {
+    grid-template-columns: 50% 50%;
+  }
+
+  .narrow-wide {
+    grid-template-columns: 70% 30%;
+
+      @include respond(bp-medium) {
+        grid-template-columns: 100%;
+      }
+
+  }
+
+}
+
+
+.hero-category {
+  height: 58rem;
+  padding-top: 4rem;
+
+  @include respond(bp-medium) {
+    height: auto;
+  }
+
+
+  .content {
+    height: auto;
+    margin-top: 7rem;
+
+    @include respond(bp-large) {
+      grid-template-columns: 70% 30%;
+    }
+
+    @include respond(bp-medium) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 44rem min-content;
+      height: 100%;
+    }
+
+    .currentslideinfo {
+      
+      .heading-2 {
+        font-size: 5rem;
+      }
+    }
+
+    .otherstories {
+
+      ul {
+        grid-template-rows: repeat(2, 9rem);
+      }
+
+    }
+
+
+  }
+
+}
+
+.section-hero {
+  height: 55rem;
+
+  @include respond(bp-medium) {
+    height: 44rem;
+    padding: 6rem 0;
+  }
+
+  @include respond(bp-small) {
+    padding: 0;
+  }
+  
+
+  .content {
+    grid-column: center-start / center-end;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    height: auto;
+    overflow: hidden;
+    position: relative;
+    padding-top: 6rem;
+
+    .heading-2 {
+      position: relative;
+      z-index: 200;
+      color: #fff;
+      font-size: 6rem;
+      text-align: center;
+
+       @include respond(bp-medium) {
+         font-size: 5rem;
+       }
+    }
+
+  }
+
+}
+
+.profile-hero {
+  height: 55rem;
+  padding-top: 0;
+
+    .content {
+      padding-top: 15rem;
+      grid-column: col-start 5 / col-end 8;
+      justify-content: center;
+      
+      .heading-2 {
+        position: relative;
+        z-index: 200;
+        color: #fff;
+        font-size: 6rem;
+        text-align: center;
+      }
+    }
+}
+
+.page-hero {
+  height: 70rem;
+
+  @include respond(bp-large) {
+    .narrow-wide {
+      grid-template-columns: 60% 40%;
+    }
+  }
+
+  @include respond(bp-medium) {
+
+    height: auto;
+
+    .narrow-wide {
+      grid-template-columns: 1fr;
+      grid-template-rows: min-content min-content;
+    }
+  }
+
+  .content {
+    
+    .currentslideinfo {
+
+      @include respond(bp-medium) {
+        margin-bottom: 4rem;
+      }
+      
+      .heading-2 {
+        font-size: 4.6rem;
+      }
+    
+      p {
+        font-size: 2rem;
+      }
+    }
+
+    .otherstories {
+
+      ul {
+         @include respond(bp-largest) {
+            grid-template-rows: repeat(2, 12rem) !important;
+         }
+
+        @include respond(bp-medium) {
+          grid-template-rows: 1fr !important;
+
+           .story {
+             grid-template-rows: 14rem min-content;
+           }
+        }
+
+        @include respond(bp-small) {
+          .story {
+            grid-template-columns: 30% 60%;
+
+            p {
+              font-size: 2rem;
+              -webkit-line-clamp: 3;
+            }
+          }
+        }
+      }
+    }
+  }
+}

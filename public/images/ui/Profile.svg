@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="Profile" transform="translate(7.862 6.863)">
+    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(-7.862 -6.863)" fill="none" stroke="#fff" stroke-width="2">
+      <circle cx="18" cy="18" r="18" stroke="none"/>
+      <circle cx="18" cy="18" r="17" fill="none"/>
+    </g>
+    <path id="Union_1" data-name="Union 1" d="M0,18V15.75c0-2.476,4.05-4.5,9-4.5s9,2.025,9,4.5V18ZM4.5,4.5A4.5,4.5,0,1,1,9,9,4.5,4.5,0,0,1,4.5,4.5Z" transform="translate(1.137 2.137)" fill="#fff"/>
+  </g>
+</svg>

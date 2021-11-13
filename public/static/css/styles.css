@@ -1,0 +1,23 @@
+#nprogress .bar {
+  height: 4px !important;
+}
+
+
+
+.featured-image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.content {
+
+}
+
+.content img {
+  height: 490px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+
+}

@@ -1,0 +1,285 @@
+/*
+  _topnews.scss
+*/
+
+.topnewssection {
+  @include sectionmargin;
+  grid-column: col-start 2 / col-end 11;
+
+  @include respond(bp-small) {
+    grid-column: col-start 1 / col-end 12;
+  }
+
+  .content {
+    
+
+    .majorsection {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      // grid-template-rows: 53rem;
+      column-gap: 0.4rem;
+      margin-bottom: 15rem;
+      
+
+      @include respond(bp-large) {
+        grid-template-rows: auto;
+      }
+
+      @include respond(bp-small) {
+        grid-template-columns: 1fr;
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 32rem min-content min-content;
+
+        @include respond(bp-large) {
+          grid-template-rows: 30rem min-content min-content;
+        }
+
+        @include respond(bp-medium) {
+          grid-template-rows: 20rem min-content min-content;
+          text-align: center;
+        }
+
+        @include respond(bp-small) {
+          grid-template-rows: 39rem min-content min-content;
+          margin-bottom: 7rem;
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+
+        @include respond(bp-tiny) {
+          grid-template-rows: 32rem min-content min-content;
+        }
+  
+
+        .thumb {
+
+          img {
+            object-fit: cover;
+            height: 100%;
+          }
+        }
+
+        .heading-4 {
+          padding-top: 2rem;
+          padding-left: 2rem;
+          font-size: 2rem;
+
+          @include respond(bp-medium) {
+            padding-left: 0;
+          }
+        }
+
+        .author {
+          padding-top: 1rem;
+          padding-left: 2rem;
+          font-weight: bold;
+          color: $secondary;
+
+          @include respond(bp-medium) {
+            padding-left: 0;
+          }
+        }
+      }
+
+    }
+
+  
+    .minorsection {
+      margin: 10rem 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 3rem;
+
+      @include respond(bp-large) {
+        margin: 12rem auto;
+      }
+
+      @include respond(bp-medium) {
+        grid-template-columns: 1fr;
+        row-gap: 5rem;
+      }
+
+      .column {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, max-content);
+        position: relative;
+        row-gap: 4rem;
+
+        @include respond(bp-medium) {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: 1fr;
+          column-gap: 3rem;
+        }
+
+        @include respond(bp-smallest) {
+          grid-template-columns: 1fr;
+        }
+
+        &::after {
+          content: " ";
+          display: block;
+          height: 103%;
+          border-right: 1px solid #d4deef;
+          position: absolute;
+          z-index: 60;
+          right: -1.5rem;
+
+          @include respond(bp-medium) {
+            content: " ";
+            display: block;
+            border-bottom: 1px solid #d4deef;
+            position: absolute;
+            z-index: 60;
+            bottom: -2.5rem;
+            width: 100%;
+            right: 0;
+            border-right: 0px solid #d4deef;
+          }
+
+          @include respond(bp-smallest) {
+            border-bottom: 0px solid #d4deef;
+          }
+        }
+
+        &:last-of-type {
+          &::after {
+            content: " ";
+            display: block;
+            height: 103%;
+            border-right: 0px solid #d4deef;
+            position: absolute;
+            z-index: 60;
+            right: -1.5rem;
+    
+            @include respond(bp-large) {
+              border-right: 0px solid $borderColor;
+              border-bottom: 0px solid #d4deef;
+            }
+          }
+        }
+
+        .entry {
+          display: grid;
+          grid-template-columns: 65% 30%;
+          justify-content: space-between;
+          position: relative;
+
+          @include respond(bp-small) {
+            grid-template-columns: 100%;
+          }
+
+          .thumb {
+            height: 12rem;
+
+            @include respond(bp-small) {
+              height: 19rem;
+              margin-bottom: 2rem;
+              order: 1;
+            }
+
+             @include respond(bp-smallest) {
+               height: 33rem;
+             }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+  
+          &::after {
+            content: " ";
+            display: block;
+            width: 100%;
+            padding-top: 1rem;
+            border-bottom: 1px solid #d4deef;
+            position: absolute;
+            z-index: 60;
+            bottom: -1rem;
+
+            @include respond(bp-medium) {
+              content: " ";
+              display: block;
+              height: 100%;
+              padding-top: 1rem;
+              border-right: 1px solid #d4deef;
+              position: absolute;
+              z-index: 60;
+              right: -1.5rem;
+              border-bottom: 0px solid #d4deef;
+            }
+
+            @include respond(bp-smallest) {
+              border-right: 0px solid #d4deef;
+            }
+          }
+
+          a {
+            grid-column: 1 / -1;
+            height: 5.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            .heading-4 {
+              font-size: 2.4rem;
+            }
+
+            @include respond(bp-medium) {
+              height: auto;
+            }
+          }
+  
+  
+          .author {
+            grid-column: 1 / -1;
+            padding: 2rem 0;
+            color: $secondary;
+            font-weight: bold;
+          }
+
+          &:nth-of-type(2) {
+            &::after {
+              content: " ";
+              display: block;
+              width: 100%;
+              padding-top: 1rem;
+              border-bottom: 0px solid #d4deef;
+              position: absolute;
+              z-index: 60;
+              bottom: -1rem;
+              border-right: 0px solid #d4deef;
+            }
+
+            
+          }
+
+          p {
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            @include respond(bp-medium) {
+              order: 2;
+            }
+          }
+         
+        }
+
+
+      }
+
+    }
+  }
+}

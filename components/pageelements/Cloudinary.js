@@ -1,0 +1,50 @@
+const Widgetsetting = () => {
+
+  return {
+    cloudName: '',
+    uploadPreset: '',
+    sources: [
+      "local",
+      "url",
+      "camera",
+      "facebook",
+      "instagram",
+      "image_search",
+    ],
+    googleApiKey: '',
+    showAdvancedOptions: true,
+    cropping: true,
+    multiple: false,
+    defaultSource: "local",
+    styles: {
+      palette: {
+        window: "#0265ba",
+        sourceBg: "#FFFFFF",
+        windowBorder: "#0265ba",
+        tabIcon: "#FFFFFF",
+        inactiveTabIcon: "#3ba5f7",
+        menuIcons: "#034398",
+        link: "#5BA6E6",
+        action: "#5333FF",
+        inProgress: "#5BA6E6",
+        complete: "#048A53",
+        error: "#cc3333",
+        textDark: "#034398",
+        textLight: "#ffffff",
+      },
+      fonts: {
+        default: null,
+        "'Poppins', sans-serif": {
+          url: "https://fonts.googleapis.com/css?family=Poppins",
+          active: true,
+        },
+      },
+  }
+  
+  };
+
+
+};
+
+
+export default Widgetsetting;

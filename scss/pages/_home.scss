@@ -1,0 +1,597 @@
+.latest,
+.sports,
+.local {
+  // grid-column: center-start / center-end;
+  grid-column: col-start 2 / col-end 11;
+
+  @include respond(bp-small) {
+    grid-column: col-start 1 / col-end 12;
+  }
+}
+
+.latest {
+  @include sectionmargin;
+
+  .content {
+    display: grid;
+    grid-template-columns: 40% 30% 25%;
+    grid-template-rows: 54rem;
+    justify-content: space-between;
+    overflow: hidden;
+    grid-column-gap: 2rem;
+
+    @include respond(bp-large) {
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 52rem max-content max-content;
+      overflow: visible;
+      grid-column-gap: 0;
+
+    }
+
+    .featured-story {
+      position: relative;
+
+      @include respond(bp-large) {
+        grid-column: 1 / -1;
+        margin-bottom: 3rem;
+      }
+
+      &::after {
+        content: " ";
+        display: block;
+        height: 100%;
+        padding-top: 1rem;
+        border-right: 1px solid $borderColor;
+        position: absolute;
+        top: 0;
+        z-index: 60;
+        right: -2rem;
+
+        @include respond(bp-large) {
+          border-right: 0px solid $borderColor;
+        }
+      }
+
+      .overlay {
+        background-color: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        height: 99%;
+      }
+
+      .featured-info {
+        position: absolute;
+        z-index: 20;
+        bottom: 10rem;
+        left: 5%;
+        width: 90%;
+        margin: 0 auto;
+
+        .heading-3 {
+          color: $white;
+          font-weight: 500;
+          font-size: 3.2rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          color: $thirdcolor;;
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .author {
+          color: $secondary;;
+          font-weight: bold;
+        }
+      }
+
+      img {
+        height: 99%;
+        object-fit: cover;
+        position: absolute;
+      }
+    }
+
+    .secondary {
+
+      @include respond(bp-large) {
+        grid-column: 1 / -1;
+        margin-bottom: 3rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(27.3rem, 1fr));
+        // grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
+        grid-column-gap: 4rem;
+        grid-template-rows: max-content;
+      }
+
+      @include respond(bp-medium) {
+          grid-template-columns: 100%;
+      }
+
+     
+
+
+      .entry {
+        margin-bottom: 3.7rem;
+        display: grid;
+        // grid-template-rows: min-content 10.5rem 12.2rem;
+        grid-template-rows: 6.2rem 4.5rem 14.1rem;
+        grid-template-columns: 60% 34%;
+        position: relative;
+        justify-content: space-between;
+
+        @include respond(bp-medium) {
+          grid-template-rows: 1fr 4.5rem 18.1rem;
+        }
+
+        @include respond(bp-small) {
+          grid-template-columns: 1fr;
+          grid-template-rows: 30rem max-content 5rem max-content;
+        }
+      
+        a:visited {
+          color: $primary;
+        }
+
+        &:after {
+          content: " ";
+          display: block;
+          width: 100%;
+          padding-top: 1rem;
+          border-bottom: 1px solid $borderColor;
+          position: absolute;
+          bottom: -6%;
+
+          @include respond(bp-large) {
+            border-right: 1px solid #d4deef;
+            right: -4%;
+            height: 100%;
+            border-bottom: 0px solid #d4deef;
+            bottom: 0;
+          }
+
+          @include respond(bp-medium) {
+            border-right: 0px solid #d4deef;
+          }
+
+          @include respond(bp-small) {
+            right: -2rem;
+            border-right: 0px solid #d4deef;
+
+          }
+        }
+
+        &::nth-of-type(2) {
+          &::after {
+   
+            @include respond(bp-small) {
+              content: " ";
+              display: block;
+              width: 100%;
+              padding-top: 1rem;
+              border-bottom: 0px solid $borderColor;
+              position: absolute;
+              bottom: -6%;
+            }
+          }
+        }
+
+        @include respond(bp-small) {
+          .thumb { order: 0; }
+          .heading-3 { order: 1; }
+          .author { order: 2; }
+          .excerpt { order: 3; }
+        }
+
+        .heading-3 {
+          font-size: 2.2rem;
+          grid-column: 1 / -1;
+
+          @include respond(bp-medium) {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+          }
+        }
+
+        .author {
+          font-weight: bold;
+          color: $secondary;;
+          grid-column: 1 / -1;
+          align-self: start;
+
+          @include respond(bp-medium) {
+            font-size: 2.1rem;
+          }
+        }
+
+        .excerpt {
+          grid-column: 1 / 2;
+
+          p {
+            grid-column: 1 / 2;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        }
+
+        // p{
+        //   grid-column: 1 / 2;
+
+        //   .excerpt {
+        //     grid-column: 1 / 2;
+        //     display: -webkit-box;
+        //     -webkit-line-clamp: 5;
+        //     -webkit-box-orient: vertical;
+        //     overflow: hidden;
+        //   }
+        // }
+
+        .thumb {
+          height: 100%;
+
+          @include respond(bp-small) {
+            height: unset;
+            padding-bottom: 1rem;
+          }
+
+          img {
+            object-fit: cover;
+            height: 100%;
+            object-position: top;
+          }
+        }
+
+   
+      }
+
+      .entry:last-of-type {
+
+          &:after {
+            content: " ";
+            padding-top: 0rem;
+            border-bottom: 0px solid $borderColor;
+
+            @include respond(bp-large) {
+              border-right: 0px solid #d4deef;
+            }
+          }
+      }
+
+    }
+
+    .additional-stories {
+      position: relative;
+      display: grid;
+      grid-template-rows: repeat(4, 14.6rem);
+
+      @include respond(bp-large) {
+        grid-column: 1 / -1;
+        margin-bottom: 3rem;
+        grid-template-columns: repeat(4, 24%);
+        grid-column-gap: 1rem;
+        grid-template-rows: min-content;
+      }
+
+      @include respond(bp-small) {
+        grid-template-columns: repeat(2, 48%);
+      }
+
+      &::after {
+        content: " ";
+        display: block;
+        height: 100%;
+        padding-top: 1rem;
+        border-left: 1px solid $borderColor;
+        position: absolute;
+        top: 0;
+        z-index: 60;
+        left: -2rem;
+
+        @include respond(bp-large) {
+          border-left: 0 solid;
+        }
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 42% 58%;
+        justify-content: space-between;
+        margin-bottom: 5.2rem;
+        position: relative;
+
+        @include respond(bp-large) {
+          grid-template-columns: 1fr;
+          grid-template-rows: 19rem 1fr;
+        }
+
+        @include respond(bp-medium) {
+          grid-template-rows: 16rem 1fr;
+        }
+
+         @include respond(bp-small) {
+           grid-template-rows: 20rem 1fr;
+         }
+
+        &::after {
+          content: " ";
+          display: block;
+          width: 100%;
+          padding-top: 1rem;
+          border-bottom: 1px solid $borderColor;
+          position: absolute;
+          bottom: -1rem;
+
+          @include respond(bp-large) {
+            border-bottom: 0 solid;
+          }
+        }
+
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          width: 35%;
+
+          @include respond(bp-large) {
+            grid-row: 1 / 2;
+            width: 100%;
+          }
+        }
+
+        .heading-4 {
+          font-size: 1.7rem;
+          grid-column-start: 2;
+
+          @include respond(bp-large) {
+            font-size: 1.9rem;
+            margin-top: 2rem;
+            grid-row-start: 2;
+          }
+
+          @include respond(bp-small) {
+            font-size: 1.8rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.sports {
+  @include sectionmargin;
+
+
+  .content {
+    display: grid;
+    grid-template-columns: 67% 30%;
+    grid-template-rows: 62rem;
+    justify-content: space-between;
+    overflow: hidden;
+    grid-column-gap: 3rem;
+
+    @include respond(bp-large) {
+      grid-template-rows: 72rem max-content;
+      grid-row-gap: 2rem;
+    }
+
+    @include respond(bp-large) {
+      grid-template-rows: 60rem max-content;
+    }
+
+
+    .featured-story {
+      position: relative;
+
+      @include respond(bp-large) {
+        grid-column: 1 / -1;
+      }
+
+      .overlay {
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 6) 100%);
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+        height: 98%;
+      }
+
+      .featured-info {
+        position: absolute;
+        z-index: 20;
+        bottom: 11rem;
+        left: 7.5%;
+        width: 85%;
+        margin: 0 auto;
+
+        @include respond(bp-tiny) {
+          bottom: 6rem;
+        }
+
+        .heading-3 {
+          color: $white;
+          font-weight: 500;
+          font-size: 3.2rem;
+          width: 50%;
+
+          @include respond(bp-small) {
+            width: 100%;
+          }
+        }
+
+        p {
+          color: $secondary;
+          font-size: 2.3rem;
+          font-weight: 500;
+        }
+
+        .author {
+          color: $thirdcolor;
+          font-weight: bold;
+        }
+      }
+
+      img {
+        height: 98%;
+        object-fit: cover;
+        position: absolute;
+      }
+    }
+
+    .additional-stories {
+      position: relative;
+      display: grid;
+      grid-template-rows: repeat(4, auto);
+
+      @include respond(bp-large) {
+        grid-template-rows: 1fr;
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(4, 24%);
+        grid-column-gap: 1rem;
+      }
+
+      @include respond(bp-small) {
+        grid-template-columns: repeat(2, 48%);
+      }
+
+      &::after {
+        content: " ";
+        display: block;
+        height: 100%;
+        padding-top: 1rem;
+        border-left: 1px solid $borderColor;
+        position: absolute;
+        top: 0;
+        z-index: 60;
+        left: -2rem;
+
+        @include respond(bp-large) {
+          border-left: 0px solid $borderColor;
+        }
+      }
+
+      .entry {
+        display: grid;
+        grid-template-columns: 40% 54%;
+        justify-content: space-between;
+        margin-bottom: 2.5rem;
+        position: relative;
+
+        @include respond(bp-large) {
+          grid-template-columns: 1fr;
+          grid-template-rows: 19rem max-content ;
+        }
+
+        @include respond(bp-medium) {
+          grid-template-columns: 1fr;
+          grid-template-rows: 16rem max-content;
+        }
+
+        @include respond(bp-small) {
+          grid-template-rows: 20rem 1fr;
+        }
+
+        &::after {
+          content: " ";
+          display: block;
+          width: 100%;
+          padding-top: 1rem;
+          border-bottom: 1px solid $borderColor;
+          position: absolute;
+          bottom: -1rem;
+
+          @include respond(bp-large) {
+            border-bottom: 0px solid $borderColor;
+          }
+        }
+
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          object-position: top;
+        }
+
+        .heading-4 {
+          font-size: 2.1rem;
+
+          @include respond(bp-large) {
+            padding-top: 2rem;
+            font-size: 1.9rem;
+          }
+        }
+      }
+
+      .entry:last-of-type {
+
+        &::after {
+          content: " ";
+          display: block;
+          width: 100%;
+          padding-top: 1rem;
+          border-bottom: none;
+          position: absolute;
+          bottom: -1rem;
+
+          @include respond(bp-large) {
+            border-bottom: 0px solid $borderColor;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+.local {
+  @include sectionmargin;
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 44rem);
+    grid-auto-rows: 44rem;
+    grid-column-gap: 1.5rem;
+
+    @include respond(bp-large) {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-row-gap: 2rem;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-rows: 30rem 1fr;
+
+      @include respond(bp-largest) {
+        grid-template-rows: 27rem 1fr;
+      }
+
+      @include respond(bp-large) {
+        grid-template-rows: 34rem 1fr;
+      }
+
+      .thumb {
+
+        img {
+          object-fit: cover;
+          height: 100%;
+        }
+      }
+
+      .heading-4 {
+        text-align: center;
+        // align-self: center;
+        padding-top: 3rem;
+        color: $secondary;
+      }
+    }
+
+  }
+
+}

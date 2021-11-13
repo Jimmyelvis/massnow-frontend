@@ -1,0 +1,13 @@
+.topnewseditor {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3rem;
+  row-gap: 3rem;
+}
+
+.btn-openModel {
+  grid-column: 7 / 9;
+  margin-top: 13rem;
+  padding: 1.6rem 0;
+  font-size: 2.5rem;
+}

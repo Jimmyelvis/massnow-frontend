@@ -1,0 +1,61 @@
+/*
+  _sports.scss
+*/
+
+.topnewssection {
+  
+  .content {
+
+    .therest-of-items {
+      display: grid;
+      column-gap: 0.7rem;
+      row-gap: 4rem;
+      grid-template-columns: repeat(4, 25%);
+
+       @include respond(bp-large) {
+         grid-template-columns: repeat(3, 33%);
+       }
+
+      @include respond(bp-small) {
+        grid-template-columns: repeat(2, 50%);
+      }
+
+      .entry {
+
+        .thumb {
+          height: 25rem;
+          margin-bottom: 3rem;
+
+          @include respond(bp-medium) {
+            height: 20rem;
+          }
+
+          @include respond(bp-small) {
+            height: 26rem;
+          }
+
+          @include respond(bp-smallest) {
+            height: 22rem;
+          }
+
+          img {
+            height: 100%;
+          }
+          
+        }
+
+        a {
+          
+          .heading-4 {
+            color: $secondary;
+            font-size: 1.7rem;
+            line-height: 1.4;
+          }
+        }
+
+
+      }
+
+    }
+  }
+}

@@ -1,0 +1,137 @@
+.blogcreate {
+  height: 55rem;
+  display: flex;
+  padding-top: 0;
+
+  @include respond(bp-medium) {
+    height: 40rem;
+    padding: 0 3rem;
+  }
+
+  @include respond(bp-small) {
+    height: 35rem;
+  }
+
+  // @include respond(bp-tiny) {
+  //   height: 30rem;
+  // }
+
+  .heading-2 {
+    position: relative;
+    z-index: 200;
+    margin: auto;
+    color: $white;
+    font-size: 6rem;
+    text-align: center;
+
+    @include respond(bp-small) {
+      font-size: 5rem;
+    }
+
+    @include respond(bp-tiny) {
+      font-size: 4rem;
+    }
+  }
+}
+
+.formCreation {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: 3rem;
+
+  .inputFields{
+    grid-column: 1 / 5;
+
+    @include respond(bp-large) {
+      grid-column: 1 / -1;
+      margin-bottom: 6rem;
+    }
+
+    @include respond(bp-small) {
+
+      .fieldLable {
+        font-size: 2rem;
+        flex: 30%;
+      }
+
+    }
+  }
+
+  .cat-list {
+    grid-column: 5 / -1;
+
+    @include respond(bp-large) {
+      grid-column: 1 / -1;
+      margin-bottom: 6rem;
+    }
+
+    .heading-5 {
+      text-align: center;
+      font-size: 1.8rem;
+    }
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+
+      li {
+        list-style: none;
+        width: 25%;
+        margin-bottom: 3rem;
+
+        @include respond(bp-small) {
+          width: 33%;
+        }
+
+      }
+    }
+  }
+
+  .heading-4 {
+    font-size: 1.9rem;
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .uploadpreview, .inputTextbox  {
+    grid-column: 1 / 3;
+  }
+
+  .uploadpreview {
+    height: 43rem;
+    grid-column: 1 / -1;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      object-position: top;
+      height: 100%;
+    }
+  }
+
+  .upload-btn {
+    grid-column: 8 / 9;
+    justify-self: end;
+    padding: 1rem 0;
+
+    @include respond(bp-largest) {
+      grid-column: 7 / 9;
+    }
+  }
+
+  .inputTextbox {
+    grid-column: 1 / -1;
+    margin: 3rem 0 1rem  0;
+
+    .quill {
+      width: 100%;
+    }
+  }
+
+  .btn-publish {
+    grid-column: 8 / 9;
+    justify-self: end;
+  }
+}
