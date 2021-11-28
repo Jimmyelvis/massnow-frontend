@@ -63,6 +63,9 @@
 
         @include respond(bp-large) {
           width: 80%;
+        }
+
+        @include respond(bp-medium) {
           justify-content: center;
         }
 

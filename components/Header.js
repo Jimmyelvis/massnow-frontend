@@ -38,7 +38,7 @@ const Header = () => {
     <React.Fragment>
       <Nav />
       <MobileNav />
-     
+
       <Modal
         contentBgcolor={null}
         overlayColor={`rgba(0, 45, 112, 0.95)`}
@@ -47,7 +47,7 @@ const Header = () => {
         <div className="loginbox">
           <div className="contentbox">
             <div className="logo">
-              <img src="/images/ui/Logo.png" alt="" />
+              <img src="/images/logo-wht-text-orange-singnal.png" alt="" />
             </div>
 
             <div
@@ -90,7 +90,6 @@ const Header = () => {
       >
         <Search />
       </SearchOverLay>
-
     </React.Fragment>
   );
 };

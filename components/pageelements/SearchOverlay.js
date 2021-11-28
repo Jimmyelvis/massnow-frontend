@@ -3,6 +3,7 @@ import { useGlobalContext } from "../../context";
 import React, { useState, useEffect, useRef } from "react";
 
 
+
 const SearchOverlay = ({
   children,
   contentBgcolor,
@@ -13,6 +14,11 @@ const SearchOverlay = ({
 }) => {
   const { isOverlayOpen, closeOverlay } = useGlobalContext();
 
+   const refPage = useRef(null);
+
+   const [isVisible, setIsVisible] = useState(false);
+
+   
   SearchOverlay.defaultProps = {
     transition: "",
   };
@@ -32,7 +38,9 @@ const SearchOverlay = ({
   return (
     <div
       className={` ${
-        isOverlayOpen ? "modal-overlay search-overlay show-modal " : "modal-overlay search-overlay "
+        isOverlayOpen
+          ? "modal-overlay search-overlay show-modal "
+          : "modal-overlay search-overlay "
       }`}
       style={{
         backgroundColor: `${overlayColor}`,
@@ -59,6 +67,7 @@ const SearchOverlay = ({
       >
         <IoIosCloseCircle />
       </button>
+  
     </div>
   );
 };

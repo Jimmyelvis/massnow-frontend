@@ -39,10 +39,11 @@ const SigninComponent = () => {
           // save user info to localstorage
           // authenticate user
           authenticate(data, () => {
-            if (isAuth() && isAuth().role === 1) {
-                Router.push(`/admin`);
+            if (isAuth() && isAuth().role >= 1) {
+                // Router.push(`/admin`);
+                Router.push(`/profile/${isAuth().username}`);
             } else {
-                Router.push(`/user`);
+                Router.push(`/profile/${isAuth().username}`);
             }
           });
 

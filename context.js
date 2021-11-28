@@ -7,6 +7,7 @@ const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [mobileMenuActive, setMobileMenuActive] = useState(false);
 
 
 
@@ -35,6 +36,15 @@ const AppProvider = ({ children }) => {
     setIsOverlayOpen(false);
   };
 
+  const mobileMenu_Active = () => {
+    setMobileMenuActive(true)
+  }
+
+  const mobileMenu_InActive = () => {
+    setMobileMenuActive(false);
+  };
+
+
 
   return (
      <AppContext.Provider
@@ -42,12 +52,15 @@ const AppProvider = ({ children }) => {
         isSidebarOpen,
         isModalOpen,
         isOverlayOpen,
+        mobileMenuActive,
         openModal,
         closeModal,
         openSidebar,
         closeSidebar,
         openOverlay,
-        closeOverlay
+        closeOverlay,
+        mobileMenu_Active,
+        mobileMenu_InActive
       }}
     >
       {children}

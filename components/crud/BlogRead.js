@@ -9,6 +9,7 @@ import moment from "moment";
 const BlogRead = () => {
   const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState("");
+  const [filterInput, setFilterInput] = useState('')
   const token = getCookie("token");
 
   useEffect(() => {
@@ -80,18 +81,52 @@ const BlogRead = () => {
          );
        }
   }
-  
 
-  const showAllBlogs = () => {
-    return blogs.map((blog, i) => {
+  const showAllBlogs = (filterValue) => {
+
+    console.log('====================================');
+    console.log('called');
+    console.log('====================================');
+
+    console.log("==================filterValue==================");
+    console.log(filterValue);
+    console.log('====================================');
+
+    let theFilteredBlogs;
+
+    if (filterValue) {
+
+      console.log("================== if (filterValue) {==================");
+      console.log(" if (filterValue) {");
+      console.log('====================================');
+
+      theFilteredBlogs = blogs.filter((blog) => {
+        return blog.title.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
+      });
+    } else {
+      console.log('=======================else=============');
+      console.log('else');
+      console.log('====================================');
+      theFilteredBlogs = blogs
+    }
+
+    console.log("============theFilteredBlogs========================");
+    console.log(theFilteredBlogs);
+    console.log('====================================');
+
+
+    return theFilteredBlogs.map((blog) => {
+
+      console.log("==============inside return======================");
+      console.log('inside return');
+      console.log('====================================');
+
       return (
-        <div key={i} className="story">
+        <div key={blog._id} className="story">
           <img src={blog.mainphoto} alt="" className="mainphoto" />
           <h3 className="heading-3">
             <Link href={`/blogs/${blog.slug}`}>
-              <a>
-                {blog.title}
-              </a>
+              <a>{blog.title}</a>
             </Link>
           </h3>
           <p className="author">
@@ -99,33 +134,85 @@ const BlogRead = () => {
             {moment(blog.updatedAt).fromNow()}
           </p>
 
-          <p className="excerpt">
-            {blog.mdesc}
-          </p>
+          <p className="excerpt">{blog.mdesc}</p>
 
           <div className="buttons">
             {showDeleteButton(blog)}
             {showUpdateButton(blog)}
           </div>
-
-
-          
-
         </div>
       );
     });
   };
-
   
+
+  // const showAllBlogs = () => {
+
+
+  //   return blogs.map((blog, i) => {
+  //     return (
+  //       <div key={i} className="story">
+  //         <img src={blog.mainphoto} alt="" className="mainphoto" />
+  //         <h3 className="heading-3">
+  //           <Link href={`/blogs/${blog.slug}`}>
+  //             <a>
+  //               {blog.title}
+  //             </a>
+  //           </Link>
+  //         </h3>
+  //         <p className="author">
+  //           Written by {blog.postedBy.name} | Published on{" "}
+  //           {moment(blog.updatedAt).fromNow()}
+  //         </p>
+
+  //         <p className="excerpt">
+  //           {blog.mdesc}
+  //         </p>
+
+  //         <div className="buttons">
+  //           {showDeleteButton(blog)}
+  //           {showUpdateButton(blog)}
+  //         </div>
+
+
+          
+
+  //       </div>
+  //     );
+  //   });
+  // };
+
+  // const filterBlogs = (filterValue) => {
+  //   setFilterInput(filterValue)
+
+
+
+  //   if (filterValue !== "") {
+  //     let theFilteredBlogs = blogs.filter((blog) => {
+  //        return blog.title.toLowerCase().indexOf(filterInput.toLowerCase()) !== -1
+  //      })
+   
+  //      setBlogs(theFilteredBlogs)
+  //   } else {
+  //     setBlogs(blogs)
+  //   }
+
+
+  //   showAllBlogs()
+   
+  // };
 
   return (
     <React.Fragment>
-        {message && <div className="alert alert-warning">{message}</div>}
-        <h2 className="heading-2 blogs-total">{blogs.length} Blogs Total</h2>
+      {message && <div className="alert alert-warning">{message}</div>}
+      <h2 className="heading-2 blogs-total">{blogs.length} Blogs Total</h2>
+      <input
+        placeholder="Filter Blogs..."
+        onChange={(e) => showAllBlogs(e.target.value)}
+        className="filter-blogs-input"
+      />
 
-        <div className="blogs-list">
-          {showAllBlogs()}
-        </div>
+      <div className="blogs-list">{showAllBlogs()}</div>
     </React.Fragment>
   );
 };

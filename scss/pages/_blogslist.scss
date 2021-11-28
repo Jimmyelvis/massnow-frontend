@@ -6,7 +6,7 @@
 
 .blogs-list {
     grid-column: 2 / 14;
-    margin: 16rem 0;
+    margin: 4rem 0 16rem 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 7rem;
@@ -116,4 +116,27 @@
       }
     }
     
+}
+
+.filter-blogs-input {
+  grid-column: col-start 4 / col-end 9;
+  margin: 4rem 0 8rem 0;
+  padding: 1.4rem 2rem;
+  border-width: 0;
+  border-image: none;
+  box-shadow: inset 0px 0px 6px 0px rgb(204,216,232);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  color: $primary;
+  border: 1px solid rgba($secondary, .0);
+
+   &:focus {
+     outline: none;
+    
+     border: 1px solid rgba($secondary, .6);
+   }
+
+   &::-webkit-input-placeholder {
+     color: rgba($primary, .7);
+     font-weight: 600;
+   }
 }

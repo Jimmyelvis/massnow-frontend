@@ -190,6 +190,11 @@
           font-size: 2.2rem;
           grid-column: 1 / -1;
 
+          @include respond(bp-large) {
+            z-index: 3000;
+            position: relative;
+          }
+
           @include respond(bp-medium) {
             font-size: 2.5rem;
             margin-bottom: 1rem;

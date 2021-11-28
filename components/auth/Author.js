@@ -9,10 +9,6 @@ const Author = ({ children }) => {
     } else if (isAuth().role < 1 ) {
       Router.push(`/`);
     }
-
-    console.log("=============isAuth().role =======================");
-    console.log(isAuth().role);
-    console.log('====================================');
   }, []);
   return <React.Fragment>{children}</React.Fragment>;
 };

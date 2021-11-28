@@ -11,6 +11,10 @@
     text-align: center;
     margin: 10rem 0;
 
+    @include respond(bp-tiny) {
+      font-size: 3.2rem;
+    }
+
   }
 
   .tag{

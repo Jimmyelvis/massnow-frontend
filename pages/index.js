@@ -71,10 +71,7 @@ const Index = ({ articles }) => {
       <Latest blogs={sortedByUpdated} />
       <Sports blogs={featuredSports} />
       <Local blogs={therestof} />
-
-      {/*
-      <Sports />
-      <Local /> */}
+     
     </Layout>
   );
 };

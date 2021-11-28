@@ -43,6 +43,7 @@
   @include respond(bp-large) {
     margin-top: 0;
     padding: 8rem 0;
+    background-color: transparent;
   }
 
   @include respond(bp-medium) {
@@ -55,6 +56,14 @@
 
   .heading-2 {
     margin-bottom: 1rem;
+
+    @include respond(bp-small) {
+      font-size: 3.2rem;
+    }
+
+     @include respond(bp-tiny) {
+       font-size: 2.8rem;
+     }
   }
 
   .subheading {
@@ -164,11 +173,31 @@
         justify-content: space-between;
         margin-top: 3rem;
 
+        @include respond(bp-medium) {
+          justify-content: center;
+        }
+
         .card-OverlayType {
           width: calc(33% - 0.1rem);
           height: 30rem;
           padding-top: 18rem;
           margin-bottom: 0.2rem;
+
+          @include respond(bp-medium) {
+              width: calc(75% - 0.1rem);
+              height: 35rem;
+              padding-top: 21rem;
+              margin-bottom: 0.9rem;
+          }
+
+          @include respond(bp-small) {
+            width: calc(85% - 0.1rem);
+          }
+
+           @include respond(bp-smallest) {
+             width: calc(100% - 0.1rem);
+           }
+
 
           img {
             height: 100%;

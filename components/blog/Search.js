@@ -3,9 +3,15 @@ import renderHTML from "react-render-html";
 import React, { useState, useEffect, useRef } from "react";
 import { listSearch } from "../../actions/blog";
 import { BsSearch } from "react-icons/bs";
+import { useGlobalContext } from "../../context";
+
 
 
 const Search = () => {
+
+  const refContainer = useRef(null);
+ 
+
   const [values, setValues] = useState({
     search: undefined,
     results: [],
@@ -13,6 +19,16 @@ const Search = () => {
   });
 
   const { search, results, searched, message } = values;
+   const {
+     isModalOpen,
+     openModal,
+     openOverlay,
+     closeOverlay,
+     isOverlayOpen,
+     mobileMenuActive,
+     mobileMenu_Active,
+     mobileMenu_InActive,
+   } = useGlobalContext();
 
   const handleChange = (e) => {
 
@@ -63,6 +79,20 @@ const Search = () => {
 
   }, [search]);
 
+  const closeAndClear = () => {
+    closeOverlay()
+    mobileMenu_InActive()
+      setValues({
+        ...values,
+        results: [],
+        message: ``,
+      });
+
+      refContainer.current.value = '';
+ 
+  }
+  
+
 
   const searchedBlogs = (results = []) => {
     return (
@@ -73,7 +103,7 @@ const Search = () => {
             <div className="card-OverlayType" key={i}>
               <div className="card-info">
                 <Link href={`/blogs/${blog.slug}`}>
-                  <a>
+                  <a onClick={closeAndClear}>
                     {/* add an overflow hidden here */}
                     <h2 className="heading-2">{blog.title}</h2>
                     <h3 className="heading-3">{blog.subtitle}</h3>
@@ -114,6 +144,7 @@ const Search = () => {
         className="form-control"
         placeholder="Search blogs"
         onChange={handleChange}
+        ref={refContainer}
       />
     </form>
   );
@@ -121,10 +152,14 @@ const Search = () => {
 
   return (
     <div className="searchResults" >
+
+        
       {searchForm()}
       {message && <h2 className="heading-2">{message}</h2>}
 
-      { (   searchedBlogs(results) )}
+      {searchedBlogs(results)}
+
+      
     </div>
   );
 };

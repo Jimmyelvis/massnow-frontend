@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const api = {
-  key: "",
+  key: process.env.OPEN_WEATHER_APP,
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
@@ -9,8 +9,11 @@ const Weather = () => {
   const [weather, setWeather] = useState({});
   const [timeOfDay, setTimeOfDay] = useState('');
 
+
+
+
    useEffect(() => {
-     fetch(`${api.base}weather?q=Springfield&units=imperial&APPID=${api.key}`)
+     fetch(`${api.base}weather?id=4951788&units=imperial&APPID=${api.key}`)
        .then((res) => res.json())
        .then((result) => {
          setWeather(result);
@@ -25,24 +28,14 @@ const Weather = () => {
 
        const date = new Date(weatherTimpstamp * 1000);
 
-       console.log("============weather========================");
-       console.log(weather);
-       console.log('====================================');
-
+   
 
        if (
          currentTime > weather.sys.sunrise &&
          currentTime < weather.sys.sunset
        ) {
-         console.log("====================================");
-         console.log("show the sun");
-         console.log("====================================");
-
          setTimeOfDay('daytime')
        } else {
-         console.log("====================================");
-         console.log("show the moon");
-         console.log("====================================");
          setTimeOfDay('nighttime')
        }
      }

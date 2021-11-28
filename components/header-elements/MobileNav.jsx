@@ -11,9 +11,16 @@ import { RiCloseCircleFill } from "react-icons/ri";
 
 const MobileNav = () => {
 
-  const [mobileMenuActive, setMobileMenuActive] = useState(false);
-    const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
-      useGlobalContext();
+  // const [mobileMenuActive, setMobileMenuActive] = useState(false);
+    const {
+      isModalOpen,
+      openModal,
+      openOverlay,
+      isOverlayOpen,
+      mobileMenuActive,
+      mobileMenu_Active,
+      mobileMenu_InActive
+    } = useGlobalContext();
 
 
   const showAvatarMobile = () => {
@@ -78,7 +85,7 @@ const MobileNav = () => {
             <MobileIcom
               className="mobile-icon"
               onClick={() => {
-                setMobileMenuActive(true);
+                mobileMenu_Active();
               }}
             />
           </li>
@@ -92,7 +99,7 @@ const MobileNav = () => {
         <RiCloseCircleFill
           className="close"
           onClick={() => {
-            setMobileMenuActive(false);
+            mobileMenu_InActive();
           }}
         />
 
@@ -104,10 +111,26 @@ const MobileNav = () => {
           <li>
             <HiSearch className="search-icon" onClick={openOverlay} />
           </li>
-          <li>Home</li>
-          <li>Latest News</li>
-          <li>Sports</li>
-          <li>Local</li>
+          <li>
+            <Link href="/" passHref>
+              <a onClick={mobileMenu_InActive}>Home</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/latest">
+              <a onClick={mobileMenu_InActive}>Latest News</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/sports" passHref>
+              <a onClick={mobileMenu_InActive}>Sports</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/local" passHref>
+              <a onClick={mobileMenu_InActive}>Local News</a>
+            </Link>
+          </li>
         </ul>
       </div>
     </React.Fragment>

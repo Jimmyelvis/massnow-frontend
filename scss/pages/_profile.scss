@@ -16,6 +16,38 @@
     color: #fff;
   }
 
+  a {
+    width: 100%;
+
+    .edit-profile {
+      display: flex;
+      margin-top: 3rem;
+      align-items: center;
+      justify-content: space-around;
+      cursor: pointer;
+  
+      .heading-4 {
+        color: #fff;
+      }
+  
+      .icon-holder {
+        display: flex;
+        background-color: #fff;
+        padding: 1rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+  
+        .edit-icon {
+          fill: #fa9c50;
+        }
+      }
+    }
+
+  }
+
+
   .social-media {
     display: flex;
     margin-top: 3rem;
@@ -44,11 +76,11 @@
     width: 75%;
     margin: 8rem auto;
 
-     &>.heading-3 {
-        text-align: center;
-        margin-bottom: 4rem;
-        font-size: 3.6rem;
-     }
+    &>.heading-3 {
+      text-align: center;
+      margin-bottom: 4rem;
+      font-size: 3.6rem;
+    }
 
     .blogs {
       display: flex;
@@ -66,7 +98,7 @@
           font-size: 2.1rem;
         }
 
-        .heading-4{
+        .heading-4 {
           font-size: 1.7rem;
         }
       }
@@ -96,47 +128,47 @@
       width: 100%;
     }
 
-     .inputField {
-       width: 100%;
-       position: relative;
-       margin: 2rem 0;
+    .inputField {
+      width: 100%;
+      position: relative;
+      margin: 2rem 0;
 
-       .inputIcon {
-         width: 1.8rem;
-         position: absolute;
-         top: 50%;
-         left: 2.5%;
-         transform: translateY(-50%);
-       }
+      .inputIcon {
+        width: 1.8rem;
+        position: absolute;
+        top: 50%;
+        left: 2.5%;
+        transform: translateY(-50%);
+      }
 
-       .inputCtrl {
-         height: 6rem;
-         border: 2px solid rgb(255, 255, 255);
-         background-color: rgb(255, 255, 255);
-         transition: all 300ms linear;
-         padding: 0 6rem;
-         width: 100%;
-         color: $primary;
-         box-shadow: inset 0px 0px 11px 0px rgba(214,214,214,0.62);
+      .inputCtrl {
+        height: 6rem;
+        border: 2px solid rgb(255, 255, 255);
+        background-color: rgb(255, 255, 255);
+        transition: all 300ms linear;
+        padding: 0 6rem;
+        width: 100%;
+        color: $primary;
+        box-shadow: inset 0px 0px 11px 0px rgba(214, 214, 214, 0.62);
 
 
-         &::-webkit-input-placeholder {
-           color: lighten($color: $placeholder-blue, $amount: 15%);
-           font-size: 1.5rem;
-         }
+        &::-webkit-input-placeholder {
+          color: lighten($color: $placeholder-blue, $amount: 15%);
+          font-size: 1.5rem;
+        }
 
-         &:focus {
-           outline: none;
-           border: 2px solid rgba(130, 164, 234, 0.57);
-         }
-       }
+        &:focus {
+          outline: none;
+          border: 2px solid rgba(130, 164, 234, 0.57);
+        }
+      }
 
-       .inputCtrl-textarea {
-         height: auto;
-         padding-top: 3rem;
-       }
+      .inputCtrl-textarea {
+        height: auto;
+        padding-top: 3rem;
+      }
 
-     }
+    }
 
 
     .form-group {

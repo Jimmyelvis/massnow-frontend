@@ -27,13 +27,21 @@ const Nav = () => {
         </span>
 
         {!isAuth() && (
-          <div className="profile-logo" onClick={openModal}>
-            <img src="/images/ui/Profile.svg" alt="" />
-          </div>
+          <ul className="authDashSignout">
+            <li>
+              <HiSearch className="search-icon" onClick={openOverlay} />
+            </li>
+            <div className="profile-logo" onClick={openModal}>
+              <img src="/images/ui/Profile.svg" alt="" />
+            </div>
+          </ul>
         )}
 
         {isAuth() && isAuth().role === 0 && (
           <ul className="authDashSignout">
+            <li>
+              <HiSearch className="search-icon" onClick={openOverlay} />
+            </li>
             <li>
               <Link href="/user">
                 <a className="avatar">
@@ -82,7 +90,7 @@ const Nav = () => {
           </li>
           <li>
             <Link href="/latest" passHref>
-              <a>Latest</a>
+              <a>Latest News</a>
             </Link>
           </li>
           <li>
@@ -92,7 +100,7 @@ const Nav = () => {
           </li>
           <li>
             <Link href="/local" passHref>
-              <a>Local</a>
+              <a>Local News</a>
             </Link>
           </li>
         </ul>

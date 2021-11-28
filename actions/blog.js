@@ -65,14 +65,15 @@ export const listRelated = blog => {
 };
 
 export const list = () => {
-    return fetch(`${API}/api/blogs`, {
-        method: 'GET'
+  return fetch(`../data.json`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
     })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
+
 
 export const removeBlog = (slug, token) => {
     return fetch(`${API}/api/blog/${slug}`, {

@@ -10,16 +10,19 @@ const FrontPageHero = ({ blogs }) => {
   });
 
   const showBlogs = () => {
-    return theRest.map((blog) => {
-      return (
-        <Link href={`blogs/${blog.slug}`} key={blog.slug}>
-          <a className="story">
-            <img src={blog.mainphoto} alt="" />
-            <p>{blog.title}</p>
-          </a>
-        </Link>
-      );
-    });
+
+    if (theRest.length > 0) {
+      return theRest.map((blog) => {
+        return (
+          <Link href={`blogs/${blog.slug}`} key={blog.slug}>
+            <a className="story">
+              <img src={blog.mainphoto} alt="" />
+              <p>{blog.title}</p>
+            </a>
+          </Link>
+        );
+      });
+    }
   };
 
   return (
@@ -27,14 +30,18 @@ const FrontPageHero = ({ blogs }) => {
       <div className="content col-2 narrow-wide">
         <div className="currentslideinfo">
           <h2 className="heading-2 u-margin-bottom-small">
-            {topStory[0].title}
+            {topStory.length > 0 ? topStory[0].title : "Sample Top Story Title"}
           </h2>
-          <p className="u-margin-bottom-medium">{topStory[0].subtitle}</p>
+          <p className="u-margin-bottom-medium">
+            {topStory.length > 0 ? topStory[0].subtitle : "Sample Subtitle"}
+          </p>
           <div className="readmore">
             <span className="readstory">
-              <Link href={`blogs/${topStory[0].slug}`}>
-                <a>Read More</a>
-              </Link>
+              {topStory.length > 0 ? (
+                <Link href={`blogs/${topStory[0].slug}`}>
+                  <a>Read More</a>
+                </Link>
+              ) : ""}
             </span>
           </div>
         </div>
@@ -45,7 +52,11 @@ const FrontPageHero = ({ blogs }) => {
       </div>
 
       <div className="overlay"></div>
-      <img src={topStory[0].mainphoto} className="herobg" alt="" />
+      {
+        topStory.length > 0 ? 
+        (<img src={topStory[0].mainphoto} className="herobg" alt="" />) : 
+        (<img src="/images/buildings.jpg" className="herobg" alt="" />)
+      }
     </div>
   );
 };

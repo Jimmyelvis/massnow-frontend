@@ -49,3 +49,52 @@
   background-color: $danger;
 }
 
+.scroll-btn {
+    position: fixed;
+    right: 5.8rem;
+    bottom: 4.5rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+    color: #949db6;
+    padding: 0.75rem;
+    border-radius: 50%;
+    align-items: center;
+    cursor: pointer;
+    background-image: none;
+    border-width: 2px;
+    border-style: none;
+    border-color: navajowhite;
+    border-image: initial;
+    font-size: 2.8rem;
+    display: inline-flex;
+    -webkit-appearance: button;
+    background: linear-gradient(to bottom, white 0%, #d3dee8 100%);
+    outline-offset: 0;
+    outline: solid 3px rgba(214,214,231,0.50);
+    z-index: 6000;
+    box-shadow: inset 0 0 3px 4px rgb(207,210,214);
+
+    &:focus {
+      outline: solid 3px rgba(214, 214, 231, 0.50);
+      outline-offset: 5px;
+      color: #949db6;
+    }
+
+    &:hover {
+      outline: solid 3px rgba(214, 214, 231, 1);
+      outline-offset: 5px;
+      color: #003ad8;
+    }
+
+    @include respond($bp-medium) {
+      right: 2rem;
+    }
+}
+
+.scroll-btn-serach-overlay {
+  position: sticky;
+  left: 95%;
+  width: 4rem;
+  height: 4rem;
+}

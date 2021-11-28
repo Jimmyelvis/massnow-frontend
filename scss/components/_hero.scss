@@ -134,6 +134,10 @@
       align-content: center;
       position: relative;
 
+      @include respond(bp-small) {
+        padding-top: 4rem;
+      }
+
 
       &::after {
         content: " ";

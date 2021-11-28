@@ -1,8 +1,8 @@
 const Widgetsetting = () => {
 
   return {
-    cloudName: '',
-    uploadPreset: '',
+    cloudName: process.env.REACT_APP_CLOUDINARY_CLOUDNAME,
+    uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOADPRESENT,
     sources: [
       "local",
       "url",
@@ -11,7 +11,7 @@ const Widgetsetting = () => {
       "instagram",
       "image_search",
     ],
-    googleApiKey: '',
+    googleApiKey: process.env.REACT_APP_googleApiKey,
     showAdvancedOptions: true,
     cropping: true,
     multiple: false,
@@ -39,8 +39,7 @@ const Widgetsetting = () => {
           active: true,
         },
       },
-  }
-  
+    },
   };
 
 

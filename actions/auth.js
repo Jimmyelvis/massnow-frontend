@@ -93,18 +93,32 @@ export const authenticate = (data, next) => {
     next();
 };
 
-export const isAuth = () => {
-    if (process.browser) {
-        const cookieChecked = getCookie('token');
-        if (cookieChecked) {
-            if (localStorage.getItem('user')) {
-                return JSON.parse(localStorage.getItem('user'));
-            } else {
-                return false;
-            }
-        }
-    }
-};
+// export const isAuth = () => {
+//     if (process.browser) {
+//         const cookieChecked = getCookie('token');
+//         if (cookieChecked) {
+//             if (localStorage.getItem('user')) {
+//                 return JSON.parse(localStorage.getItem('user'));
+//             } else {
+//                 return false;
+//             }
+//         }
+//     }
+// };
+
+ export const isAuth = () => {
+  let user = false
+  if (process.browser) {
+    const cookieChecked = getCookie('token');
+    if (cookieChecked) {
+      if (localStorage.getItem('user')) {
+        user = JSON.parse(localStorage.getItem('user'));
+        return user;
+      } 
+    } 
+  }
+  return user;
+ }
 
 export const updateUser = (user, next) => {
   if (process.browser) {

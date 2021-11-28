@@ -12,7 +12,6 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import Widgetsetting from "../pageelements/Cloudinary";
 import "../../node_modules/react-quill/dist/quill.snow.css";
 import { QuillModules, QuillFormats } from "../../helpers/quill";
-import tag from "../../../backend/models/tag";
 
 const CreateBlog = ({ router }) => {
   const blogFromLS = () => {
