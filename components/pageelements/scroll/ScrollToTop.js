@@ -13,7 +13,7 @@ const ScrollToTop = () => {
      }
    };
 
-    const scrollToTop = () => {
+    const scrollUp = () => {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -33,7 +33,7 @@ const ScrollToTop = () => {
      <div className="fixed bottom-2 right-2">
        <button
          type="button"
-         onClick={scrollToTop}
+         onClick={scrollUp}
          className={`${
            isVisible ? "scroll-btn opacity-100" : "scroll-btn opacity-0"
          }`}

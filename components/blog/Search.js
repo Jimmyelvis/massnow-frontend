@@ -104,7 +104,6 @@ const Search = () => {
               <div className="card-info">
                 <Link href={`/blogs/${blog.slug}`}>
                   <a onClick={closeAndClear}>
-                    {/* add an overflow hidden here */}
                     <h2 className="heading-2">{blog.title}</h2>
                     <h3 className="heading-3">{blog.subtitle}</h3>
                     <h4 className="heading-4">By: {blog.postedBy.name}</h4>

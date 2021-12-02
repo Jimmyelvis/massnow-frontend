@@ -79,12 +79,7 @@ const UserProfile = ({ user, blogs, query }) => {
             </div>
 
             <h3 className="heading-3">{user.name}</h3>
-            <h3 className="heading-3">
-              {isAuth().username ? console.log(isAuth().username) : ""}
-              {/* { console.log(isAuth().role)} */}
-              {/* {isAuth().username} */}
-            </h3>
-
+      
             {
               isAuth().username === user.username ? (
                 <Link href="/user/update">
@@ -101,16 +96,6 @@ const UserProfile = ({ user, blogs, query }) => {
               ) : ""
             }
 
-           
-
-            {/* <ul className="social-media">
-                <li>
-                  <img src="/images/ui/facebook.svg" />
-                </li>
-                <li>
-                  <img src="/images/ui/twitter.svg" />
-                </li>
-              </ul> */}
           </div>
         </Sectionhero>
 
@@ -127,28 +112,7 @@ const UserProfile = ({ user, blogs, query }) => {
             ""
           )}
         </div>
-
-        {/* <div className="card">
-              <div className="card-body">
-                <h5>{user.name}</h5>
-                <Link href={`${user.profile}`}>
-                  <a>View Profile</a>
-                </Link>
-                <p className="text-muted">
-                  Joined {moment(user.createdAt).fromNow()}
-                </p>
-              </div>
-            </div> */}
-
-        {/* <div className="card">
-                <div className="card-body">
-                <h5 className="card-title bg-primary pt-4 pb-4 pl-4 pr-4 text-light">
-                    Message {user.name}
-                </h5>
-                <br />
-                <p>contact form</p>
-                </div>
-            </div> */}
+     
       </Layout>
     </React.Fragment>
   );

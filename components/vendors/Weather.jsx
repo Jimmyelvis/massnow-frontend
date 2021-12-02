@@ -47,13 +47,10 @@ const Weather = () => {
          {typeof weather.main != "undefined" ? (
            <React.Fragment>
              <div className="weather-box">
-               {/* <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
-               alt="" /> */}
-               <img
+                <img
                  src={`/images/weather/2x/${weather.weather[0].icon}.png`}
                  alt=""
                />
-               {/* <div className="temp">{Math.round(weather.main.temp)}° f</div> */}
                <div className={`temp ${timeOfDay == 'daytime' ? 'day-time' : 'night-time' }`}>{Math.round(weather.main.temp)}° f</div>
              </div>
            </React.Fragment>

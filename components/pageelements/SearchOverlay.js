@@ -14,8 +14,6 @@ const SearchOverlay = ({
 }) => {
   const { isOverlayOpen, closeOverlay } = useGlobalContext();
 
-   const refPage = useRef(null);
-
    const [isVisible, setIsVisible] = useState(false);
 
    
