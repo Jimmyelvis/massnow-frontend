@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 import { useState, useEffect } from "react";
 import Router from "next/router";
 import dynamic from "next/dynamic";

@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Router from "next/router";
@@ -9,7 +10,7 @@ import moment from "moment";
 const BlogRead = () => {
   const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState("");
-  const [filterInput, setFilterInput] = useState('')
+  const [filterInput, setFilterInput] = useState("");
   const token = getCookie("token");
 
   useEffect(() => {
@@ -27,99 +28,97 @@ const BlogRead = () => {
   };
 
   const deleteBlog = (slug) => {
-        removeBlog(slug, token).then(data => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                setMessage(data.message);
-                loadBlogs();
-            }
-        });
-    };
+    removeBlog(slug, token).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setMessage(data.message);
+        loadBlogs();
+      }
+    });
+  };
 
-  const deleteConfirm = slug => {
-        let answer = window.confirm('Are you sure you want to delete your blog?');
-        if (answer) {
-            deleteBlog(slug);
-        }
-    };
+  const deleteConfirm = (slug) => {
+    let answer = window.confirm("Are you sure you want to delete your blog?");
+    if (answer) {
+      deleteBlog(slug);
+    }
+  };
 
-  const showUpdateButton = blog => {
+  const showUpdateButton = (blog) => {
     if (isAuth() && isAuth().role === 2) {
-        return (
-            <Link href={`/admin/crud/${blog.slug}`}>
-                <a className="btn btn-secondary btn-edit">Update</a>
-            </Link>
-        );
-    } else if ( blog.postedBy._id === isAuth()._id) {
-        return (
-          <Link href={`/admin/crud/${blog.slug}`}>
-            <a className="btn btn-secondary btn-edit">Update</a>
-          </Link>
-        );
+      return (
+        <Link href={`/admin/crud/${blog.slug}`}>
+          <a className="btn btn-secondary btn-edit">Update</a>
+        </Link>
+      );
+    } else if (blog.postedBy._id === isAuth()._id) {
+      return (
+        <Link href={`/admin/crud/${blog.slug}`}>
+          <a className="btn btn-secondary btn-edit">Update</a>
+        </Link>
+      );
     }
   };
 
   const showDeleteButton = (blog) => {
-       if (isAuth() && isAuth().role === 2) {
-         return (
-           <button
-             className="btn btn-danger"
-             onClick={() => deleteConfirm(blog.slug)}
-           >
-             Delete
-           </button>
-         );
-       } else if (blog.postedBy._id === isAuth()._id) {
-         return (
-           <button
-             className="btn btn-danger"
-             onClick={() => deleteConfirm(blog.slug)}
-           >
-             Delete
-           </button>
-         );
-       }
-  }
+    if (isAuth() && isAuth().role === 2) {
+      return (
+        <button
+          className="btn btn-danger"
+          onClick={() => deleteConfirm(blog.slug)}
+        >
+          Delete
+        </button>
+      );
+    } else if (blog.postedBy._id === isAuth()._id) {
+      return (
+        <button
+          className="btn btn-danger"
+          onClick={() => deleteConfirm(blog.slug)}
+        >
+          Delete
+        </button>
+      );
+    }
+  };
 
   const showAllBlogs = (filterValue) => {
-
-    console.log('====================================');
-    console.log('called');
-    console.log('====================================');
+    console.log("====================================");
+    console.log("called");
+    console.log("====================================");
 
     console.log("==================filterValue==================");
     console.log(filterValue);
-    console.log('====================================');
+    console.log("====================================");
 
     let theFilteredBlogs;
 
     if (filterValue) {
-
       console.log("================== if (filterValue) {==================");
       console.log(" if (filterValue) {");
-      console.log('====================================');
+      console.log("====================================");
 
       theFilteredBlogs = blogs.filter((blog) => {
-        return blog.title.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1;
+        return (
+          blog.title.toLowerCase().indexOf(filterValue.toLowerCase()) !== -1
+        );
       });
     } else {
-      console.log('=======================else=============');
-      console.log('else');
-      console.log('====================================');
-      theFilteredBlogs = blogs
+      console.log("=======================else=============");
+      console.log("else");
+      console.log("====================================");
+      theFilteredBlogs = blogs;
     }
 
     console.log("============theFilteredBlogs========================");
     console.log(theFilteredBlogs);
-    console.log('====================================');
-
+    console.log("====================================");
 
     return theFilteredBlogs.map((blog) => {
-
       console.log("==============inside return======================");
-      console.log('inside return');
-      console.log('====================================');
+      console.log("inside return");
+      console.log("====================================");
 
       return (
         <div key={blog._id} className="story">
@@ -144,10 +143,8 @@ const BlogRead = () => {
       );
     });
   };
-  
 
   // const showAllBlogs = () => {
-
 
   //   return blogs.map((blog, i) => {
   //     return (
@@ -174,9 +171,6 @@ const BlogRead = () => {
   //           {showUpdateButton(blog)}
   //         </div>
 
-
-          
-
   //       </div>
   //     );
   //   });
@@ -185,21 +179,18 @@ const BlogRead = () => {
   // const filterBlogs = (filterValue) => {
   //   setFilterInput(filterValue)
 
-
-
   //   if (filterValue !== "") {
   //     let theFilteredBlogs = blogs.filter((blog) => {
   //        return blog.title.toLowerCase().indexOf(filterInput.toLowerCase()) !== -1
   //      })
-   
+
   //      setBlogs(theFilteredBlogs)
   //   } else {
   //     setBlogs(blogs)
   //   }
 
-
   //   showAllBlogs()
-   
+
   // };
 
   return (

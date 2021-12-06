@@ -2,6 +2,8 @@
 import React from 'react'
 import Head from 'next/head'
 import { AppProvider } from '../context';
+import "../scss/style.scss";
+
 
 
  

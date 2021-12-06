@@ -1,102 +1,119 @@
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
-import { isAuth, getCookie } from '../../actions/auth';
-import { create, getCategories, removeCategory } from '../../actions/category';
+import React from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Router from "next/router";
+import { isAuth, getCookie } from "../../actions/auth";
+import { create, getCategories, removeCategory } from "../../actions/category";
 
 const Category = () => {
-
   const [values, setValues] = useState({
-    name: '',
+    name: "",
     error: false,
     success: false,
     categories: [],
     removed: false,
-    reload: false
-
+    reload: false,
   });
 
   const { name, error, success, categories, removed, reload } = values;
-  const token = getCookie('token');
-
+  const token = getCookie("token");
 
   useEffect(() => {
     loadCategories();
   }, [reload]);
 
   const loadCategories = () => {
-    getCategories().then(data => {
-        if (data.error) {
-            console.log(data.error);
-        } else {
-            setValues({ ...values, categories: data });
-        }
+    getCategories().then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setValues({ ...values, categories: data });
+      }
     });
   };
 
   const showCategories = () => {
     return categories.map((c, i) => {
-        return (
-          <button
-            onDoubleClick={() => deleteConfirm(c.slug)}
-            title="Double click to delete"
-            key={i}
-            className="btn btn-secondary"
-          >
-            {c.name}
-          </button>
-        );
+      return (
+        <button
+          onDoubleClick={() => deleteConfirm(c.slug)}
+          title="Double click to delete"
+          key={i}
+          className="btn btn-secondary"
+        >
+          {c.name}
+        </button>
+      );
     });
   };
 
-  const deleteConfirm = slug => {
-    let answer = window.confirm('Are you sure you want to delete this category?');
+  const deleteConfirm = (slug) => {
+    let answer = window.confirm(
+      "Are you sure you want to delete this category?"
+    );
     if (answer) {
-        deleteCategory(slug);
-      }
+      deleteCategory(slug);
+    }
   };
 
-  const deleteCategory = slug => {
+  const deleteCategory = (slug) => {
     // console.log('delete', slug);
-    removeCategory(slug, token).then(data => {
-        if (data.error) {
-            console.log(data.error);
-        } else {
-            setValues({ ...values, error: false, success: false, name: '', removed: !removed, reload: !reload });
-        }
+    removeCategory(slug, token).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setValues({
+          ...values,
+          error: false,
+          success: false,
+          name: "",
+          removed: !removed,
+          reload: !reload,
+        });
+      }
     });
   };
 
-  
-
-  const clickSubmit = e => {
+  const clickSubmit = (e) => {
     e.preventDefault();
 
     // console.log('create category', name);
 
-    create({ name }, token).then(data => {
-        if (data.error) {
-            setValues({ ...values, error: data.error, success: false });
-        } else {
-          setValues({ ...values, error: false, success: true, name: '', removed: '', reload: !reload });
+    create({ name }, token).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, success: false });
+      } else {
+        setValues({
+          ...values,
+          error: false,
+          success: true,
+          name: "",
+          removed: "",
+          reload: !reload,
+        });
       }
     });
-    
   };
 
-  const handleChange = e => {
-    setValues({ ...values, name: e.target.value, error: false, success: false, removed: '' });
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      name: e.target.value,
+      error: false,
+      success: false,
+      removed: "",
+    });
   };
 
   const showSuccess = () => {
     if (success) {
-        return <p className="msg text-success">Category is created</p>;
+      return <p className="msg text-success">Category is created</p>;
     }
   };
 
   const showError = () => {
     if (error) {
-        return <p className="msg text-warning">Category already exist</p>;
+      return <p className="msg text-warning">Category already exist</p>;
     }
   };
 
@@ -106,10 +123,9 @@ const Category = () => {
     }
   };
 
-  const mouseMoveHandler = e => {
-    setValues({ ...values, error: false, success: false, removed: '' });
+  const mouseMoveHandler = (e) => {
+    setValues({ ...values, error: false, success: false, removed: "" });
   };
-
 
   const newCategoryFom = () => (
     <form onSubmit={clickSubmit}>
@@ -133,19 +149,16 @@ const Category = () => {
 
   return (
     <React.Fragment>
-        {showSuccess()}
-        {showError()}
-        {showRemoved()}
-        <div onMouseMove={mouseMoveHandler}>
-            {newCategoryFom()}
+      {showSuccess()}
+      {showError()}
+      {showRemoved()}
+      <div onMouseMove={mouseMoveHandler}>
+        {newCategoryFom()}
 
-            <div className="entries">
-              {showCategories()}
-            </div>
-        </div>
+        <div className="entries">{showCategories()}</div>
+      </div>
     </React.Fragment>
-  )
-
-}
+  );
+};
 
 export default Category;

@@ -4,7 +4,6 @@ import Latest from "../components/index/latest";
 import Sports from "../components/index/sports";
 import Local from "../components/index/local";
 import Head from "next/head";
-import "../scss/style.scss";
 import Link from "next/link";
 import { sortElems } from '../helpers/sorting'
 import { API, DOMAIN, APP_NAME } from "../config";

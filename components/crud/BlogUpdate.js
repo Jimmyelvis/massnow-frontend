@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import Router from "next/router";
@@ -238,14 +239,13 @@ const BlogUpdate = ({ router }) => {
 
   return (
     <React.Fragment>
-
-    <div class="hero blogcreate">
+      <div class="hero blogcreate">
         <div class="overlay"></div>
         {/* <img src={mainphoto} class="herobg" alt="" /> */}
-        {!mainphoto ? null : <img src={mainphoto} class="herobg" alt=""   />}
+        {!mainphoto ? null : <img src={mainphoto} class="herobg" alt="" />}
 
-        <h2 className="heading-2">Edit Article -- { title }</h2>
-     </div>  
+        <h2 className="heading-2">Edit Article -- {title}</h2>
+      </div>
 
       <div className="crud-content">
         <form onSubmit={editBlog} className="formCreation">

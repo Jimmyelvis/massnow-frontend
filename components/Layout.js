@@ -1,6 +1,6 @@
+import React from "react";
 import Header from "./Header";
 import Footer from "./Footer"
-import "../scss/style.scss";
 import { useGlobalContext } from "../context";
 import ScrollToTop from "./pageelements/scroll/ScrollToTop"
 

@@ -1,65 +1,66 @@
-import  { useState, useEffect }  from 'react'
-import { signup, isAuth } from '../../actions/auth';
+import React from "react";
+import { useState, useEffect } from "react";
+import { signup, isAuth } from "../../actions/auth";
 import { useGlobalContext } from "../../context";
-import Router from 'next/router';
-
-
+import Router from "next/router";
 
 const SignupComponent = () => {
   const { isModalOpen, closeModal } = useGlobalContext();
 
-
   const [values, setValues] = useState({
-    name: '',
-    email: '',
-    username:'',
-    password: '',
-    error: '',
+    name: "",
+    email: "",
+    username: "",
+    password: "",
+    error: "",
     loading: false,
-    message: '',
-    showForm: true
-});
+    message: "",
+    showForm: true,
+  });
 
-  const { name, username, email, password, error, loading, message, showForm } = values;
+  const { name, username, email, password, error, loading, message, showForm } =
+    values;
 
   // useEffect(() => {
   //   isAuth() && Router.push(`/`);
   // }, []);
 
-
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // console.table({ name, email, password, error, loading, message, showForm });
 
     setValues({ ...values, loading: true, error: false });
     const user = { name, username, email, password };
 
-    signup(user).then(data => {
+    signup(user).then((data) => {
       if (data.error) {
-          setValues({ ...values, error: data.error, loading: false });
+        setValues({ ...values, error: data.error, loading: false });
       } else {
-          setValues({
-              ...values,
-              name: '',
-              username: '',
-              email: '',
-              password: '',
-              error: '',
-              loading: false,
-              message: data.message,
-              showForm: false
-          })
+        setValues({
+          ...values,
+          name: "",
+          username: "",
+          email: "",
+          password: "",
+          error: "",
+          loading: false,
+          message: data.message,
+          showForm: false,
+        });
       }
     });
   };
 
-  const showLoading = () => (loading ? <div className="alert alert-info">Loading...</div> : '');
+  const showLoading = () =>
+    loading ? <div className="alert alert-info">Loading...</div> : "";
 
-  const showError = () => (error ? <div className="alert alert-danger">{error}</div> : '');
+  const showError = () =>
+    error ? <div className="alert alert-danger">{error}</div> : "";
 
-  const showMessage = () => (message ? <div className="alert alert-info">{message}</div> : '');
+  const showMessage = () =>
+    message ? <div className="alert alert-info">{message}</div> : "";
 
-  const handleChange = name => e => {
+  const handleChange = (name) => (e) => {
     setValues({ ...values, error: false, [name]: e.target.value });
   };
 
@@ -133,8 +134,7 @@ const SignupComponent = () => {
         <button className="btn btn-thirdcolor-grad">Signup</button>
       </form>
     );
-};
-
+  };
 
   return (
     <React.Fragment>
@@ -143,7 +143,7 @@ const SignupComponent = () => {
       {showMessage()}
       {showForm && signupForm()}
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default SignupComponent
+export default SignupComponent;

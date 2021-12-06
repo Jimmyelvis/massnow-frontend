@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/Layout";
@@ -51,8 +52,8 @@ const SingleBlog = ({ blog, query }) => {
   const showBlogCategories = (blog) =>
     blog.categories.map((c, i) => (
       <Link key={i} href={`/categories/${c.slug}`}>
-          <a>{c.name}</a>
-        </Link>
+        <a>{c.name}</a>
+      </Link>
     ));
 
   const showBlogTags = (blog) =>
@@ -69,7 +70,6 @@ const SingleBlog = ({ blog, query }) => {
           <Link href={`/blogs/${blog.slug}`}>
             <a>
               <div className="heading-3">{blog.title}</div>
-
             </a>
           </Link>
         </div>
@@ -83,7 +83,6 @@ const SingleBlog = ({ blog, query }) => {
   return (
     <React.Fragment>
       <Layout>
-      
         <div class="hero art-detail">
           <div class="overlay"></div>
           <img src={blog.mainphoto} class="herobg" alt="" />
@@ -92,27 +91,25 @@ const SingleBlog = ({ blog, query }) => {
         <div className="content-detail">
           <div class="heading-2">{blog.title}</div>
 
-          <p class="subheading">
-            {blog.subtitle}
-          </p>
+          <p class="subheading">{blog.subtitle}</p>
 
           <div class="author">
-
             <div className="avatar">
-              <img
-                src={blog.postedBy.photo}
-                alt="user profile"
-              />
+              <img src={blog.postedBy.photo} alt="user profile" />
             </div>
 
             <div className="written-by">
-
-              by <Link href={`/profile/${blog.postedBy.username}`}><a>{blog.postedBy.name}</a></Link>  | <span className="published">Published {moment(blog.updatedAt).fromNow()}</span> 
+              by{" "}
+              <Link href={`/profile/${blog.postedBy.username}`}>
+                <a>{blog.postedBy.name}</a>
+              </Link>{" "}
+              |{" "}
+              <span className="published">
+                Published {moment(blog.updatedAt).fromNow()}
+              </span>
             </div>
 
-
             <ul class="social">
-
               <li>
                 <svg
                   id="facebook_icon"
@@ -200,12 +197,9 @@ const SingleBlog = ({ blog, query }) => {
                   </g>
                 </svg>
               </li>
-              
             </ul>
-
           </div>
 
-          
           <div className="content">
             {renderHTML(blog.body)}
 
@@ -222,18 +216,12 @@ const SingleBlog = ({ blog, query }) => {
             </div>
 
             <div className="related">
-
               <h3 className="heading-3">Related blogs</h3>
 
-              <div className="related-blogs">
-                {showRelatedBlog()}
-              </div>
+              <div className="related-blogs">{showRelatedBlog()}</div>
             </div>
-
           </div>
-      
         </div>
-     
       </Layout>
     </React.Fragment>
   );

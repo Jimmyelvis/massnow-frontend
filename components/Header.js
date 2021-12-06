@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Router from "next/router";
 import NProgress from "nprogress";
@@ -12,27 +13,28 @@ import Search from "./blog/Search";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../config";
 import { HiSearch } from "react-icons/hi";
 import SearchOverLay from "../components/pageelements/SearchOverlay";
-import Nav from "./header-elements/Nav"
+import Nav from "./header-elements/Nav";
 import MobileNav from "./header-elements/MobileNav";
 
-
-
-
-
-Router.onRouteChangeStart = (url) => NProgress.start();
-Router.onRouteChangeComplete = (url) => NProgress.done();
-Router.onRouteChangeError = (url) => NProgress.done();
+// Router.onRouteChangeStart = (url) => NProgress.start();
+// Router.onRouteChangeComplete = (url) => NProgress.done();
+// Router.onRouteChangeError = (url) => NProgress.done();
 
 const Header = () => {
-
-
   const [isOpen, setIsOpen] = useState(false);
-  const [formShown, setFormShown] = useState('signIn');
-  const { isModalOpen, openModal, openOverlay, isOverlayOpen } = useGlobalContext();
+  const [formShown, setFormShown] = useState("signIn");
+  const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
+    useGlobalContext();
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    Router.onRouteChangeStart = (url) => NProgress.start();
+    Router.onRouteChangeComplete = (url) => NProgress.done();
+    Router.onRouteChangeError = (url) => NProgress.done();
+  }, [Router])
 
   return (
     <React.Fragment>

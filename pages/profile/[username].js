@@ -1,3 +1,4 @@
+import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/Layout";
@@ -79,23 +80,22 @@ const UserProfile = ({ user, blogs, query }) => {
             </div>
 
             <h3 className="heading-3">{user.name}</h3>
-      
-            {
-              isAuth().username === user.username ? (
-                <Link href="/user/update">
-                    <a>
-                      <div className="edit-profile">
-                        <h4 className="heading-4">Edit Profile</h4>
 
-                        <div className="icon-holder">
-                          <FaEdit className="edit-icon" />
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-              ) : ""
-            }
+            {isAuth().username === user.username ? (
+              <Link href="/user/update">
+                <a>
+                  <div className="edit-profile">
+                    <h4 className="heading-4">Edit Profile</h4>
 
+                    <div className="icon-holder">
+                      <FaEdit className="edit-icon" />
+                    </div>
+                  </div>
+                </a>
+              </Link>
+            ) : (
+              ""
+            )}
           </div>
         </Sectionhero>
 
@@ -112,7 +112,6 @@ const UserProfile = ({ user, blogs, query }) => {
             ""
           )}
         </div>
-     
       </Layout>
     </React.Fragment>
   );

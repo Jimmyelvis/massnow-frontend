@@ -4,7 +4,6 @@ import Majorsection from "../components/pageelements/Majorsection";
 import Otherstories from "../components/hero/Otherstories";
 import Secheading from "../components/pageelements/Secheading";
 import Head from "next/head";
-import "../scss/style.scss";
 import Link from "next/link";
 import { sortElems } from "../helpers/sorting";
 import { API, DOMAIN, APP_NAME } from "../config";
