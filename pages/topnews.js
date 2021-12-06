@@ -5,7 +5,6 @@ import Otherstories from "../components/hero/Otherstories";
 import Secheading from "../components/pageelements/Secheading";
 
 import Head from "next/head";
-import "../scss/style.scss";
 import Link from "next/link";
 
 const topnews = () => {
