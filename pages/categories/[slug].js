@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -9,43 +10,50 @@ import moment from "moment";
 import Card from "../../components/blog/Card";
 
 const Category = ({ category, blogs, query }) => {
-
-  const [featuredBlog, setFeaturedBlog] = useState('');
+  const [featuredBlog, setFeaturedBlog] = useState("");
 
   useEffect(() => {
-    
-    setFeaturedBlog(blogs[0])
-  })
+    setFeaturedBlog(blogs[0]);
+  });
 
-  
-    let theBlogs = blogs[0]
-    
-    console.log("==================theBlogs==================");
-    console.log(theBlogs.postedBy.name);
-    console.log('====================================');
-  
+  let theBlogs = blogs[0];
+
+  console.log("==================theBlogs==================");
+  console.log(theBlogs.postedBy.name);
+  console.log("====================================");
 
   const head = () => (
-        <Head>
-            <title>
-                {category.name} | {APP_NAME}
-            </title>
-            <meta name="description" content={`Best programming tutorials on ${category.name}`} />
-            <link rel="canonical" href={`${DOMAIN}/categories/${query.slug}`} />
-            <meta property="og:title" content={`${category.name}| ${APP_NAME}`} />
-            <meta property="og:description" content={`Best programming tutorials on ${category.name}`} />
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${DOMAIN}/categories/${query.slug}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
+    <Head>
+      <title>
+        {category.name} | {APP_NAME}
+      </title>
+      <meta
+        name="description"
+        content={`Best programming tutorials on ${category.name}`}
+      />
+      <link rel="canonical" href={`${DOMAIN}/categories/${query.slug}`} />
+      <meta property="og:title" content={`${category.name}| ${APP_NAME}`} />
+      <meta
+        property="og:description"
+        content={`Best programming tutorials on ${category.name}`}
+      />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content={`${DOMAIN}/categories/${query.slug}`} />
+      <meta property="og:site_name" content={`${APP_NAME}`} />
 
-            <meta property="og:image" content={`${DOMAIN}/static/images/seoblog.jpg`} />
-            <meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seoblog.jpg`} />
-            <meta property="og:image:type" content="image/jpg" />
-            {/* <meta property="fb:app_id" content={`${FB_APP_ID}`} /> */}
-        </Head>
-    );
+      <meta
+        property="og:image"
+        content={`${DOMAIN}/static/images/seoblog.jpg`}
+      />
+      <meta
+        property="og:image:secure_url"
+        content={`${DOMAIN}/static/images/seoblog.jpg`}
+      />
+      <meta property="og:image:type" content="image/jpg" />
+      {/* <meta property="fb:app_id" content={`${FB_APP_ID}`} /> */}
+    </Head>
+  );
 
-    
   return (
     <React.Fragment>
       {head()}
@@ -98,15 +106,13 @@ const Category = ({ category, blogs, query }) => {
 };
 
 Category.getInitialProps = ({ query }) => {
-    return singleCategory(query.slug).then(data => {
-        if (data.error) {
-            console.log(data.error);
-        } else {
-            return { category: data.category, blogs: data.blogs, query };
-        }
-    });
+  return singleCategory(query.slug).then((data) => {
+    if (data.error) {
+      console.log(data.error);
+    } else {
+      return { category: data.category, blogs: data.blogs, query };
+    }
+  });
 };
 
-
 export default Category;
-
