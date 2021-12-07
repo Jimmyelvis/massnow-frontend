@@ -1,7 +1,6 @@
 import Layout from "../../../components/Layout";
-import Admin from "../../../components/auth/Admin";
+import Author from "../../../components/auth/Author";
 import BlogUpdate from "../../../components/crud/BlogUpdate";
-import Link from "next/link";
 import Head from "next/head";
 
 const Blog = () => {
@@ -14,9 +13,9 @@ const Blog = () => {
           href="https://cdnjs.cloudflare.com/ajax/libs/react-quill/0.4.1/quill.snow.css"
         />
       </Head>
-      <Admin>
+      <Author>
         <BlogUpdate />
-      </Admin>
+      </Author>
     </Layout>
   );
 };
