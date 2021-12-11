@@ -369,6 +369,16 @@
       padding-top: 15rem;
       grid-column: col-start 5 / col-end 8;
       justify-content: center;
+
+      @include respond(bp-medium) {
+        grid-template-rows: min-content;
+      }
+
+      @include respond(bp-small) {
+        padding-top: 0;
+      }
+
+
       
       .heading-2 {
         position: relative;
