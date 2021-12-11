@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" />
-        <meta name="theme-color" content="#0058d3ed" />
+        <meta name="theme-color" content="#0058d3" />
       </Head>
       <AppProvider>
         <Component {...pageProps} />
