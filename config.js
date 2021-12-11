@@ -1,9 +1,8 @@
 import getConfig from 'next/config';
 const { publicRuntimeConfig } = getConfig();
 
-// For API Route
 export const API = publicRuntimeConfig.PRODUCTION
-  ? process.env.PRODUCTION_API
+  ? process.env.PRODUCTION_DOMAIN
   : "http://localhost:8000";
 export const APP_NAME = publicRuntimeConfig.APP_NAME;
 

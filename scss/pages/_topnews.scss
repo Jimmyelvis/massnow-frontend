@@ -236,6 +236,8 @@
 
             @include respond(bp-medium) {
               height: auto;
+              z-index: 3000;
+              position: relative;
             }
           }
   
