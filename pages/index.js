@@ -40,7 +40,7 @@ const Index = ({ articles }) => {
       * the latest articles component
      */
     let sortedByUpdated = articles.sort((art1, art2) => {
-      return sortElems(art2, art1, "updatedAt");
+      return sortElems(art2, art1, "createdAt");
     });
 
     sortedByUpdated = sortedByUpdated.slice(0, 7)

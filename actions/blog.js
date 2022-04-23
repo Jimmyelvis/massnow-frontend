@@ -74,6 +74,45 @@ export const list = () => {
     .catch((err) => console.log(err));
 };
 
+export const listTopnews = () => {
+  return fetch(`${API}/api/blogs/topnews`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const listNotTopnews = () => {
+  return fetch(`${API}/api/blogs/not-topnews`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const listTopSportsnews = () => {
+  return fetch(`${API}/api/blogs/topsportsnews`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const listNotTopSportsnews = () => {
+  return fetch(`${API}/api/blogs/nottopsportsnews`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
 
 export const removeBlog = (slug, token) => {
     return fetch(`${API}/api/blog/${slug}`, {
@@ -104,6 +143,53 @@ export const updateBlog = (blog, token, slug) => {
         })
         .catch(err => console.log(err));
 };
+
+export const updateBlogSection = (prevPostId, nextPostId, nextPostPosNumber, token) => {
+
+    const data = {
+      prevPostId,
+      nextPostId,
+      nextPostPosNumber
+    };
+
+  return fetch(`${API}/api/blogs/edit-topnews/`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const updateSportsBlogSection = (prevPostId, nextPostId, nextPostPosNumber, token) => {
+
+    const data = {
+      prevPostId,
+      nextPostId,
+      nextPostPosNumber
+    };
+
+  return fetch(`${API}/api/blogs/edit-topsportsnews/`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 
 export const listSearch = (params) => {
     console.log('search params', params);

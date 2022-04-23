@@ -1,19 +1,19 @@
 import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
+import Secheading from "../../../components/pageelements/Secheading";
 import NewsList from "../../../components/crud/top-news/Newslist";
 import Head from "next/head";
 import { useGlobalContext } from "../../../context";
 
-const Topnewseditor = () => {
+const Topsportsnewseditor = () => {
   const { isModalOpen, openModal, loading } = useGlobalContext();
-
 
   if (loading) {
     return (
-      <div className='loading'>
+      <div className="loading">
         <h1>Loading...</h1>
       </div>
-    )
+    );
   }
 
   return (
@@ -39,7 +39,7 @@ const Topnewseditor = () => {
             alt=""
           />
 
-          <h2 className="heading-2">Edit the Top News Section</h2>
+          <h2 className="heading-2">Edit the Top Sports News Section</h2>
         </div>
 
         {/* <button onClick={openModal} className="btn btn-secondary btn-openModel">
@@ -47,13 +47,11 @@ const Topnewseditor = () => {
         </button> */}
 
         <div className="crud-topnewseditor">
-          <NewsList
-            listFrom={"Top News"}
-          />
+          <NewsList listFrom={"Top Sports"} />
         </div>
       </Admin>
     </Layout>
   );
 };
 
-export default Topnewseditor;
+export default Topsportsnewseditor;

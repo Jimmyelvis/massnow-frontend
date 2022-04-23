@@ -14,7 +14,7 @@ const LatestNews = ({ articles }) => {
 
    
    let sortedByUpdated = articles.sort((art1, art2) => {
-     return sortElems(art2, art1, "updatedAt");
+     return sortElems(art2, art1, "createdAt");
    });
  
    let latestFeatured = sortedByUpdated.slice(0, 3);

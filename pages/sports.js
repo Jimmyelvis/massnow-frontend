@@ -10,18 +10,21 @@ import { API, DOMAIN, APP_NAME } from "../config";
 import renderHTML from "react-render-html";
 
 const sports = ({ articles }) => {
-  let sortedByUpdated = articles.sort((art1, art2) => {
-    return sortElems(art2, art1, "updatedAt");
-  });
 
+  /**
+   * These are the Sports related postings that have a value
+   * featuredSports value of 1 or above
+   */
   let featuredSports = articles.filter((article) => {
-    return article.featuredSports > 0 && article.featuredSports < 4;
+    return article.featuredSports > 0;
   });
 
+  /**
+   * 
+   */
   let allsports = articles.filter((article) => {
     return (
-      (article.categories[0].name === "Sports" && article.featuredSports < 1) ||
-      article.featuredSports > 3
+      article.featuredSports < 1
     );
   });
 
@@ -91,7 +94,7 @@ const sports = ({ articles }) => {
 export default sports;
 
 export const getStaticProps = async () => {
-  const res = await fetch(`${API}/api/blogs`);
+  const res = await fetch(`${API}/api/blogs/sports`);
 
   const articles = await res.json();
 

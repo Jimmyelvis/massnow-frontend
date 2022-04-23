@@ -105,7 +105,7 @@ const SingleBlog = ({ blog, query }) => {
               </Link>{" "}
               |{" "}
               <span className="published">
-                Published {moment(blog.updatedAt).fromNow()}
+                Published {moment(blog.createdAt).fromNow()}
               </span>
             </div>
 
