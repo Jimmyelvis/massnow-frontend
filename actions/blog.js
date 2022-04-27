@@ -114,6 +114,26 @@ export const listNotTopSportsnews = () => {
     .catch((err) => console.log(err));
 };
 
+export const listTopLocalnews = () => {
+  return fetch(`${API}/api/blogs/toplocalnews`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const listNotTopLocalnews = () => {
+  return fetch(`${API}/api/blogs/nottoplocalnews`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 export const removeBlog = (slug, token) => {
     return fetch(`${API}/api/blog/${slug}`, {
         method: 'DELETE',
@@ -176,6 +196,29 @@ export const updateSportsBlogSection = (prevPostId, nextPostId, nextPostPosNumbe
     };
 
   return fetch(`${API}/api/blogs/edit-topsportsnews/`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const updateLocalBlogSection = (prevPostId, nextPostId, nextPostPosNumber, token) => {
+
+    const data = {
+      prevPostId,
+      nextPostId,
+      nextPostPosNumber
+    };
+
+  return fetch(`${API}/api/blogs/edit-toplocalnews/`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
