@@ -1,45 +1,59 @@
 
 import Layout from "../components/Layout";
-import Hero from "../components/hero/LatestHero";
-import Latest from "../components/index/latest";
-import Sports from "../components/index/sports";
-import Local from "../components/index/local";
+import Hero from "../components/hero/PageHeroSection";
 import Head from "next/head";
 import Link from "next/link";
 import { sortElems } from "../helpers/sorting";
 import { API, DOMAIN, APP_NAME } from "../config";
 import renderHTML from "react-render-html";
+import articles from "../TestData";
+
 
 const LatestNews = ({ articles }) => {
 
+  let sortedByUpdated;
+  let latestFeatured; 
+  let therestof;
+
+  if (articles.length > 0) {
+
+    sortedByUpdated = articles.sort((art1, art2) => {
+      return sortElems(art2, art1, "createdAt");
+    });
+    
+    latestFeatured = sortedByUpdated.slice(0, 3);
+    sortedByUpdated = sortedByUpdated.slice(4, 7);
+
+   }
+
+  const showMajorSectionBlogs = () => {
+
+    if (sortedByUpdated.length > 0) {
+      return sortedByUpdated.map((blog) => {
+        return (
+          <div className="entry" key={blog.slug}>
+            <div className="thumb">
+              <img src={blog.mainphoto} alt="" />
+            </div>
+  
+            <Link href={`blogs/${blog.slug}`} key={blog.slug}>
+              <a>
+                <h4 className="heading-4">{blog.title} </h4>
+              </a>
+            </Link>
+            <span className="author">{blog.postedBy.name}</span>
+          </div>
+        );
+      });
+
+    } else {
+
+      return "";
+    }
+  };
    
-   let sortedByUpdated = articles.sort((art1, art2) => {
-     return sortElems(art2, art1, "createdAt");
-   });
  
-   let latestFeatured = sortedByUpdated.slice(0, 3);
-   sortedByUpdated = sortedByUpdated.slice(4, 7);
- 
-   const showMajorSectionBlogs = () => {
-     return sortedByUpdated.map((blog) => {
-       return (
-         <div className="entry" key={blog.slug}>
-           <div className="thumb">
-             <img src={blog.mainphoto} alt="" />
-           </div>
- 
-           <Link href={`blogs/${blog.slug}`} key={blog.slug}>
-             <a>
-               <h4 className="heading-4">{blog.title} </h4>
-             </a>
-           </Link>
-           <span className="author">{blog.postedBy.name}</span>
-         </div>
-       );
-     });
-   };
- 
-   let therestof = articles.filter((article) => {
+   therestof = articles.filter((article) => {
      return !article.featuredTopstory > 0 && !article.featuredSports > 0;
    });
  
@@ -48,37 +62,55 @@ const LatestNews = ({ articles }) => {
    let col_1 = therestof.slice(0, 2);
    let col_2 = therestof.slice(2, 4);
    let col_3 = therestof.slice(4, 6);
+
+   console.log("==============therestof.length)======================");
+   console.log(therestof.length);
+   console.log('====================================');
  
    const showCol = (col) => {
-     return col.map((blog) => {
-       return (
-         <div className="entry">
-           <Link href={`blogs/${blog.slug}`} key={blog.slug}>
-             <a>
-               <h4 className="heading-4">{blog.title} </h4>
-             </a>
-           </Link>
- 
-           <span className="author">{blog.postedBy.name}</span>
- 
-           {renderHTML(blog.excerpt)}
- 
-           <div className="thumb">
-             <img src={blog.mainphoto} alt="" />
-           </div>
-         </div>
-       );
-     });
+
+    if (therestof.length > 0) {
+      return col.map((blog) => {
+        return (
+          <div className="entry">
+            <Link href={`blogs/${blog.slug}`} key={blog.slug}>
+              <a>
+                <h4 className="heading-4">{blog.title} </h4>
+              </a>
+            </Link>
+  
+            <span className="author">{blog.postedBy.name}</span>
+  
+            {renderHTML(blog.excerpt)}
+  
+            <div className="thumb">
+              <img src={blog.mainphoto} alt="" />
+            </div>
+          </div>
+        );
+      });
+      
+    } else {
+      return "";
+    }
+
    };
 
+  
 
   return (
     <Layout>
       <Head>
         <title>Welcome To MassNow News Site</title>
       </Head>
+      
+      {
+        /**
+         * Todo Edit the latest hero to account for scenarios where we have no articles
+         */
+      }
 
-      <Hero blogs={latestFeatured} />
+      <Hero articles={latestFeatured} />
 
       <div className="topnewssection">
         <div className="secheading">
@@ -90,9 +122,7 @@ const LatestNews = ({ articles }) => {
 
           <div className="minorsection">
             <div className="column">{showCol(col_1)}</div>
-
             <div className="column">{showCol(col_2)}</div>
-
             <div className="column">{showCol(col_3)}</div>
           </div>
         </div>
@@ -103,14 +133,22 @@ const LatestNews = ({ articles }) => {
 
 export default LatestNews;
 
+// export const getStaticProps = async () => {
+//   const res = await fetch(`${API}/api/blogs`);
+
+//   const articles = await res.json();
+
+//   return {
+//     props: {
+//       articles,
+//     },
+//   };
+// };
+
 export const getStaticProps = async () => {
-  const res = await fetch(`${API}/api/blogs`);
-
-  const articles = await res.json();
-
   return {
     props: {
-      articles,
+      articles: articles,
     },
   };
 };

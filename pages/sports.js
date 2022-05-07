@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import Hero from "../components/hero/LatestHero";
+import Hero from "../components/hero/PageHeroSection";
 import Majorsection from "../components/pageelements/Majorsection";
 import Otherstories from "../components/hero/Otherstories";
 import Secheading from "../components/pageelements/Secheading";
@@ -8,21 +8,26 @@ import Link from "next/link";
 import { sortElems } from "../helpers/sorting";
 import { API, DOMAIN, APP_NAME } from "../config";
 import renderHTML from "react-render-html";
+import articles from "../TestData";
+
 
 const sports = ({ articles }) => {
+
+  let featuredSports;
+  let allsports;
 
   /**
    * These are the Sports related postings that have a value
    * featuredSports value of 1 or above
    */
-  let featuredSports = articles.filter((article) => {
+  featuredSports = articles.filter((article) => {
     return article.featuredSports > 0;
   });
 
   /**
    * 
    */
-  let allsports = articles.filter((article) => {
+  allsports = articles.filter((article) => {
     return (
       article.featuredSports < 1
     );
@@ -74,7 +79,7 @@ const sports = ({ articles }) => {
         <title>Welcome To MassNow News Site</title>
       </Head>
 
-      <Hero blogs={featuredSports} />
+      <Hero articles={featuredSports} />
 
       <div className="topnewssection">
         <div className="secheading">

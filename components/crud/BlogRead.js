@@ -48,13 +48,13 @@ const BlogRead = () => {
     if (isAuth() && isAuth().role === 2) {
       return (
         <Link href={`/admin/crud/${blog.slug}`}>
-          <a className="btn btn-secondary btn-edit">Update</a>
+          <a className="btn btn-primary-grad">Update</a>
         </Link>
       );
     } else if (blog.postedBy._id === isAuth()._id) {
       return (
         <Link href={`/admin/crud/${blog.slug}`}>
-          <a className="btn btn-secondary btn-edit">Update</a>
+          <a className="btn btn-primary-grad">Update</a>
         </Link>
       );
     }
@@ -64,7 +64,7 @@ const BlogRead = () => {
     if (isAuth() && isAuth().role === 2) {
       return (
         <button
-          className="btn btn-danger"
+          className="btn btn-thirdcolor-grad"
           onClick={() => deleteConfirm(blog.slug)}
         >
           Delete
@@ -73,7 +73,7 @@ const BlogRead = () => {
     } else if (blog.postedBy._id === isAuth()._id) {
       return (
         <button
-          className="btn btn-danger"
+          className="btn btn-thirdcolor-grad"
           onClick={() => deleteConfirm(blog.slug)}
         >
           Delete
@@ -93,11 +93,11 @@ const BlogRead = () => {
             </Link>
           </h3>
           <p className="author">
-            Written by {blog.postedBy.name} | Published on{" "}
+            {blog.postedBy.name} | Published
             {moment(blog.updatedAt).fromNow()}
           </p>
 
-          <p className="excerpt">{blog.mdesc}</p>
+          {/* <p className="excerpt">{blog.mdesc}</p> */}
 
           <div className="buttons">
             {showDeleteButton(blog)}

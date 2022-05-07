@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import Hero from "../components/hero/LatestHero";
+import Hero from "../components/hero/PageHeroSection";
 import Majorsection from "../components/pageelements/Majorsection";
 import Otherstories from "../components/hero/Otherstories";
 import Secheading from "../components/pageelements/Secheading";
@@ -72,7 +72,7 @@ const local = ({ articles }) => {
         <title>Welcome To MassNow News Site</title>
       </Head>
 
-      <Hero blogs={featuredLocal} />
+      <Hero articles={featuredLocal} />
 
       <div className="topnewssection">
         <div className="secheading">
