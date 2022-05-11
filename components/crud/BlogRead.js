@@ -5,26 +5,16 @@ import Router from "next/router";
 import { getCookie, isAuth } from "../../actions/auth";
 import { list, removeBlog } from "../../actions/blog";
 import moment from "moment";
+import { useGlobalContext } from "../../filter_context";
+
 
 const BlogRead = () => {
-  const [blogs, setBlogs] = useState([]);
+  const { filtered_blogs: blogs } = useGlobalContext();
+  // const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState("");
   const [filterInput, setFilterInput] = useState("");
   const token = getCookie("token");
 
-  useEffect(() => {
-    loadBlogs();
-  }, []);
-
-  const loadBlogs = () => {
-    list().then((data) => {
-      if (data.error) {
-        console.log(data.error);
-      } else {
-        setBlogs(data);
-      }
-    });
-  };
 
   const deleteBlog = (slug) => {
     removeBlog(slug, token).then((data) => {
@@ -93,7 +83,7 @@ const BlogRead = () => {
             </Link>
           </h3>
           <p className="author">
-            {blog.postedBy.name} | Published
+            {blog.postedBy.name} | Published {" "}
             {moment(blog.updatedAt).fromNow()}
           </p>
 
