@@ -18,6 +18,62 @@ export const createBlog = (blog, token) => {
         .catch(err => console.log(err));
 };
 
+export const addFavorite = (
+  user_id,
+  post_id,
+  post_title,
+  mainPhoto,
+  postAuthor,
+  slug,
+  token
+) => {
+
+  const data = {
+    user_id,
+    post_id,
+    post_title,
+    mainPhoto,
+    postAuthor,
+    slug,
+  };
+
+  return fetch(`${API}/api/blogs/addtofavorites`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const removeFavorite = (user_id, post_id, token) => {
+    const data = {
+      user_id,
+      post_id,
+    };
+
+     return fetch(`${API}/api/blogs/removefromfavorites`, {
+       method: "POST",
+       headers: {
+         Accept: "application/json",
+         "Content-Type": "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+       body: JSON.stringify(data),
+     })
+       .then((response) => {
+         return response.json();
+       })
+       .catch((err) => console.log(err));
+};
+
+
 export const listBlogsWithCategoriesAndTags = (skip, limit) => {
 
     const data = {

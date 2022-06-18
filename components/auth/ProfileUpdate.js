@@ -12,6 +12,8 @@ import { QuillModules, QuillFormats } from "../../helpers/quill";
 import { API } from "../../config";
 
 const ProfileUpdate = () => {
+  const [bio, setBio] = useState("");
+
   const [values, setValues] = useState({
     username: "",
     name: "",
@@ -22,6 +24,7 @@ const ProfileUpdate = () => {
     success: false,
     loading: false,
     photo: "",
+    profileBanner: "",
     userData: process.browser && new FormData(),
   });
 
@@ -37,6 +40,7 @@ const ProfileUpdate = () => {
     loading,
     photo,
     userData,
+    profileBanner,
   } = values;
 
   const init = () => {
@@ -51,7 +55,9 @@ const ProfileUpdate = () => {
           email: data.email,
           about: data.about,
           photo: data.photo,
+          profileBanner: data.profileBanner
         });
+        setBio(data.about);
       }
     });
   };
@@ -77,10 +83,28 @@ const ProfileUpdate = () => {
     });
   };
 
-  //  const handleAbout = (e) => {
-  //   const value = e.target.value;
-  //    userData.set("about",value);
-  //  };
+  /**
+   * Because ReactQuill doesn't seem to work well with (e.target.value)
+   * we need to use a separate function to handle the onChange for ReactQuill
+   * In this case we're just using e, instead of e.target.value
+   */
+  const handleAbout = (e) => {
+    setBio(e);
+
+    if (about) {
+      userData.set("about", e);
+    }
+
+    userData.set("about", e);
+
+    setValues({
+      ...values,
+      about: e,
+      userData,
+      error: false,
+      success: false,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,6 +128,7 @@ const ProfileUpdate = () => {
             email: data.email,
             about: data.about,
             photo: data.photo,
+            profileBanner: data.profileBanner,
             password: "",
             success: true,
             loading: false,
@@ -132,35 +157,54 @@ const ProfileUpdate = () => {
     });
   };
 
+  const profileBannerSubmit = (name) => (e) => {
+    e.preventDefault();
+    const value = e.target.value;
+
+    window.cloudinary.openUploadWidget(Widgetsetting(), (error, result) => {
+      if (result && result.event === "success") {
+        // let userFormData = new FormData();
+        userData.set(name, result.info.url);
+        setValues({
+          ...values,
+          [name]: value,
+          profileBanner: result.info.url,
+          userData: userData,
+          error: "",
+        });
+      }
+    });
+  };
+
   const profileUpdateForm = () => (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        {/* <label className="btn btn-secondary">
-              Profile photo
-              <input
-                onChange={handleChange("photo")}
-                type="file"
-                accept="image/*"
-                hidden
-              />
-            </label> */}
+        <h3 className="heading-3">Upload an avatar image</h3>
 
-        <h3 className="heading-3">Upload a main header image</h3>
-
-        {/* <div className="uploadpreview form-control">
-              {!mainphoto ? null : <img src={mainphoto} />}
-            </div> */}
-
-        <div className="upload-btn">
-          <button
-            id="upload_widget"
-            className="btn btn-secondary"
-            onClick={avatarSubmit("photo")}
-          >
-            Upload Photo
-          </button>
-        </div>
+        <button
+          id="upload_widget"
+          className="btn btn-primary-grad avatarBtn"
+          onClick={avatarSubmit("photo")}
+        >
+          Upload Photo
+        </button>
       </div>
+
+      <div className="uploadpreview form-control">
+        {!profileBanner ? (
+          <h3 className="heading-3">Upload a profile banner</h3>
+        ) : (
+          <img src={profileBanner} />
+        )}
+      </div>
+
+      <button
+        id="upload_widget"
+        className="btn btn-primary-grad bannerBtn"
+        onClick={profileBannerSubmit("profileBanner")}
+      >
+        Upload Profile Banner
+      </button>
 
       <div className="inputField">
         <img
@@ -222,36 +266,34 @@ const ProfileUpdate = () => {
       </div>
 
       <div className="inputField">
-        <textarea
+        {/* <textarea
           onChange={handleChange("about")}
           type="text"
           value={about}
           className="inputCtrl inputCtrl-textarea"
           placeholder="Tell us about yourself"
           rows="15"
-        />
-        {/* 
-            <ReactQuill
-              modules={QuillModules}
-              formats={QuillFormats}
-              value={about}
-              placeholder="Tell us about yourself."
-              onChange={handleAbout}
-              className="form-control"
-            /> */}
+        /> */}
       </div>
 
-      <div>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </div>
+      <ReactQuill
+        modules={QuillModules}
+        formats={QuillFormats}
+        value={bio ? bio : " "}
+        placeholder="Tell us about yourself."
+        onChange={handleAbout}
+        className="inputCtrl inputCtrl-textarea"
+      />
+
+      <button type="submit" className="btn btn-primary-grad btnSubmit">
+        Submit
+      </button>
     </form>
   );
 
   const showError = () => (
     <div
-      className="alert alert-danger"
+      className="alert alert-danger btn-thirdcolor-grad"
       style={{ display: error ? "" : "none" }}
     >
       {error}
@@ -260,7 +302,7 @@ const ProfileUpdate = () => {
 
   const showSuccess = () => (
     <div
-      className="alert alert-success"
+      className="alert alert-success btn-primary-grad"
       style={{ display: success ? "" : "none" }}
     >
       Profile updated
@@ -287,23 +329,16 @@ const ProfileUpdate = () => {
          * is even
          */
         headline={name}
-        image={"/images/pexels-freestocksorg-58639.jpg"}
+        image={`${!profileBanner ? "/images/pexels-freestocksorg-58639.jpg" : profileBanner}`}
         heroclasses={"hero section-hero profile-hero"}
         readmoreSection={false}
-      >
-      </Sectionhero>
+      ></Sectionhero>
 
       <div className="profile-update">
-
         <div className="avatar">
-          <img
-            src={photo}
-            alt="user profile"
-          />
+          <img src={photo} alt="user profile" />
         </div>
 
-        {showSuccess()}
-        {showError()}
         {showLoading()}
 
         <br />
@@ -311,8 +346,9 @@ const ProfileUpdate = () => {
         <br />
 
         {profileUpdateForm()}
+        {showSuccess()}
+        {showError()}
       </div>
-
     </React.Fragment>
   );
 };

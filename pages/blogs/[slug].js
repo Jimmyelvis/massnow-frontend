@@ -1,16 +1,21 @@
-import React from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/Layout";
-import { useState, useEffect } from "react";
-import { singleBlog, listRelated } from "../../actions/blog";
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
+import React, { useState, useEffect } from "react";
+import { singleBlog, listRelated, addFavorite, removeFavorite } from "../../actions/blog";
+import { API, DOMAIN, APP_NAME } from "../../config";
 import renderHTML from "react-render-html";
 import moment from "moment";
-import SmallCard from "../../components/blog/SmallCard";
+import { isAuth, getCookie } from "../../actions/auth";
+import { userPublicProfile } from "../../actions/user"
+import addToFavorite from "../../components/slug/addFavPost"
+
 
 const SingleBlog = ({ blog, query }) => {
+
   const [related, setRelated] = useState([]);
+  const [isFavored, setIsFavored] = useState(false);
+  const [userFavs, setUserFavs] = useState([]);
 
   const loadRelated = () => {
     listRelated({ blog }).then((data) => {
@@ -24,7 +29,11 @@ const SingleBlog = ({ blog, query }) => {
 
   useEffect(() => {
     loadRelated();
+      checkFavored();
   }, [blog]);
+
+  const token = getCookie("token");
+
 
   const head = () => (
     <Head>
@@ -78,6 +87,77 @@ const SingleBlog = ({ blog, query }) => {
         <img src={blog.mainphoto} alt="" className="card-bg" />
       </div>
     ));
+  };
+
+  <addFavorite
+    auth={isAuth()._id}
+    postId={blog._id}
+    postTitle={blog.title}
+    mainphoto={blog.mainPhoto}
+    postauthor={blog.postedBy.name}
+    postslug={blog.slug}
+  />
+
+  // const addToFavorite = () => {
+    
+  //   const user_id = isAuth()._id;
+  //   const post_id = blog._id;
+  //   const post_title = blog.title;
+  //   const mainPhoto = blog.mainphoto;
+  //   const postAuthor = blog.postedBy.name;
+  //   const slug = blog.slug;
+
+  //   addFavorite(user_id, post_id, post_title, mainPhoto, postAuthor, slug, token).then((data) => {
+  //     if (data.error) {
+  //       console.log(data.error);
+  //     } else {
+  //       console.log("addded")
+  //       setIsFavored(true)
+  //     }
+  //   })
+  // }
+
+  const removeFromFavorites = () => {
+ 
+
+    const user_id = isAuth()._id;
+    const post_id = blog._id;
+
+    removeFavorite(user_id, post_id, token).then((data) => {
+
+      if (data.error) {
+        console.log(data.error);  
+      } else {
+     
+        setIsFavored(false)
+      }
+    })
+  }
+
+  const checkFavored = () => {
+    if (isAuth()) {
+      let userFavoriteArticles;
+
+      userPublicProfile(isAuth().username).then((data) => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setUserFavs(data.user.favorite_articles);
+
+          let userFavoriteArticles = data.user.favorite_articles.find(
+            (elem) => {
+              return elem.post_id === blog._id;
+            }
+          );
+
+          if (userFavoriteArticles) {
+            setIsFavored(true);
+          } else {
+            setIsFavored(false);
+          }
+        }
+      });
+    }
   };
 
   return (
@@ -197,7 +277,30 @@ const SingleBlog = ({ blog, query }) => {
                   </g>
                 </svg>
               </li>
+              
+              {
+                /**
+                 * Todo: add onClick handler to commentsIcon
+                 */
+              }
+
+              <li className="commentsIcon">
+                <img src="/images/ui/Icon awesome-comment.svg" alt="" />
+                <span className="commentNumber">24</span>
+              </li>
             </ul>
+
+            {!isAuth() ? (
+              ""
+            ) : isFavored ? (
+              <button className="favorite" onClick={removeFromFavorites}>
+                <img src="/images/ui/favorite.svg" alt="" />
+              </button>
+            ) : (
+              <button className="favorite" onClick={addToFavorite}>
+                <img src="/images/ui/not_favorite.svg" alt="" />
+              </button>
+            )}
           </div>
 
           <div className="content">

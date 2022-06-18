@@ -26,6 +26,13 @@
 
     .signinForm, .signupForm {
 
+      .alert.alert-info {
+        color: #fff;
+        font-size: 3rem;
+        margin-bottom: 4rem;
+        font-weight: bold;
+      }
+
       form {
         display: flex;
         flex-direction: column;

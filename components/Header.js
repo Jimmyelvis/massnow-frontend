@@ -1,3 +1,8 @@
+/**
+ * Encapsulates header components such as the Nav Mobile Nav, Modal
+ * Search Overlay
+ */
+
 import React from "react";
 import { useState, useEffect } from "react";
 import Link from "next/link";

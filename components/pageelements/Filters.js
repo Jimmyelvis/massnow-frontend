@@ -1,8 +1,12 @@
 import { getCategories } from "../../actions/category";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useGlobalContext } from "../../filter_context";
+import { useFilterContext } from "../../filter_context";
+import { useGlobalContext } from "../../context";
 import { getCookie, isAuth } from "../../actions/auth";
+import { IoFilter } from "react-icons/io5";
+import SearchOverLay from "./SearchOverlay";
+import MobileFilters from "./filtersComponents/MobileFilters";
 
 
 const Filters = () => {
@@ -11,19 +15,16 @@ const Filters = () => {
   });
 
   const {
-    filters: { 
-      category,
-      text,
-      current_user,
-      yourblogs 
-    },
+    filters: { category, text, current_user, yourblogs },
     updateFilters,
     clearFilters,
-    getCurrentUser
-  } = useGlobalContext();
+    getCurrentUser,
+  } = useFilterContext();
 
   const { categories } = values;
 
+ const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
+   useGlobalContext();
 
   useEffect(() => {
     loadCategories();
@@ -42,34 +43,21 @@ const Filters = () => {
 
   const setCurrentUser = () => {
     getCurrentUser(isAuth()._id);
-  }
+  };
 
   const showcheckbox = () => {
-
     return (
-     <div className="form-control shipping">
-       {/* <label htmlFor="shipping"> Your Blogs</label>
-       <input
-         type="checkbox"
-         name="yourblogs"
-         id="shipping"
-         onChange={setCurrentUser}
-         checked={false}
-       /> */}
-
-     <button
-        className="btn btn-third"
+      <button
+        className="link"
         onClick={setCurrentUser}
         type="button"
         name="category"
         id="your blogs"
-     >
-         Your Blogs
-     </button>
-     </div>
-    )
-
-  }
+      >
+        Your Blogs
+      </button>
+    );
+  };
 
   const filterText = () => {
     return (
@@ -77,23 +65,19 @@ const Filters = () => {
         type="text"
         name="text"
         placeholder="search"
-        className="search-input"
+        className="form-control"
         value={text}
         onChange={updateFilters}
       />
     );
-  }
+  };
 
   const showCategories = () => {
     return categories.map((c, i) => {
       return (
         <button
           key={i}
-          className={`${
-            category === c.name
-              ? "btn btn-secondary"
-              : "btn btn-third"
-          }`}
+          className={`${category === c.name ? "link link_active" : "link"}`}
           onClick={updateFilters}
           type="button"
           name="category"
@@ -105,26 +89,53 @@ const Filters = () => {
   };
 
   const clear = () => {
-
     return (
       <button
         onClick={clearFilters}
         type="button"
-        className="btn btn-third"
+        className="btn btn-thirdcolor-grad btn-clear"
       >
-        Clear
+        Clear Filters
       </button>
-    )
-  }
+    );
+  };
 
   return (
     <>
-      { showCategories()}
-      { filterText()}
-      { clear()}
-      { showcheckbox()}
+      <button
+        className={` ${isOverlayOpen ? "displayNone" : "mobile_filters_btn"}`}
+        onClick={openOverlay}
+      >
+        <IoFilter className="close" />
+      </button>
+      <div className="filters">
+        <div className="contain">
+          {filterText()}
+
+          <h3 className="heading-3">Catagories</h3>
+
+          <div className="links">
+            {showCategories()}
+            {showcheckbox()}
+            {clear()}
+          </div>
+        </div>
+      </div>
+
+      <SearchOverLay
+        contentBgcolor={null}
+        overlayColor={`rgba(255, 255, 255, 0.95)`}
+        transition={`all 0.7s linear`}
+      >
+        <MobileFilters
+          filterText={filterText()}
+          showCategories={showCategories()}
+          showcheckbox={showcheckbox()}
+          clear={clear()}
+        />
+      </SearchOverLay>
     </>
-  )
+  );
 };
 
 export default Filters;

@@ -52,10 +52,6 @@ const FilterProvider = ({ children }) => {
   const getCurrentUser = (user) => {
     let  userID = user
 
-    console.log('===============the current user=====================');
-    console.log(userID);
-    console.log('====================================');
-
     dispatch({ type: "your_blogs", payload: { userID }})
   }
 
@@ -79,7 +75,7 @@ const FilterProvider = ({ children }) => {
 };
 
 // custom hook
-export const useGlobalContext = () => {
+export const useFilterContext = () => {
   return useContext(FilterContext);
 };
 

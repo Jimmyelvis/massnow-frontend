@@ -5,11 +5,13 @@ import Router from "next/router";
 import { getCookie, isAuth } from "../../actions/auth";
 import { list, removeBlog } from "../../actions/blog";
 import moment from "moment";
-import { useGlobalContext } from "../../filter_context";
+import { useFilterContext } from "../../filter_context";
+import Sort from "../pageelements/Sort";
+import Filter from "../pageelements/Filters";
 
 
 const BlogRead = () => {
-  const { filtered_blogs: blogs } = useGlobalContext();
+  const { filtered_blogs: blogs } = useFilterContext();
   // const [blogs, setBlogs] = useState([]);
   const [message, setMessage] = useState("");
   const [filterInput, setFilterInput] = useState("");
@@ -103,8 +105,12 @@ const BlogRead = () => {
   return (
     <React.Fragment>
       {message && <div className="alert alert-warning">{message}</div>}
-      <h2 className="heading-2 blogs-total">{blogs.length} Blogs Total</h2>
-  
+      <div className="sorting">
+        <h2 className="heading-2 blogs-total">{blogs.length} Blogs Total</h2>
+        <hr className="divider"/>
+        <Sort />
+      </div>
+      <Filter />
       <div className="blogs-list">{showAllBlogs()}</div>
     </React.Fragment>
   );

@@ -30,7 +30,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: interstate, sans-serif;
+  font-family:  interstate, sans-serif;
   line-height: 1.4;
   color: $maintext;
   background: linear-gradient(to bottom, aliceblue 0%, #f9fcff 24%, white 73%);
@@ -80,6 +80,10 @@ a:active {
 
 .opacity-0 {
   opacity: 0;
+}
+
+.displayNone {
+  display: none;
 }
 
 

@@ -11,16 +11,19 @@ import articles from "../TestData";
 
 const Index = ( { articles }) => {
 
+  /**
+   * TODO: Finish refactoring Latest, Sports, Local sections
+   */
 
   return (
     <Layout>
       <Head>
         <title>Welcome To MassNow News Site</title>
       </Head>
-      <Hero articles={articles} />
-      <Latest articles={articles} />;
+      <Hero incomingArticles={articles} />
+      {/* <Latest articles={articles} />;
       <Sports articles={articles} />
-      <Local articles={articles} />
+      <Local articles={articles} /> */}
     </Layout>
   );
 };

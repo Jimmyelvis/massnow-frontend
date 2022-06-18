@@ -15,6 +15,14 @@ const Nav = () => {
   const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
     useGlobalContext();
 
+  const getAvatar = () => {
+    return !isAuth().photo ? (
+      <img src="/images/ui/Profile.svg" alt="" />
+    ) : (
+      <img src={`${isAuth().photo}`} alt="" />
+    );
+  };
+
   return (
     <nav>
       <div className="top">
@@ -43,10 +51,9 @@ const Nav = () => {
               <HiSearch className="search-icon" onClick={openOverlay} />
             </li>
             <li>
-              <Link href="/user">
+              <Link href={`/profile/${isAuth().username}`}>
                 <a className="avatar">
-                  {/* <img src="/images/ui/Profile.svg" alt="" /> */}
-                  <img src={`${isAuth().photo}`} alt="" />
+                  { getAvatar()}
                 </a>
               </Link>
             </li>
@@ -67,7 +74,7 @@ const Nav = () => {
             <li>
               <Link href="/admin">
                 <a className="avatar">
-                  <img src={`${isAuth().photo}`} alt="" />
+                  { getAvatar() }
                 </a>
               </Link>
             </li>

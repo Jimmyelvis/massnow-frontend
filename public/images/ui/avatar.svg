@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="316" height="316" viewBox="0 0 316 316">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#3896f6"/>
+      <stop offset="1" stop-color="#f0eefe"/>
+    </linearGradient>
+    <filter id="Oval" x="0" y="0" width="316" height="316" filterUnits="userSpaceOnUse">
+      <feOffset dy="12" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feFlood flood-color="#e2e6e8"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Oval-2" x="0" y="0" width="316" height="316" filterUnits="userSpaceOnUse">
+      <feOffset dy="-2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="6.5" result="blur-2"/>
+      <feFlood flood-opacity="0.675" result="color"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-2"/>
+      <feComposite operator="in" in="color"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <filter id="Oval-3">
+      <feOffset dy="21" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="16.5" result="blur-3"/>
+      <feFlood flood-color="#fff" flood-opacity="0.651" result="color-2"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur-3"/>
+      <feComposite operator="in" in="color-2"/>
+      <feComposite operator="in" in2="SourceGraphic"/>
+    </filter>
+    <clipPath id="clip-path">
+      <path id="Oval-4" data-name="Oval" d="M0,137A137,137,0,1,1,137,274,137,137,0,0,1,0,137Z" transform="translate(0.216 0.216)" fill="none"/>
+    </clipPath>
+    <filter id="Shape" x="26.514" y="53.245" width="262.954" height="262.958" filterUnits="userSpaceOnUse">
+      <feOffset dy="12" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7" result="blur-4"/>
+      <feFlood flood-opacity="0.208"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="avatar" transform="translate(20.784 8.784)">
+    <g id="Oval-5" data-name="Oval">
+      <g data-type="innerShadowGroup">
+        <g transform="matrix(1, 0, 0, 1, -20.78, -8.78)" filter="url(#Oval)">
+          <circle id="Oval-6" data-name="Oval" cx="137" cy="137" r="137" transform="translate(21 9)" fill="url(#linear-gradient)"/>
+        </g>
+        <g transform="matrix(1, 0, 0, 1, -20.78, -8.78)" filter="url(#Oval-2)">
+          <circle id="Oval-7" data-name="Oval" cx="137" cy="137" r="137" transform="translate(21 9)" fill="#fff"/>
+        </g>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -20.78, -8.78)" filter="url(#Oval-3)">
+        <circle id="Oval-8" data-name="Oval" cx="137" cy="137" r="137" transform="translate(21 9)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="avatar-2" data-name="avatar" clip-path="url(#clip-path)">
+      <g transform="matrix(1, 0, 0, 1, -20.78, -8.78)" filter="url(#Shape)">
+        <path id="Shape-2" data-name="Shape" d="M220.954,220.957V197.773a25.526,25.526,0,0,0-17.39-24.208h0c-.8-.27-52.535-13.486-59.938-28.186-3.378-6.717-.047-15.32,3.324-21.254,1.543-2.077,3.053-4.275,4.5-6.581v-.013h0C160.22,103.5,166.91,85.056,167.59,62.251,168.615,27.943,142.068.081,110.552,0H110.4C78.893.081,52.346,27.943,53.378,62.252c.681,22.805,7.364,41.254,16.129,55.279h0s.007,0,.007.013c1.443,2.306,2.954,4.5,4.5,6.581,3.372,5.934,6.7,14.538,3.324,21.254-7.4,14.7-59.143,27.917-59.939,28.186h0A25.534,25.534,0,0,0,0,197.775v23.183Z" transform="translate(47.51 62.24)" fill="#fff" opacity="0.91"/>
+      </g>
+    </g>
+  </g>
+</svg>
