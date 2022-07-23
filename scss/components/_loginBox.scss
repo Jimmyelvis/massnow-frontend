@@ -33,6 +33,12 @@
         font-weight: bold;
       }
 
+      .alert.alert-danger {
+        color: $thirdcolor;
+        margin-bottom: 2rem;
+        font-weight: bold;
+      }
+
       form {
         display: flex;
         flex-direction: column;

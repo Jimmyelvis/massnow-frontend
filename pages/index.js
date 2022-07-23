@@ -21,9 +21,9 @@ const Index = ( { articles }) => {
         <title>Welcome To MassNow News Site</title>
       </Head>
       <Hero incomingArticles={articles} />
-      {/* <Latest articles={articles} />;
+      <Latest articles={articles} />;
       <Sports articles={articles} />
-      <Local articles={articles} /> */}
+      <Local articles={articles} />
     </Layout>
   );
 };

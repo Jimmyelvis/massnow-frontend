@@ -67,21 +67,23 @@
   grid-column: col-start 2 / col-end 11;
   margin-bottom: 15rem;
 
-   .bio,
-   .blogsection, .tabs{
-     width: 75%;
+  .bio,
+  .blogsection,
+  .tabs {
+    width: 75%;
 
-     @include respond(bp-large) {
-       width: 90%;
-     }
+    @include respond(bp-large) {
+      width: 90%;
+    }
 
-     @include respond(bp-small) {
-       width: 100%;
-     }
-   }
+    @include respond(bp-small) {
+      width: 100%;
+    }
+  }
 
-  .tabs{
+  .tabs {
     margin: 0 auto 4rem auto;
+    justify-content: space-evenly;
 
     @include respond(bp-small) {
       justify-content: space-between;
@@ -97,11 +99,8 @@
       font-size: 2.1rem;
       font-weight: bold;
       transition: all 300ms linear;
-      margin-right: 10%;
+      margin: 0;
 
-      @include respond(bp-small) {
-        margin-right: 0;
-      }
 
       @include respond(bp-tiny) {
         font-size: 1.8rem;
@@ -110,6 +109,11 @@
 
     .tabs__tab-active {
       color: $night-time;
+
+      &::after {
+        padding-top: 7px;
+        border-bottom: 2px solid rgb(179, 206, 255);
+      }
     }
 
     .tabs__tab:hover {
@@ -179,6 +183,47 @@
 
         .heading-4 {
           font-size: 1.7rem;
+        }
+      }
+    }
+  }
+
+  .comments {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem 0;
+
+    .comment {
+      width: 34rem;
+      margin: 0 3.5% 3rem 3.5%;
+
+      .time {
+        margin-bottom: 1rem;
+        color: $night-time;
+      }
+
+      .body {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        margin-bottom: 1rem;
+      }
+
+      .bottom {
+        display: flex;
+
+        .replies, .recommended{
+          color: $primary;
+          font-weight: bold;
+        }
+
+        .replies {
+          margin-right: 6rem;
+        }
+
+        .number {
+          color: $night-time;
         }
       }
     }

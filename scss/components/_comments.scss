@@ -1,0 +1,525 @@
+.commentsOverlay {
+  display: flex;
+  justify-content: flex-end;
+  overflow-x: hidden;
+
+  .commentsContainer {
+    padding: 0;
+    background-color: #fff;
+    width: 0;
+    height: 100%;
+    transition: width 500ms linear;
+    position: relative;
+
+
+    .commentsBody {
+      display: grid;
+      grid-template-rows: repeat(3, max-content);
+      width: 75%;
+      margin: 5rem auto 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 2s linear;
+
+      @include respond(bp-large) {
+        width: 90%;
+      }
+
+      @include respond(bp-small) {
+        width: 100%;
+      }
+
+      .heading-2 {
+        font-size: 3rem;
+        justify-self: self-start;
+
+        .comments-total {
+          color: $night-time;
+        }
+      }
+
+      form {
+        width: 100%;
+        margin: 3rem auto;
+        display: grid;
+
+        .btn-primary-grad {
+          justify-self: self-end;
+          margin-top: 3rem;
+        }
+      }
+
+      .dropdown {
+        display: flex;
+        width: 40%;
+        align-items: center;
+        padding-left: 4rem;
+        margin-top: 4rem;
+
+        @include respond(bp-large) {
+          width: 50%;
+        }
+
+        @include respond(bp-small) {
+          width: 50%;
+          padding: 0;
+          justify-content: space-between;
+        }
+
+        @include respond(bp-smallest) {
+          width: 100%;
+          justify-content: space-evenly;
+        }
+
+        label {
+          margin-right: 4rem;
+          font-weight: bold;
+          color: $night-time;
+          font-size: 1.9rem;
+        }
+
+        .selector {
+          position: relative;
+          height: 3rem;
+
+
+          .sort-input {
+            border-radius: 2rem;
+            padding: 0px 2.9rem 0 2rem;
+            color: $primary;
+            font-weight: bold;
+            border: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(to bottom, rgb(236, 239, 244) 0%, rgb(250, 250, 253) 100%);
+            box-shadow: inset 0px 0px 9px 0px rgb(201, 201, 201);
+
+            &:focus {
+              outline: none;
+              box-shadow: inset 1px 1px 8px 0px rgba(29, 197, 219, 0.1);
+              border: 1px solid rgba($secondary, .26);
+            }
+
+            option {
+              color: $night-time;
+              font-weight: bold;
+            }
+          }
+
+
+          .custom-arrow {
+            background-color: blue;
+            display: block;
+            height: 1rem;
+            width: 2.8rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            border-bottom-right-radius: 0.8rem;
+            border-top-right-radius: 0.8rem;
+            pointer-events: none;
+            background: linear-gradient(to bottom, $night-time 0%, darken($night-time, 25%) 100%);
+
+            &::before,
+            &::after {
+              content: "";
+              position: absolute;
+              width: 0;
+              height: 0;
+              --size: 0.6rem;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+
+
+            &::after {
+              border-left: solid var(--size) transparent;
+              border-right: solid var(--size) transparent;
+              border-top: var(--size) solid #d3d5d6;
+              top: 50%;
+            }
+          }
+
+        }
+
+
+      }
+
+
+      .commentList {
+        margin: 4rem 0 9rem 0;
+
+        .comment {
+          display: grid;
+          grid-template-columns: 13rem 1fr;
+          justify-items: start;
+          margin-bottom: 8rem;
+
+          @include createAvatar(7rem);
+
+          @include respond(bp-smallest) {
+            grid-template-columns: 7rem 1fr;
+          }
+
+          &:last-of-type {
+            margin-bottom: 0
+          }
+
+          .avatar {
+            justify-self: center;
+            border: none;
+
+            @include respond(bp-smallest) {
+              justify-self: center;
+              border: none;
+              grid-column: 1 / -1;
+            }
+          }
+
+          .info {
+            width: 100%;
+
+            @include respond(bp-smallest) {
+              grid-column: 1 / -1;
+            }
+
+            .name_time {
+              display: flex;
+              margin-bottom: 1.5rem;
+              font-family: $font-primary;
+              align-items: baseline;
+
+              @include respond(bp-smallest) {
+                justify-content: center;
+                margin-top: 3rem;
+              }
+
+              .name,
+              .time {
+                font-size: 1.6rem;
+              }
+
+              .name {
+                margin-right: 3.5rem;
+                color: $night-time;
+              }
+
+              .time {
+                color: $primary;
+              }
+
+              .error {
+                font-size: 1.4rem;
+                margin-left: 2rem;
+                background-color: $thirdcolor;
+                color: white;
+                padding: 0.5rem 2rem;
+              }
+            }
+
+            .body {
+              margin-bottom: 2rem;
+              text-align: left;
+
+              @include respond(bp-smallest) {
+                margin: 4rem auto;
+                width: 90%;
+              }
+            }
+
+            .bottom {
+              display: flex;
+              justify-content: space-between;
+
+              // p,
+              // .recommended {
+              //   text-align: left;
+              //   color: $night-time;
+              // }
+
+              .recommended {
+                font-size: 1.4rem;
+                font-weight: bold;
+                display: flex;
+                width: 65%;
+                justify-content: space-between;
+                color: $night-time;
+
+
+                @include respond(bp-large) {
+                  width: 90%;
+
+                }
+
+                @include respond(bp-smallest) {
+                  justify-content: space-evenly;
+                  // width: 100%;
+                }
+
+                @include respond(bp-tiny) {
+                  position: relative;
+                  flex-wrap: wrap;
+                }
+
+                p {
+
+                  @include respond(bp-tiny) {
+                    width: 50%;
+                    margin-bottom: 0.5rem;
+                  }
+                }
+              }
+
+              .reply_btn {
+                color: $primary;
+                cursor: pointer;
+              }
+
+              .number {
+                color: $thirdcolor;
+              }
+
+              .arrows {
+                width: 2rem;
+                transform: rotate(0deg);
+                transition: all 200ms linear;
+                cursor: pointer;
+
+                @include respond(bp-tiny) {
+                  position: absolute;
+                  right: 2rem;
+                }
+              }
+
+              .arrows_down {
+                transform: rotate(180deg);
+                transition: all 200ms linear;
+              }
+            }
+
+          }
+
+
+        }
+
+        .replies {
+          height: auto;
+          grid-column: 1 / -1;
+          margin-top: 7rem;
+          position: relative;
+          width: 80%;
+          justify-self: self-end;
+
+          @include respond(bp-small) {
+            width: 90%;
+          }
+
+          // @include respond(bp-tiny) {
+          //   width: 100%;
+          //   border-left: 1px solid rgba(204, 204, 204, 0.59);
+          //   padding: 2rem 0;
+          //   padding-left: 2rem;
+          // }
+
+          &::before {
+            // border-left: 1px solid #dde8f2;
+            // position: absolute;
+            // height: 100%;
+            // display: block;
+            // top: 50%;
+            // transform: translate(-50%, -50%);
+            // content: "";
+            // left: -15%;
+
+            border-left: 1px solid #dde8f2;
+            position: absolute;
+            height: calc(100% - 29rem);
+            display: block;
+            content: "";
+            left: -15%;
+            bottom: 0;
+
+            @include respond(bp-small) {
+              border-left: 0 solid #dde8f2;
+              left: 0;
+            }
+
+          }
+
+          form {
+            width: 100%;
+            margin-bottom: 7rem;
+            display: grid;
+
+            .btn-primary-grad {
+              justify-self: self-end;
+              margin-top: 3rem;
+            }
+          }
+
+          .reply {
+            display: grid;
+            // display: none;
+            // opacity: 0;
+            // visibility: hidden;
+
+            grid-template-columns: 13rem 1fr;
+            justify-items: start;
+            margin-bottom: 8rem;
+
+            &:last-of-type {
+              margin-bottom: 0
+            }
+
+            @include createAvatar(5rem);
+
+            @include respond(bp-small) {
+              grid-template-columns: 9rem 1fr;
+            }
+
+            .avatar {
+              justify-self: center;
+              border: none;
+            }
+
+            .info {
+              width: 100%;
+
+              .name_time {
+                display: flex;
+                margin-bottom: 1.5rem;
+                font-family: $font-primary;
+
+                .name,
+                .time {
+                  font-size: 1.6rem;
+                }
+
+                .name {
+                  margin-right: 3.5rem;
+                  color: $night-time;
+                }
+
+                .time {
+                  color: $primary;
+                }
+              }
+
+              .body {
+                margin-bottom: 2rem;
+                text-align: left;
+              }
+
+              .bottom {
+                display: flex;
+                justify-content: space-between;
+
+
+                .recommended {
+                  text-align: left;
+                  color: $primary;
+                  font-size: 1.3rem;
+                  font-weight: bold;
+                  display: flex;
+
+                  @include respond(bp-tiny) {
+                    justify-content: flex-start;
+                    width: 100%;
+                  }
+
+                  p {
+                    @include respond(bp-tiny) {
+                      text-align: center;
+                    }
+                  }
+                }
+
+                .number {
+                  color: $thirdcolor;
+                  margin-right: 0.5rem;
+                }
+
+
+              }
+
+            }
+
+          }
+        }
+      }
+
+
+    }
+
+    .close {
+      position: absolute;
+      top: 4rem;
+      right: 4rem;
+      cursor: pointer;
+      font-size: 4rem;
+      color: $thirdcolor;
+    }
+  }
+
+  .slideIn {
+    width: 120.9rem;
+    padding: 4rem 4rem;
+
+    @include respond(bp-large) {
+      width: 80%;
+    }
+
+    @include respond(bp-medium) {
+      width: 90%;
+    }
+
+    @include respond(bp-small) {
+      width: 100%;
+    }
+  }
+
+  .showComments {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .the-replies-enter {
+    display: grid;
+  }
+
+  .the-replies-enter-done {
+    // display: grid !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: opacity 500ms linear;
+  }
+
+  .the-replies-exit {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .the-replies-exit-done {
+    // display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 500ms linear;
+  }
+
+  .response {
+    opacity: 0;
+    transition: opacity 300ms linear;
+  }
+
+  .response_active {
+    background-color: $night-time;
+    padding: 1rem 0;
+    width: 60%;
+    margin: 0 auto;
+    color: #fff;
+    transition: opacity 600ms linear;
+    opacity: 1;
+  }
+
+}

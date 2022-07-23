@@ -1,17 +1,22 @@
+import { singleBlog, listRelated, addFavorite, removeFavorite } from "../../actions/blog";
+
+
 const addToFavorite = (
-  auth,
+ { auth,
   postId,
   postTitle,
   mainphoto,
   postauthor,
-  postslug
+  postslug,
+  setIsFavored,
+  token}
 ) => {
-  const user_id = auth
-  const post_id = postId
-  const post_title = postTitle
-  const mainPhoto = mainphoto
-  const postAuthor = postauthor
-  const slug = postslug
+  const user_id = auth;
+  const post_id = postId;
+  const post_title = postTitle;
+  const mainPhoto = mainphoto;
+  const postAuthor = postauthor;
+  const slug = postslug;
 
   addFavorite(
     user_id,

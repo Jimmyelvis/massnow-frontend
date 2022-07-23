@@ -8,7 +8,10 @@ import renderHTML from "react-render-html";
 import moment from "moment";
 import { isAuth, getCookie } from "../../actions/auth";
 import { userPublicProfile } from "../../actions/user"
-import addToFavorite from "../../components/slug/addFavPost"
+import { useGlobalContext } from "../../context";
+import CommentsOverlay from "../../components/slug/commentsOverlay";
+import Comments from "../../components/slug/comments";
+
 
 
 const SingleBlog = ({ blog, query }) => {
@@ -16,6 +19,9 @@ const SingleBlog = ({ blog, query }) => {
   const [related, setRelated] = useState([]);
   const [isFavored, setIsFavored] = useState(false);
   const [userFavs, setUserFavs] = useState([]);
+  const [overlayOpen, setoverlayOpen] = useState(false);
+
+
 
   const loadRelated = () => {
     listRelated({ blog }).then((data) => {
@@ -31,6 +37,8 @@ const SingleBlog = ({ blog, query }) => {
     loadRelated();
       checkFavored();
   }, [blog]);
+
+
 
   const token = getCookie("token");
 
@@ -89,33 +97,25 @@ const SingleBlog = ({ blog, query }) => {
     ));
   };
 
-  <addFavorite
-    auth={isAuth()._id}
-    postId={blog._id}
-    postTitle={blog.title}
-    mainphoto={blog.mainPhoto}
-    postauthor={blog.postedBy.name}
-    postslug={blog.slug}
-  />
 
-  // const addToFavorite = () => {
+  const addToFavorite = () => {
     
-  //   const user_id = isAuth()._id;
-  //   const post_id = blog._id;
-  //   const post_title = blog.title;
-  //   const mainPhoto = blog.mainphoto;
-  //   const postAuthor = blog.postedBy.name;
-  //   const slug = blog.slug;
+    const user_id = isAuth()._id;
+    const post_id = blog._id;
+    const post_title = blog.title;
+    const mainPhoto = blog.mainphoto;
+    const postAuthor = blog.postedBy.name;
+    const slug = blog.slug;
 
-  //   addFavorite(user_id, post_id, post_title, mainPhoto, postAuthor, slug, token).then((data) => {
-  //     if (data.error) {
-  //       console.log(data.error);
-  //     } else {
-  //       console.log("addded")
-  //       setIsFavored(true)
-  //     }
-  //   })
-  // }
+    addFavorite(user_id, post_id, post_title, mainPhoto, postAuthor, slug, token).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        console.log("addded")
+        setIsFavored(true)
+      }
+    })
+  }
 
   const removeFromFavorites = () => {
  
@@ -160,6 +160,10 @@ const SingleBlog = ({ blog, query }) => {
     }
   };
 
+  const openModal = () => {
+   setoverlayOpen(true)
+  }
+
   return (
     <React.Fragment>
       <Layout>
@@ -198,6 +202,7 @@ const SingleBlog = ({ blog, query }) => {
                   width="40"
                   height="40"
                   viewBox="0 0 40 40"
+                  className="author_icon"
                 >
                   <g
                     id="Ellipse_8"
@@ -227,6 +232,7 @@ const SingleBlog = ({ blog, query }) => {
                   width="40"
                   height="40"
                   viewBox="0 0 40 40"
+                  className="author_icon"
                 >
                   <g
                     id="Ellipse_7"
@@ -254,6 +260,7 @@ const SingleBlog = ({ blog, query }) => {
                   width="40"
                   height="40"
                   viewBox="0 0 40 40"
+                  className="author_icon"
                 >
                   <g id="Pintrist" transform="translate(-616 -823)">
                     <g
@@ -277,16 +284,9 @@ const SingleBlog = ({ blog, query }) => {
                   </g>
                 </svg>
               </li>
-              
-              {
-                /**
-                 * Todo: add onClick handler to commentsIcon
-                 */
-              }
 
-              <li className="commentsIcon">
+              <li className="commentsIcon" onClick={openModal}>
                 <img src="/images/ui/Icon awesome-comment.svg" alt="" />
-                <span className="commentNumber">24</span>
               </li>
             </ul>
 
@@ -326,6 +326,19 @@ const SingleBlog = ({ blog, query }) => {
           </div>
         </div>
       </Layout>
+
+      <CommentsOverlay
+        contentBgcolor={null}
+        overlayColor={`rgba(30, 40, 55, 0.76)`}
+        transition={`all 0.7s linear`}
+        overlayOpen={overlayOpen}
+      >
+        <Comments
+          overlayOpen={overlayOpen}
+          setoverlayOpen={setoverlayOpen}
+          postId={blog._id}
+        />
+      </CommentsOverlay>
     </React.Fragment>
   );
 };

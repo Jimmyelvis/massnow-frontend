@@ -65,6 +65,18 @@ const AdminIndex = () => {
             </div>
 
             <div className="entry">
+              <Link href={`/profile/${isAuth().username}`}>
+                <a>
+                  <div className="label">
+                    <h3 className="heading-3">View Profile</h3>
+                  </div>
+                  <div className="overlay"></div>
+                  <img src="/images/btn-update-delete.jpg" alt="" />
+                </a>
+              </Link>
+            </div>
+
+            <div className="entry">
               <Link href="/user/update">
                 <a>
                   <div className="label">

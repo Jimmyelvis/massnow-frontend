@@ -1,17 +1,59 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Layout from "../../components/Layout";
 import Sectionhero from "../../components/hero/Sectionhero";
 import { userPublicProfile } from "../../actions/user";
+import { commentsFromUser, repliesFromUser } from "../../actions/comments";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
 import { isAuth } from "../../actions/auth";
 import moment from "moment";
 import renderHTML from "react-render-html";
 import { FaEdit } from "react-icons/fa";
 import { Tab, Tabs } from "../../components/pageelements/Tabs";
+import { ShowCommentList } from "../../components/profile/showCommentList";
+
+
+ 
 
 const UserProfile = ({ user, blogs, query }) => {
+
+
+  // Set the array of comments if any exist
+  const [comments, setcomments] = useState([]);
+  const [replies, setreplies] = useState([]);
+
+
+ const getComments = () => {
+   commentsFromUser(isAuth()._id).then((data) => {
+     if (data.error) {
+       console.log(data.error);
+     } else {
+       setcomments(data);
+     }
+   });
+ };
+
+  const getReplies = () => {
+    repliesFromUser(query.username ,isAuth()._id).then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setreplies(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+  
+    getComments();
+
+    console.log("=======query.username =============================");
+    console.log(query.username);
+    console.log('====================================');
+    getReplies()
+  }, []);
+
   const head = () => (
     <Head>
       <title>
@@ -79,6 +121,8 @@ const UserProfile = ({ user, blogs, query }) => {
     });
   };
 
+ 
+
   return (
     <React.Fragment>
       {head()}
@@ -132,7 +176,7 @@ const UserProfile = ({ user, blogs, query }) => {
 
         <div className="profilePg">
           <Tabs>
-            <Tab label={"bio"} tabName={"Bio"}>
+            <Tab label={"Bio"} tabName={"Bio"}>
               <div className="bio">
                 {user.about ? (
                   renderHTML(user.about)
@@ -145,7 +189,7 @@ const UserProfile = ({ user, blogs, query }) => {
             </Tab>
 
             {user.role >= 1 && blogs.length > 0 ? (
-              <Tab label={"user blogs"} tabName={"User Blogs"}>
+              <Tab label={"User Blogs"} tabName={"User Blogs"}>
                 <div className="blogsection">
                   <div className="blogs">{showUserBlogs()}</div>
                 </div>
@@ -154,10 +198,32 @@ const UserProfile = ({ user, blogs, query }) => {
               <></>
             )}
 
-            <Tab label={"favorite posts"} tabName={"Favorite Posts"}>
+            <Tab label={"Favorite Posts"} tabName={"Favorite Posts"}>
               <div className="blogsection">
                 <div className="blogs">{showFavArticles()}</div>
               </div>
+            </Tab>
+
+            <Tab label={"etc"} tabName={"..."} >
+              ...
+            </Tab>
+
+            <Tab label={"etc"} tabName={"..."} >
+              ...
+            </Tab>
+
+            <Tab label={"Comments"} tabName={"Comments"}>
+              <ShowCommentList
+                items={comments}
+                username={query.username}
+              />
+            </Tab>
+
+            <Tab label={"Replies"} tabName={"Replies"}>
+              <ShowCommentList
+                items={replies}
+                username={query.username}
+              />
             </Tab>
           </Tabs>
         </div>
@@ -172,6 +238,7 @@ UserProfile.getInitialProps = ({ query }) => {
     if (data.error) {
       console.log(data.error);
     } else {
+     
       return { user: data.user, blogs: data.blogs, query };
     }
   });
