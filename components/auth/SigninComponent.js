@@ -1,11 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { signin, authenticate, isAuth } from "../../actions/auth";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
+import { useAuthContext } from "../../context/auth_context";
 import Router from "next/router";
+import {
+  Inputfield,
+  Inputfield_With_Icon,
+} from "../pageelements/forms/Inputfields";
 
-const SigninComponent = () => {
+const SigninComponent = ({ originFrom }) => {
   const { isModalOpen, closeModal } = useGlobalContext();
+  const { isSignedIn, updateAuthStatus } = useAuthContext();
+  const [orign, setorign] = useState(originFrom);
 
   const [values, setValues] = useState({
     email: "",
@@ -37,15 +44,21 @@ const SigninComponent = () => {
         // save user info to localstorage
         // authenticate user
         authenticate(data, () => {
-          if (isAuth() && isAuth().role >= 1) {
-            // Router.push(`/admin`);
-            Router.push(`/profile/${isAuth().username}`);
-          } else {
-            Router.push(`/profile/${isAuth().username}`);
+
+          if (orign === "signin page") {
+            
+            if (isAuth() && isAuth().role >= 1) {
+              // Router.push(`/admin`);
+              Router.push(`/profile/${isAuth().username}`);
+            } else {
+              Router.push(`/profile/${isAuth().username}`);
+            }
           }
+          updateAuthStatus();
         });
 
         setTimeout(() => {
+          setValues({ ...values, loading: false });
           closeModal();
         }, 1300);
       }
@@ -68,38 +81,25 @@ const SigninComponent = () => {
   const signinForm = () => {
     return (
       <form onSubmit={handleSubmit}>
-        <div className="inputField">
-          <img
-            src="/images/ui/Icon material-email.svg"
-            alt=""
-            className="inputIcon"
-          />
-          <input
-            type="email"
-            className="inputCtrl"
-            placeholder="Email Address"
-            value={email}
-            onChange={handleChange("email")}
-          />
-        </div>
+        <Inputfield_With_Icon
+          type="email"
+          placeHolder="Email Address"
+          value={email}
+          onChangeFunction={handleChange("email")}
+          icon="/images/ui/Icon material-email.svg"
+          iconClassname="inputIcon"
+        />
 
-        <div className="inputField">
-          <img
-            src="/images/ui/Icon awesome-key.svg"
-            alt=""
-            className="inputIcon"
-          />
+        <Inputfield_With_Icon
+          type="password"
+          placeHolder="Password"
+          value={password}
+          onChangeFunction={handleChange("password")}
+          icon="/images/ui/Icon awesome-key.svg"
+          iconClassname="inputIcon"
+        />
 
-          <input
-            type="password"
-            className="inputCtrl"
-            placeholder="Password"
-            value={password}
-            onChange={handleChange("password")}
-          />
-        </div>
-
-        <button className="btn btn-thirdcolor-grad">Sign In</button>
+        <button className="btn btn-primary-grad">Sign In</button>
       </form>
     );
   };

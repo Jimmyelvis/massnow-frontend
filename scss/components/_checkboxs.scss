@@ -1,61 +1,40 @@
 .form-check-label {
-  padding-left: 4rem;
+  padding-left: 2rem;
   display: block;
   position: relative;
   cursor: pointer;
-  color: $secondary;
-  font-weight: 500;
+  color: $night-time;
+  font-weight: bold;
   font-size: 1.6rem;
   user-select: none;
+}
 
-  input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-
-  .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 2rem;
+  input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
     width: 2rem;
-    box-shadow: inset 0px 0px 4px 0px rgb(211, 216, 226);
-    transition: all 300ms linear;
+    height: 2rem;
+    border: 3px solid rgb(205 219 236);
+    border-radius: 0.35rem;
+    box-shadow: inset 0px 0px 2px 2px rgb(118 152 245 / 25%);
+    display: grid;
+    place-content: center;
   }
-}
 
-.form-check-label:hover input ~ .checkmark {
-  background-color: rgba($secondary, $alpha: 0.5)
-}
+  input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em $night-time;
+  }
 
-.form-check-label input:checked ~ .checkmark {
-  background-color: $secondary;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-/* Show the checkmark when checked */
-.form-check-label input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.form-check-label .checkmark:after {
-  left: 8px;
-  top: 4px;
-  width: 4px;
-  height: 10px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  }

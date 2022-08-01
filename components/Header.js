@@ -12,7 +12,7 @@ import { signout, isAuth } from "../actions/auth";
 import Modal from "../components/pageelements/Modal";
 import SigninComponent from "../components/auth/SigninComponent";
 import SignupComponent from "../components/auth/SignupComponent";
-import { useGlobalContext } from "../context";
+import { useGlobalContext } from "../context/context";
 import Weather from "./vendors/Weather";
 import Search from "./blog/Search";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../config";
@@ -54,7 +54,7 @@ const Header = () => {
         <div className="loginbox">
           <div className="contentbox">
             <div className="logo">
-              <img src="/images/logo-wht-text-orange-singnal.png" alt="" />
+              <img src="/images/ui/logo-full-word-white-txt.png" alt="" />
             </div>
 
             <div
@@ -65,7 +65,7 @@ const Header = () => {
                   : { display: "none" }
               }
             >
-              <SigninComponent />
+              <SigninComponent originFrom="modal" />
 
               <span className="warning" onClick={() => setFormShown("signUp")}>
                 Don't have an account? Click here to create one.
@@ -80,7 +80,7 @@ const Header = () => {
                   : { display: "none" }
               }
             >
-              <SignupComponent />
+              <SignupComponent originFrom="modal" />
 
               <span className="warning" onClick={() => setFormShown("signIn")}>
                 Already have an account? Click here to log in.

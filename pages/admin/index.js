@@ -4,6 +4,7 @@ import Author from "../../components/auth/Author";
 import Sectionhero from "../../components/hero/Sectionhero";
 import { isAuth } from "../../actions/auth";
 import Link from 'next/link';
+import { AuthContext } from '../../context/auth_context';
 
 const AdminIndex = () => {
     return (
@@ -94,6 +95,34 @@ const AdminIndex = () => {
                   <a>
                     <div className="label">
                       <h3 className="heading-3">Edit Top News Section</h3>
+                    </div>
+                    <div className="overlay"></div>
+                    <img src="/images/btn-update-delete.jpg" alt="" />
+                  </a>
+                </Link>
+              </div>
+            )}
+
+            {isAuth() && isAuth().role === 2 && (
+              <div className="entry">
+                <Link href="/admin/crud/sportsnews">
+                  <a>
+                    <div className="label">
+                      <h3 className="heading-3">Edit Sports News Section</h3>
+                    </div>
+                    <div className="overlay"></div>
+                    <img src="/images/btn-update-delete.jpg" alt="" />
+                  </a>
+                </Link>
+              </div>
+            )}
+
+            {isAuth() && isAuth().role === 2 && (
+              <div className="entry">
+                <Link href="/admin/crud/localnews">
+                  <a>
+                    <div className="label">
+                      <h3 className="heading-3">Edit Local Section</h3>
                     </div>
                     <div className="overlay"></div>
                     <img src="/images/btn-update-delete.jpg" alt="" />

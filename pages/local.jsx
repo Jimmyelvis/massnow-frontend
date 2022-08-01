@@ -15,8 +15,12 @@ const local = ({ articles }) => {
   });
 
   let featuredLocal = articles.filter((article) => {
-    return article.featuredLocal > 0 && article.featuredLocal < 4;
+    return article.featuredLocal > 0;
   });
+
+  featuredLocal = featuredLocal.sort((art1, art2) => {
+    return sortElems(art1, art2, "featuredLocal");
+  })
 
   let alllocalnews = articles.filter((article) => {
     return (
@@ -26,7 +30,15 @@ const local = ({ articles }) => {
     );
   });
 
+  /**
+   * This gives us the mid-section
+   */
   let alllocalnewsFeatured = alllocalnews.slice(0, 3);
+
+  /**
+   * The rest of the articles that don't fit into either the mid-section
+   * or the featured section.
+   */
   let therestof = alllocalnews.slice(4);
 
   const showMajorSectionBlogs = () => {

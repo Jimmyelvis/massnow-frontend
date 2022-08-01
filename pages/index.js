@@ -6,7 +6,6 @@ import Local from "../components/index/local";
 import Head from "next/head";
 import Link from "next/link";
 import { API, DOMAIN, APP_NAME } from "../config";
-import articles from "../TestData";
 
 
 const Index = ( { articles }) => {
@@ -42,14 +41,5 @@ export const getStaticProps = async () => {
   };
 };
 
-// export const getStaticProps = async () => {
-
-
-//   return {
-//     props: {
-//       articles: articles,
-//     },
-//   };
-// };
 
 

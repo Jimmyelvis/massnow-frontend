@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFilterContext } from "../../../filter_context";
+import { useFilterContext } from "../../../context/filter_context";
 
 /**
  * Mobile Filters For Display on mobile devices

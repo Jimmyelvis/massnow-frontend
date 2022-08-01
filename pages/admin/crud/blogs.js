@@ -2,8 +2,8 @@ import Layout from '../../../components/Layout';
 import Admin from '../../../components/auth/Admin';
 import Author from "../../../components/auth/Author";
 import BlogRead from '../../../components/crud/BlogRead';
-import {FilterProvider} from '../../../filter_context'
-import { BlogsProvider } from '../../../blogs_context'
+import {FilterProvider} from '../../../context/filter_context'
+import { BlogsProvider } from '../../../context/blogs_context'; 
 import Link from 'next/link';
 
 const Blog = () => {

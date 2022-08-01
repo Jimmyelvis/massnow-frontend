@@ -1,4 +1,4 @@
-import { useFilterContext } from "../../filter_context";
+import { useFilterContext } from "../../context/filter_context"; 
 
 const Sort = () => {
 

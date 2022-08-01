@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useReducer } from "react";
-import reducer from "./reducers/blogs_reducer";
-import { list } from "./actions/blog";
+import reducer from "../reducers/blogs_reducer";
+import { list } from "../actions/blog";
 
 
 const initialState = {

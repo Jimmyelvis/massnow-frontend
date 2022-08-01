@@ -1,8 +1,8 @@
 import { getCategories } from "../../actions/category";
 import React from "react";
 import { useState, useEffect } from "react";
-import { useFilterContext } from "../../filter_context";
-import { useGlobalContext } from "../../context";
+import { useFilterContext } from "../../context/filter_context";
+import { useGlobalContext } from "../../context/context";
 import { getCookie, isAuth } from "../../actions/auth";
 import { IoFilter } from "react-icons/io5";
 import SearchOverLay from "./SearchOverlay";

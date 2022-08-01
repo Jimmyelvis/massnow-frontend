@@ -10,7 +10,7 @@ export const ShowForm = ({ submitForm, body, handleBody, rows }) => {
         rows={rows}
         value={body}
         onChange={handleBody}
-        name={"fdsfdsfdsfsdf"}
+        name={""}
       />
 
       <button type="submit" className="btn btn-submit btn-primary-grad">

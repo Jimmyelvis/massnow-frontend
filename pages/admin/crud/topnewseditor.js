@@ -2,7 +2,7 @@ import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
 import NewsList from "../../../components/crud/top-news/Newslist";
 import Head from "next/head";
-import { useGlobalContext } from "../../../context";
+import { useGlobalContext } from "../../../context/context";
 
 const Topnewseditor = () => {
   const { isModalOpen, openModal, loading } = useGlobalContext();

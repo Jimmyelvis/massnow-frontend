@@ -5,7 +5,7 @@ import Router from "next/router";
 import { getCookie, isAuth } from "../../actions/auth";
 import { list, removeBlog } from "../../actions/blog";
 import moment from "moment";
-import { useFilterContext } from "../../filter_context";
+import { useFilterContext } from "../../context/filter_context"; 
 import Sort from "../pageelements/Sort";
 import Filter from "../pageelements/Filters";
 

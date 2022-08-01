@@ -1,6 +1,6 @@
 import React from "react";
 import { IoIosCloseCircle } from "react-icons/io";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
 
 const Modal = ({
   children,

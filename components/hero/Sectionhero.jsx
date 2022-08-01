@@ -14,7 +14,7 @@ const Sectionhero = ({
 
 
   return (
-    <div className={`${heroclasses}`}>
+    <div className={`hero ${heroclasses ? heroclasses : ""}`}>
       <div className={`content`}>
         <h2 className="heading-2 u-margin-bottom-small">{headline}</h2>
         {children}

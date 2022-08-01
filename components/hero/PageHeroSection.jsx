@@ -37,7 +37,7 @@ const PageHeroSection = ({ articles }) => {
    * then we will display some sample data for now from sampleblogs
    * and assign that to the blogs variable.
    *
-   * NOTE that you don't assign a feature tag to any of the articles passed in
+   * NOTE that if you don't assign a feature tag to any of the articles passed in
    * then articles.length will equal 0
    */
   if (articles.length === 0) {
@@ -51,6 +51,10 @@ const PageHeroSection = ({ articles }) => {
    * in the hero section
    */
   topStory = blogs[0];
+
+  console.log("==============topStory======================");
+  console.log(topStory);
+  console.log('====================================');
 
   /**
    * The other stories that will be displayed

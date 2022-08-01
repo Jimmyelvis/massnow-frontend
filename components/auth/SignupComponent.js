@@ -1,8 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { signup, isAuth } from "../../actions/auth";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
 import Router from "next/router";
+import {
+  Inputfield,
+  Inputfield_With_Icon,
+} from "../pageelements/forms/Inputfields";
 
 const SignupComponent = () => {
   const { isModalOpen, closeModal } = useGlobalContext();
@@ -67,71 +71,43 @@ const SignupComponent = () => {
   const signupForm = () => {
     return (
       <form onSubmit={handleSubmit}>
-        <div className="inputField">
-          <img
-            src="/images/ui/Icon ionic-md-person.svg"
-            alt=""
-            className="inputIcon"
-          />
+        <Inputfield_With_Icon
+          type="text"
+          placeHolder="Full Name"
+          value={name}
+          onChangeFunction={handleChange("name")}
+          icon="/images/ui/Icon ionic-md-person.svg"
+          iconClassname="inputIcon"
+        />
 
-          <input
-            value={name}
-            onChange={handleChange("name")}
-            type="text"
-            className="inputCtrl"
-            placeholder="Type your name"
-          />
-        </div>
+        <Inputfield_With_Icon
+          type="text"
+          placeHolder="Create an username"
+          value={username}
+          onChangeFunction={handleChange("username")}
+          icon="/images/ui/Icon ionic-md-person.svg"
+          iconClassname="inputIcon"
+        />
 
-        <div className="inputField">
-          <img
-            src="/images/ui/Icon ionic-md-person.svg"
-            alt=""
-            className="inputIcon"
-          />
+        <Inputfield_With_Icon
+          type="email"
+          placeHolder="Type your email"
+          value={email}
+          onChangeFunction={handleChange("email")}
+          icon="/images/ui/Icon material-email.svg"
+          iconClassname="inputIcon"
+        />
 
-          <input
-            value={username}
-            onChange={handleChange("username")}
-            type="text"
-            className="inputCtrl"
-            placeholder="Enter a username"
-          />
-        </div>
+        <Inputfield_With_Icon
+          type="password"
+          placeHolder="Type your password"
+          value={password}
+          onChangeFunction={handleChange("password")}
+          icon="/images/ui/Icon awesome-key.svg"
+          iconClassname="inputIcon"
+        />
 
-        <div className="inputField">
-          <img
-            src="/images/ui/Icon material-email.svg"
-            alt=""
-            className="inputIcon"
-          />
-
-          <input
-            value={email}
-            onChange={handleChange("email")}
-            type="email"
-            className="inputCtrl"
-            placeholder="Type your email"
-          />
-        </div>
-
-        <div className="inputField">
-          <img
-            src="/images/ui/Icon awesome-key.svg"
-            alt=""
-            className="inputIcon"
-          />
-
-          <input
-            value={password}
-            onChange={handleChange("password")}
-            type="password"
-            className="inputCtrl"
-            placeholder="Type your password"
-          />
-        </div>
-
-        <button className="btn btn-thirdcolor-grad">Signup</button>
+        <button className="btn btn-primary-grad">Signup</button>
       </form>
     );
   };

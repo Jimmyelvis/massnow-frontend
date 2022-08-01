@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, useReducer } from "react";
 // import { list } from "./actions/blog";
-import reducer from "./reducers/filter_reducer";
-import { useBlogsContext } from "./blogs_context";
+import reducer from "../reducers/filter_reducer";
+import { useBlogsContext } from "./blogs_context"; 
 
 const FilterContext = React.createContext();
 

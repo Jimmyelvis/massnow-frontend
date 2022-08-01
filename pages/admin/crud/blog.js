@@ -1,5 +1,6 @@
 import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
+import Author from "../../../components/auth/Author";
 import BlogCreate from "../../../components/crud/BlogCreate";
 import Secheading from "../../../components/pageelements/Secheading";
 import Sectionhero from "../../../components/hero/Sectionhero";
@@ -17,7 +18,7 @@ const Blog = () => {
         />
       </Head>
 
-      <Admin>
+      <Author>
         <Sectionhero
           /**
            *  contentColCount -- determines how many columns the content section
@@ -35,7 +36,7 @@ const Blog = () => {
         <div className="crud-content">
           <BlogCreate />
         </div>
-      </Admin>
+      </Author>
     </Layout>
   );
 };

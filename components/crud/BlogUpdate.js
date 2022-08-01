@@ -11,6 +11,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "../../node_modules/react-quill/dist/quill.snow.css";
 import Widgetsetting from "../pageelements/Cloudinary";
 import { QuillModules, QuillFormats } from "../../helpers/quill";
+import { Inputfield, CheckBox } from "../pageelements/forms/Inputfields";
 
 const BlogUpdate = ({ router }) => {
   const [body, setBody] = useState("");
@@ -24,7 +25,7 @@ const BlogUpdate = ({ router }) => {
     title: "",
     error: "",
     success: "",
-    formData: "",
+    formData: process.browser && new FormData(),
     title: "",
     subtitle: "",
     tags: "",
@@ -80,14 +81,6 @@ const BlogUpdate = ({ router }) => {
     setChecked(ca);
   };
 
-  // const setTagsArray = blogTags => {
-  //     let ta = [];
-  //     blogTags.map((t, i) => {
-  //         ta.push(t._id);
-  //     });
-  //     setCheckedTag(ta);
-  // };
-
   const initCategories = () => {
     getCategories().then((data) => {
       if (data.error) {
@@ -98,27 +91,8 @@ const BlogUpdate = ({ router }) => {
     });
   };
 
-  //   const initTags = () => {
-
-  //     let tagsCSV
-
-  //     if (typeof tags !== "undefined") {
-  //         // tagsCSV = tags.join(",")
-  //         console.log('====================================');
-  //         console.log(tags);
-  //         console.log('====================================');
-  //     }
-
-  //     // getTags().then((data) => {
-  //     //   if (data.error) {
-  //     //     setValues({ ...values, error: data.error });
-  //     //   } else {
-  //     //     setTags(data);
-  //     //   }
-  //     // });
-  //   };
-
   const handleToggle = (c) => () => {
+
     setValues({ ...values, error: "" });
     // return the first index or -1
     const clickedCategory = checked.indexOf(c);
@@ -147,15 +121,15 @@ const BlogUpdate = ({ router }) => {
     return (
       categories &&
       categories.map((c, i) => (
-        <li key={i} className="list-unstyled">
-          <input
-            onChange={handleToggle(c._id)}
-            checked={findOutCategory(c._id)}
-            type="checkbox"
-            className="mr-2"
-          />
-          <label className="form-check-label">{c.name}</label>
-        </li>
+  
+        <CheckBox
+          key={i}
+          onChange={handleToggle(c._id)}
+          checked={findOutCategory(c._id)}
+          type="checkbox"
+          className="checkmark"
+          label={c.name}
+        />
       ))
     );
   };
@@ -185,7 +159,6 @@ const BlogUpdate = ({ router }) => {
       } else {
         setValues({
           ...values,
-          title: "",
           success: `Blog titled "${data.title}" is successfully updated`,
         });
         if (isAuth() && isAuth().role === 1) {
@@ -242,42 +215,30 @@ const BlogUpdate = ({ router }) => {
         {/* <img src={mainphoto} class="herobg" alt="" /> */}
         {!mainphoto ? null : <img src={mainphoto} class="herobg" alt="" />}
 
-        <h2 className="heading-2">Edit Article -- {title}</h2>
+        <h2 className="heading-2">{title}</h2>
       </div>
 
       <div className="crud-content">
         <form onSubmit={editBlog} className="formCreation">
           <div className="inputFields">
-            <div className="field inputTitle">
-              <label className="fieldLable heading-3">Title</label>
-              <input
-                type="text"
-                className="form-control"
-                value={title}
-                onChange={handleChange("title")}
-              />
-            </div>
+            <Inputfield
+              label="Title"
+              value={title}
+              onChangeFunction={handleChange("title")}
+            />
 
-            <div className="field inputSubtitle">
-              <label className="fieldLable heading-3">Sub Title</label>
-              <input
-                type="text"
-                className="form-control"
-                value={subtitle}
-                onChange={handleChange("subtitle")}
-              />
-            </div>
+            <Inputfield
+              label="Sub Title"
+              value={subtitle}
+              onChangeFunction={handleChange("subtitle")}
+            />
 
-            <div className="field inputTags">
-              <label className="fieldLable heading-3">Tags</label>
-              <input
-                type="text"
-                className="form-control"
-                value={tags}
-                onChange={handleChange("tags")}
-                placeholder="*  Please use comma separated values (eg. Nike, New Balance, Jordans"
-              />
-            </div>
+            <Inputfield
+              label="Tags"
+              value={tags}
+              onChangeFunction={handleChange("tags")}
+              placeholder="*  Please use comma separated values (eg. Local, Politics, etc)"
+            />
           </div>
 
           <div className="cat-list">
@@ -295,7 +256,7 @@ const BlogUpdate = ({ router }) => {
           <div className="upload-btn">
             <button
               id="upload_widget"
-              className="btn btn-secondary"
+              className="btn btn-primary-grad"
               onClick={fullArticleHeaderSubmit("mainphoto")}
             >
               Upload Photo
@@ -312,7 +273,7 @@ const BlogUpdate = ({ router }) => {
             />
           </div>
 
-          <button type="submit" className="btn btn-publish btn-secondary ">
+          <button type="submit" className="btn btn-publish btn-primary-grad ">
             Update
           </button>
         </form>

@@ -3,7 +3,7 @@ import renderHTML from "react-render-html";
 import React, { useState, useEffect, useRef } from "react";
 import { listSearch } from "../../actions/blog";
 import { BsSearch } from "react-icons/bs";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
 
 
 

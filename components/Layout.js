@@ -1,10 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import Footer from "./Footer"
-import { useGlobalContext } from "../context";
+import { useGlobalContext } from "../context/context";
 import ScrollToTop from "./pageelements/scroll/ScrollToTop"
-
-
 
 const Layout = ({ children }) => {
   const { isModalOpen } = useGlobalContext();

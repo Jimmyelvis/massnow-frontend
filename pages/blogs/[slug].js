@@ -8,7 +8,7 @@ import renderHTML from "react-render-html";
 import moment from "moment";
 import { isAuth, getCookie } from "../../actions/auth";
 import { userPublicProfile } from "../../actions/user"
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
 import CommentsOverlay from "../../components/slug/commentsOverlay";
 import Comments from "../../components/slug/comments";
 

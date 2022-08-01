@@ -1,5 +1,5 @@
 import { IoIosCloseCircle } from "react-icons/io";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
 import React, { useState, useEffect, useRef } from "react";
 
 const CommentsOverlay = ({

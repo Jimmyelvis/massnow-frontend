@@ -2,7 +2,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { signout, isAuth } from "../../actions/auth";
 import Router from "next/router";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
+import { useAuthContext } from "../../context/auth_context";
 import Weather from "../vendors/Weather";
 import { HiSearch } from "react-icons/hi";
 
@@ -14,6 +15,8 @@ const Nav = () => {
   const [formShown, setFormShown] = useState("signIn");
   const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
     useGlobalContext();
+  const { isSignedIn, updateAuthStatus } = useAuthContext();
+  
 
   const getAvatar = () => {
     return !isAuth().photo ? (
@@ -30,7 +33,7 @@ const Nav = () => {
 
         <span className="logo">
           <Link href="/" passHref>
-            <img src="/images/logo-wht-text-orange-singnal.png" alt="" />
+            <img src="/images/ui/logo-full-word-white-txt.png" alt="" />
           </Link>
         </span>
 
@@ -52,14 +55,12 @@ const Nav = () => {
             </li>
             <li>
               <Link href={`/profile/${isAuth().username}`}>
-                <a className="avatar">
-                  { getAvatar()}
-                </a>
+                <a className="avatar">{getAvatar()}</a>
               </Link>
             </li>
             <li
               className="sign-out"
-              onClick={() => signout(() => Router.replace(`/`))}
+              onClick={() => signout(() => updateAuthStatus())}
             >
               Signout
             </li>
@@ -73,14 +74,12 @@ const Nav = () => {
             </li>
             <li>
               <Link href="/admin">
-                <a className="avatar">
-                  { getAvatar() }
-                </a>
+                <a className="avatar">{getAvatar()}</a>
               </Link>
             </li>
             <li
               className="sign-out"
-              onClick={() => signout(() => Router.replace(`/`))}
+              onClick={() => signout(() => updateAuthStatus())}
             >
               Signout
             </li>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { signout, isAuth } from "../../actions/auth";
 import Router from "next/router";
-import { useGlobalContext } from "../../context";
+import { useGlobalContext } from "../../context/context";
 import Weather from "../vendors/Weather";
 import { HiSearch } from "react-icons/hi";
 import { GiHamburgerMenu as MobileIcom } from "react-icons/gi";

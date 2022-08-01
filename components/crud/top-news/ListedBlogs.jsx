@@ -12,7 +12,7 @@ import {
   updateLocalBlogSection
 } from "../../../actions/blog";
 import moment from "moment";
-import { useGlobalContext } from "../../../context";
+import { useGlobalContext } from "../../../context/context";
 
 const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
   const { closeModal } = useGlobalContext();

@@ -13,6 +13,8 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import Widgetsetting from "../pageelements/Cloudinary";
 import "../../node_modules/react-quill/dist/quill.snow.css";
 import { QuillModules, QuillFormats } from "../../helpers/quill";
+import { Inputfield, CheckBox } from "../pageelements/forms/Inputfields";
+
 
 const CreateBlog = ({ router }) => {
   const blogFromLS = () => {
@@ -85,10 +87,11 @@ const CreateBlog = ({ router }) => {
           subtitle: "",
           tags: "",
           error: "",
+          mainphoto: "",
           success: `A new blog titled "${data.title}" is created`,
         });
+        setChecked([])
         setBody("");
-        setCategories([]);
       }
     });
   };
@@ -129,17 +132,13 @@ const CreateBlog = ({ router }) => {
     return (
       categories &&
       categories.map((c, i) => (
-        <li key={i} className="list">
-          <label className="form-check-label">
-            {c.name}
-            <input
-              onChange={handleToggle(c._id)}
-              type="checkbox"
-              className="mr-2"
-            />
-            <span class="checkmark"></span>
-          </label>
-        </li>
+      <CheckBox
+          key={i}
+          onChange={handleToggle(c._id)}
+          type="checkbox"
+          className="checkmark"
+          label={c.name}
+        />
       ))
     );
   };
@@ -184,36 +183,24 @@ const CreateBlog = ({ router }) => {
     <React.Fragment>
       <form onSubmit={publishBlog} className="formCreation">
         <div className="inputFields">
-          <div className="field inputTitle">
-            <label className="fieldLable heading-3">Title</label>
-            <input
-              type="text"
-              className="form-control"
-              value={title}
-              onChange={handleChange("title")}
-            />
-          </div>
+          <Inputfield
+            label="Title"
+            value={title}
+            onChangeFunction={handleChange("title")}
+          />
 
-          <div className="field inputSubtitle">
-            <label className="fieldLable heading-3">Sub Title</label>
-            <input
-              type="text"
-              className="form-control"
-              value={subtitle}
-              onChange={handleChange("subtitle")}
-            />
-          </div>
+          <Inputfield
+            label="Sub Title"
+            value={subtitle}
+            onChangeFunction={handleChange("subtitle")}
+          />
 
-          <div className="field inputTags">
-            <label className="fieldLable heading-3">Tags</label>
-            <input
-              type="text"
-              className="form-control"
-              value={tags}
-              onChange={handleChange("tags")}
-              placeholder="*  Please use comma separated values (eg. Nike, New Balance, Jordans"
-            />
-          </div>
+          <Inputfield
+            label="Tags"
+            value={tags}
+            onChangeFunction={handleChange("tags")}
+            placeholder="*  Please use comma separated values (eg. Local, Politics, etc)"
+          />
         </div>
 
         <div className="cat-list">
@@ -231,7 +218,7 @@ const CreateBlog = ({ router }) => {
         <div className="upload-btn">
           <button
             id="upload_widget"
-            className="btn btn-secondary"
+            className="btn btn-primary-grad"
             onClick={fullArticleHeaderSubmit("mainphoto")}
           >
             Upload Photo
@@ -248,7 +235,7 @@ const CreateBlog = ({ router }) => {
           />
         </div>
 
-        <button type="submit" className="btn btn-publish btn-secondary ">
+        <button type="submit" className="btn btn-publish btn-primary-grad">
           Publish
         </button>
       </form>

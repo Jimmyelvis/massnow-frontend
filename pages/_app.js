@@ -1,12 +1,10 @@
 // pages/_app.js
-import React from 'react'
-import Head from 'next/head'
-import { AppProvider } from '../context';
+import React from "react";
+import Head from "next/head";
+import { AppProvider } from "../context/context";
+import { AuthProvider } from "../context/auth_context";
 import "../scss/style.scss";
 
-
-
- 
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -37,12 +35,14 @@ function MyApp({ Component, pageProps }) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" />
         <meta name="theme-color" content="#0058d3" />
       </Head>
-      <AppProvider>
-        <Component {...pageProps} />
-      </AppProvider>
+      <AuthProvider>
+        <AppProvider>
+          <Component {...pageProps} />
+        </AppProvider>
+      </AuthProvider>
       {/* <Component {...pageProps} /> */}
     </>
   );
 }
- 
-export default MyApp
+
+export default MyApp;
