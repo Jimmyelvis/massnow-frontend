@@ -8,7 +8,6 @@ import Link from "next/link";
 import { sortElems } from "../helpers/sorting";
 import { API, DOMAIN, APP_NAME } from "../config";
 import renderHTML from "react-render-html";
-import articles from "../TestData";
 
 
 const sports = ({ articles }) => {

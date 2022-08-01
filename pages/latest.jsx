@@ -6,7 +6,6 @@ import Link from "next/link";
 import { sortElems } from "../helpers/sorting";
 import { API, DOMAIN, APP_NAME } from "../config";
 import renderHTML from "react-render-html";
-import articles from "../TestData";
 
 
 const LatestNews = ({ articles }) => {
@@ -133,22 +132,15 @@ const LatestNews = ({ articles }) => {
 
 export default LatestNews;
 
-// export const getStaticProps = async () => {
-//   const res = await fetch(`${API}/api/blogs`);
-
-//   const articles = await res.json();
-
-//   return {
-//     props: {
-//       articles,
-//     },
-//   };
-// };
-
 export const getStaticProps = async () => {
+  const res = await fetch(`${API}/api/blogs`);
+
+  const articles = await res.json();
+
   return {
     props: {
-      articles: articles,
+      articles,
     },
   };
 };
+
