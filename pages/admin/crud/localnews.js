@@ -1,7 +1,7 @@
 import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
 import Secheading from "../../../components/pageelements/Secheading";
-import NewsList from "../../../components/crud/top-news/Newslist";
+import NewsList from "../../../components/crud/top-news/Newslist"
 import Head from "next/head";
 import { useGlobalContext } from "../../../context/context";
 
