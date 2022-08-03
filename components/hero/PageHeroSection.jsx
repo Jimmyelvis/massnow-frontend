@@ -53,14 +53,21 @@ const PageHeroSection = ({ articles, linkFrom }) => {
    * be the main story.
    */
 
-  topStory = blogs.filter((article) => {
+   if (linkFrom === "sports") {
+       topStory = blogs.filter((article) => {
+         return article.featuredSports === 1;
+      });
+   } 
+   
+   else if (linkFrom === "local") {
+      topStory = blogs.filter((article) => {
+        return article.featuredLocal === 1;
+      });
+   }
+   else {
+    topStory = blogs.slice(1,2);
+   }
 
-    if (linkFrom === "sports") {
-      return article.featuredSports === 1;
-    } else {
-      return article.featuredLocal === 1;
-    }
-  });
 
   /**
    * The other stories that will be displayed
@@ -70,10 +77,12 @@ const PageHeroSection = ({ articles, linkFrom }) => {
     theRest = blogs.filter((article) => {
       return article.featuredSports > 1 && article.featuredSports < 4;
     })
-  } else {
+  } else if (linkFrom === "local") {
      theRest = blogs.filter((article) => {
        return article.featuredLocal > 1 && article.featuredLocal < 4;
      });
+  } else {
+    theRest = blogs.slice(1,3);
   }
 
  
@@ -132,6 +141,7 @@ const PageHeroSection = ({ articles, linkFrom }) => {
       <div className="overlay"></div>
       <img src={topStory[0].mainphoto} className="herobg" alt="" />
     </div>
+
   );
 };
 

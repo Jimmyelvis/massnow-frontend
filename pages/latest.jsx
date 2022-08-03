@@ -100,12 +100,7 @@ const LatestNews = ({ articles }) => {
         <title>Welcome To MassNow News Site</title>
       </Head>
       
-      {
-        /**
-         * Todo Edit the latest hero to account for scenarios where we have no articles
-         */
-      }
-
+ 
       <Hero articles={latestFeatured} />
 
       <div className="topnewssection">
