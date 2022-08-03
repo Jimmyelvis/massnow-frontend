@@ -15,6 +15,8 @@ const FrontPageHero = ({ incomingArticles }) => {
       return article.featuredTopstory > 0;
     });
 
+ 
+
     /**
      * Check the results of featuredStories,
      * if no results were found or featuredStories.length === 0
@@ -39,13 +41,17 @@ const FrontPageHero = ({ incomingArticles }) => {
      */
     let filteredPosts = getFeaturedArticles(posts);
 
-
     /**
-     * Get the first array element this will be the main story
-     * to be displayed
+     * Filter through filteredPosts and find the article
+     * where the key featuredTopstory === 1. This will
+     * be the main story.
      */
-    let topStory = filteredPosts[0];
 
+    let topStory = filteredPosts.filter((article) => {
+      return article.featuredTopstory === 1;
+    });
+
+   
 
     /**
      * Get the rest in the array and assign to theRest
@@ -59,12 +65,12 @@ const FrontPageHero = ({ incomingArticles }) => {
         <div className="content col-2 narrow-wide">
           <div className="currentslideinfo">
             <h2 className="heading-2 u-margin-bottom-small">
-              {topStory.title}
+              {topStory[0].title}
             </h2>
-            <p className="u-margin-bottom-medium">{topStory.subtitle}</p>
+            <p className="u-margin-bottom-medium">{topStory[0].subtitle}</p>
             <div className="readmore">
               <span className="readstory">
-                <Link href={`blogs/${topStory.slug}`}>
+                <Link href={`blogs/${topStory[0].slug}`}>
                   <a>Read More</a>
                 </Link>
               </span>
@@ -93,7 +99,7 @@ const FrontPageHero = ({ incomingArticles }) => {
         </div>
 
         <div className="overlay"></div>
-        <img src={topStory.mainphoto} className="herobg" alt="" />
+        <img src={topStory[0].mainphoto} className="herobg" alt="" />
       </div>
     );
   };

@@ -84,7 +84,7 @@ const local = ({ articles }) => {
         <title>Welcome To MassNow News Site</title>
       </Head>
 
-      <Hero articles={featuredLocal} />
+      <Hero articles={featuredLocal} linkFrom="local" />
 
       <div className="topnewssection">
         <div className="secheading">

@@ -31,10 +31,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
 
-    console.log('====================================');
-    console.log('use effect called here');
-    console.log('====================================');
-
     if (typeof window !== "undefined") {
       localStorage.setItem("auth", JSON.stringify(isSignedIn));
     }

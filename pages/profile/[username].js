@@ -47,10 +47,6 @@ const UserProfile = ({ user, blogs, query }) => {
   useEffect(() => {
   
     getComments();
-
-    console.log("=======query.username =============================");
-    console.log(query.username);
-    console.log('====================================');
     getReplies()
   }, []);
 

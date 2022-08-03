@@ -62,9 +62,6 @@ const LatestNews = ({ articles }) => {
    let col_2 = therestof.slice(2, 4);
    let col_3 = therestof.slice(4, 6);
 
-   console.log("==============therestof.length)======================");
-   console.log(therestof.length);
-   console.log('====================================');
  
    const showCol = (col) => {
 

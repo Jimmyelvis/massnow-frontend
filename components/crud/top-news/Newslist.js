@@ -106,7 +106,6 @@ const NewsList = ({ listFrom }) => {
         <div key={topnewsblog._id} className="entry">
           <h3 className="heading-3 label">{label}</h3>
 
-          {/* {  console.log(i + 1) } */}
           <div className="story">
             <img src={topnewsblog.mainphoto} alt="" className="mainphoto" />
 
@@ -129,15 +128,6 @@ const NewsList = ({ listFrom }) => {
                   openModal();
                   setchoosenBlog(topnewsblog.slug);
                   setChoosenPosNumber(i + 1);
-                  console.log(
-                    "================setChoosenPosNumber===================="
-                  );
-                  console.log(choosenPosNumber);
-                  console.log("====================================");
-
-                  {
-                    console.log(i + 1);
-                  }
                 }}
                 className="btn btn-primary"
               >

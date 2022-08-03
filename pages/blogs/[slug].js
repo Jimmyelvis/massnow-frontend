@@ -111,7 +111,6 @@ const SingleBlog = ({ blog, query }) => {
       if (data.error) {
         console.log(data.error);
       } else {
-        console.log("addded")
         setIsFavored(true)
       }
     })

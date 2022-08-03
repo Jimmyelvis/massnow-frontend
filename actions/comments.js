@@ -120,9 +120,6 @@ export const repliesFromUser = (username, user_id) => {
      user_id,
    };
 
-   console.log("================data====================");
-   console.log(data);
-   console.log('====================================');
 
   return fetch(`${API}/api/comments/repliesFromUser`, {
     method: "POST",

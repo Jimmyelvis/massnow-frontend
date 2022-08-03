@@ -18,10 +18,6 @@ const Category = ({ category, blogs, query }) => {
 
   let theBlogs = blogs[0];
 
-  console.log("==================theBlogs==================");
-  console.log(theBlogs.postedBy.name);
-  console.log("====================================");
-
   const head = () => (
     <Head>
       <title>

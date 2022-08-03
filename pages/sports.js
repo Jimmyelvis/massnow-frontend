@@ -78,7 +78,10 @@ const sports = ({ articles }) => {
         <title>Welcome To MassNow News Site</title>
       </Head>
 
-      <Hero articles={featuredSports} />
+      <Hero 
+          articles={featuredSports}
+          linkFrom="sports" 
+      />
 
       <div className="topnewssection">
         <div className="secheading">

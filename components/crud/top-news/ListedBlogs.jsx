@@ -191,7 +191,7 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
       ).then((data) => {
         if (data.error) {
         } else {
-          console.log(data);
+          // console.log(data);
           closeModal();
         }
       });
@@ -204,7 +204,7 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
       ).then((data) => {
         if (data.error) {
         } else {
-          console.log(data);
+          // console.log(data);
           closeModal();
         }
       });
@@ -213,7 +213,7 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
         (data) => {
           if (data.error) {
           } else {
-            console.log(data);
+            // console.log(data);
             closeModal();
           }
         }

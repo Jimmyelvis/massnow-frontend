@@ -103,7 +103,7 @@ const BlogUpdate = ({ router }) => {
     } else {
       all.splice(clickedCategory, 1);
     }
-    console.log(all);
+    // console.log(all);
     setChecked(all);
     formData.set("categories", all);
   };

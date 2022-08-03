@@ -72,7 +72,6 @@ const ProfileUpdate = () => {
     //  let userFormData = new FormData();
     userData.set(name, value);
 
-    console.log(...userData);
 
     setValues({
       ...values,

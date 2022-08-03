@@ -29,7 +29,7 @@ const Comments = ({ overlayOpen, setoverlayOpen, postId }) => {
     if (localStorage.getItem("comment")) {
       return JSON.parse(localStorage.getItem("comment"));
     } else {
-      return false;
+      return "";
     }
   };
 
@@ -317,10 +317,6 @@ const Comments = ({ overlayOpen, setoverlayOpen, postId }) => {
     commentId;
     let userId = isAuth()._id;
     postId;
-
-    console.log('===============type=====================');
-    console.log(type);
-    console.log('====================================');
 
     createRecommended(userId, commentId, postId).then((data) => {
       if (data.error) {

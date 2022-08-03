@@ -3,19 +3,11 @@ import React, { useState, useEffect } from "react";
 
 const Tabs = ({ children }) => {
 
-  // console.log('====================================');
-  // console.log(children[0].props.label);
-  // console.log('====================================');
+  
   
   const initialTab = children[0].props.label;
   const [activeTab, setActiveTab] = useState(initialTab);
   const [activeTabSet, setactiveTabSet] = useState("first");
-
-  // useEffect(() => {
-    
-
-
-  // }, [activeTabSet]);
 
 
 
@@ -66,7 +58,6 @@ const Tabs = ({ children }) => {
   
   const firstSet = theTabs.slice(0,4);
   const nextSet = theTabs.slice(4)
-  console.log(firstSet);
 
   const changeSet = () => {
 

@@ -9,7 +9,7 @@ import sampleblogs from "../../FrontPageTestData";
  * they may have a feature tag. If none have this then it
  * will use some sample blogs from the link above
  */
-const PageHeroSection = ({ articles }) => {
+const PageHeroSection = ({ articles, linkFrom }) => {
   const [sample, setSample] = useState(false);
 
   /**
@@ -46,20 +46,37 @@ const PageHeroSection = ({ articles }) => {
     blogs = articles;
   }
 
-  /**
-   * The main story that will be displayed
-   * in the hero section
-   */
-  topStory = blogs[0];
 
-  console.log("==============topStory======================");
-  console.log(topStory);
-  console.log('====================================');
+  /**
+   * Filter through blogs and find the article
+   * where the key featuredTopstory === 1. This will
+   * be the main story.
+   */
+
+  topStory = blogs.filter((article) => {
+
+    if (linkFrom === "sports") {
+      return article.featuredSports === 1;
+    } else {
+      return article.featuredLocal === 1;
+    }
+  });
 
   /**
    * The other stories that will be displayed
    */
-  theRest = blogs.slice(1, 3);
+
+  if (linkFrom === "sports") {
+    theRest = blogs.filter((article) => {
+      return article.featuredSports > 1 && article.featuredSports < 4;
+    })
+  } else {
+     theRest = blogs.filter((article) => {
+       return article.featuredLocal > 1 && article.featuredLocal < 4;
+     });
+  }
+
+ 
 
   const otherStoriesStyles = {
     height: "fit-content",
@@ -86,8 +103,10 @@ const PageHeroSection = ({ articles }) => {
     <div className="hero page-hero">
       <div className="content col-2 narrow-wide">
         <div className="currentslideinfo">
-          <h2 className="heading-2 u-margin-bottom-small">{topStory.title}</h2>
-          <p className="u-margin-bottom-medium">{topStory.subtitle}</p>
+          <h2 className="heading-2 u-margin-bottom-small">
+            {topStory[0].title}
+          </h2>
+          <p className="u-margin-bottom-medium">{topStory[0].subtitle}</p>
           <div className="readmore">
             <span className="readstory">
               {/**
@@ -97,7 +116,7 @@ const PageHeroSection = ({ articles }) => {
               {sample ? (
                 " "
               ) : (
-                <Link href={`blogs/${topStory.slug}`}>
+                <Link href={`blogs/${topStory[0].slug}`}>
                   <a>Read More</a>
                 </Link>
               )}
@@ -111,7 +130,7 @@ const PageHeroSection = ({ articles }) => {
       </div>
 
       <div className="overlay"></div>
-      <img src={topStory.mainphoto} className="herobg" alt="" />
+      <img src={topStory[0].mainphoto} className="herobg" alt="" />
     </div>
   );
 };
