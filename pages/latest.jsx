@@ -132,8 +132,7 @@ export const getServerSideProps = async () => {
   return {
     props: {
       articles,
-    },
-    revalidate: 1,
+    }
   };
 };
 
