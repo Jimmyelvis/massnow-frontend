@@ -124,7 +124,7 @@ const LatestNews = ({ articles }) => {
 
 export default LatestNews;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch(`${API}/api/blogs`);
 
   const articles = await res.json();
@@ -133,6 +133,7 @@ export const getStaticProps = async () => {
     props: {
       articles,
     },
+    revalidate: 1,
   };
 };
 
