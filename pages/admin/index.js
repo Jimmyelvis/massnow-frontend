@@ -130,6 +130,20 @@ const AdminIndex = () => {
                 </Link>
               </div>
             )}
+
+            {isAuth() && isAuth().role === 2 && (
+              <div className="entry">
+                <Link href="/admin/crud/users">
+                  <a>
+                    <div className="label">
+                      <h3 className="heading-3">Edit Users</h3>
+                    </div>
+                    <div className="overlay"></div>
+                    <img src="/images/btn-update-delete.jpg" alt="" />
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
         </Author>
       </Layout>

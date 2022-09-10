@@ -61,7 +61,9 @@ const Latest = ({ articles }) => {
               <img src={topStory.mainphoto} alt="" />
 
               <div className="featured-info">
-                <h3 className="heading-3">{topStory.title}</h3>
+                <Link href={`blogs/${topStory.slug}`}>
+                  <a className="heading-3">{topStory.title}</a>
+                </Link>
                 <p>{topStory.subtitle}</p>
                 <span className="author">{topStory.postedBy.name} </span>
               </div>

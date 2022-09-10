@@ -16,7 +16,7 @@ export const Inputfield = ({ label, value, onChangeFunction, classNames, placeHo
 };
 
 Inputfield.defaultProps = {
-  types: "text",
+  type: "text",
 };
 
 export const CheckBox = ({ key, onChange, checked, classNames, label }) => {
@@ -33,7 +33,7 @@ export const CheckBox = ({ key, onChange, checked, classNames, label }) => {
   );
 };
 
-export const Inputfield_With_Icon = ({ label, value, onChangeFunction, classNames, placeHolder, type, icon, iconClassname }) => {
+export const Inputfield_With_Icon = ({ label, value, onChangeFunction, classNames, placeHolder, type, icon, iconClassname, disabled }) => {
   return (
     <div className="inputField">
 
@@ -49,12 +49,14 @@ export const Inputfield_With_Icon = ({ label, value, onChangeFunction, className
         value={value}
         onChange={onChangeFunction}
         placeholder={placeHolder}
+        disabled={disabled}
       />
     </div>
   );
 };
 
 Inputfield_With_Icon.defaultProps = {
-  types: "text",
+  type: "text",
+  disabled: false
 };
 

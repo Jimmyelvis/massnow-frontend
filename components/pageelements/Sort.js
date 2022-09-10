@@ -1,4 +1,5 @@
 import { useFilterContext } from "../../context/filter_context"; 
+import { Select } from "./Select";
 
 const Sort = () => {
 
@@ -8,27 +9,33 @@ const Sort = () => {
     } = useFilterContext();
 
 
+    const options = [
+      {
+        value: "latest",
+        text: "Latest"
+      },
+      {
+        value: "earliest",
+        text: "Earliest"
+      },{
+        value: "a-z",
+        text: " a-z"
+      },{
+        value: "z-a",
+        text: "z-a"
+      },
+    ]
 
     return (
       <div className="dropdown">
           <label htmlFor="sort">Sort by</label>
 
-          <div className="selector">
-            <select
-              name="sort"
-              id="sort"
-              className="sort-input"
-              value={sort}
-              onChange={updateSort}
-            >
-              <option value="latest">Latest</option>
-              <option value="earliest">Earliest</option>
-              <option value="a-z">Title (a-z)</option>
-              <option value="z-a">Title (z-a)</option>
-            </select>
-            <div class="custom-arrow"></div>
-          </div>
-
+          <Select
+            value={sort}
+            onChange={updateSort}
+            options={options}
+          />
+ 
       </div>
     );
   

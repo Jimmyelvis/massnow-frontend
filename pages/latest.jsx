@@ -56,7 +56,7 @@ const LatestNews = ({ articles }) => {
      return !article.featuredTopstory > 0 && !article.featuredSports > 0;
    });
  
-   therestof = therestof.slice(8, 14);
+    
  
    let col_1 = therestof.slice(0, 2);
    let col_2 = therestof.slice(2, 4);
@@ -92,6 +92,29 @@ const LatestNews = ({ articles }) => {
 
    };
 
+   const showTheRest = () => {
+    return therestof.map((blog) => {
+
+      return (
+        <div className="entry">
+          <Link href={`blogs/${blog.slug}`} key={blog.slug}>
+            <a>
+              <h4 className="heading-4">{blog.title} </h4>
+            </a>
+          </Link>
+
+          <span className="author">{blog.postedBy.name}</span>
+
+          {renderHTML(blog.excerpt)}
+
+          <div className="thumb">
+            <img src={blog.mainphoto} alt="" />
+          </div>
+        </div>
+      );
+    })
+   }
+
   
 
   return (
@@ -112,9 +135,11 @@ const LatestNews = ({ articles }) => {
           <div className="majorsection">{showMajorSectionBlogs()}</div>
 
           <div className="minorsection">
-            <div className="column">{showCol(col_1)}</div>
+            {/* <div className="column">{showCol(col_1)}</div>
             <div className="column">{showCol(col_2)}</div>
-            <div className="column">{showCol(col_3)}</div>
+            <div className="column">{showCol(col_3)}</div> */}
+
+            {showTheRest()}
           </div>
         </div>
       </div>

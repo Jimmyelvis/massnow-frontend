@@ -63,5 +63,25 @@
 }
 
 
+ @mixin createAvatar($units: 20rem) {
 
+   .avatar {
+     position: relative;
+     z-index: 1000;
+     width: $units;
+     height: $units;
+     border-radius: 50%;
+     overflow: hidden;
+     border: 7px solid #fff;
+
+     img {
+       height: 100%;
+       position: absolute;
+       object-fit: cover;
+       top: 0;
+       left: 0;
+     }
+   }
+
+ }
 

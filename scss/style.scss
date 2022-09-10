@@ -21,12 +21,14 @@
 @import "components/_nav";
 @import "components/_quill";
 @import "components/_secheading";
+@import "components/_select";
 @import "components/_searchOverlay";
 @import "components/_tabs";
 
 
 
 @import "pages/_adminIndex";
+@import "pages/_adminusers";
 @import "pages/_blogcreate.scss";
 @import "pages/_blogslist.scss";
 @import "pages/categories";
