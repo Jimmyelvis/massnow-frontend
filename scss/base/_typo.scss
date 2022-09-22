@@ -1,5 +1,10 @@
+@import url("https://use.typekit.net/znh5rcn.css");
+
+$font-primary: interstate, sans-serif;
+$font-links: noto-sans-display, sans-serif;
+
+
 %heading {
-  // font-family: $font-display;
   font-family: ivypresto-headline, sans-serif;
   font-weight: 500;
   line-height: 1.2;
@@ -31,7 +36,35 @@
   font-size: 1.6rem;
 }
 
-$font-primary: interstate, sans-serif;
+%admin_heading {
+  font-family: interstate-condensed, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1.2;
+  color: $primary
+}
 
+.admin_heading-1 {
+  @extend %admin_heading;
+  font-size: 4.5rem;
+}
 
+.admin_heading-2 {
+  @extend %admin_heading;
+  font-size: 4rem;
+}
 
+.admin_heading-3 {
+  @extend %admin_heading;
+  font-size: 2.6rem;
+}
+
+.admin_heading-4 {
+  @extend %admin_heading;
+  font-size: 1.9rem;
+}
+
+.admin_heading-5 {
+  @extend %admin_heading;
+  font-size: 1.6rem;
+}

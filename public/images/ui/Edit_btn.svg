@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
+  <g id="Edit_Btn" data-name="Edit Btn" transform="translate(-1018.346 -1432.846)">
+    <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(1018.346 1432.846)" fill="#fffcf8" stroke="rgba(212,222,239,0.35)" stroke-width="1">
+      <circle cx="21" cy="21" r="21" stroke="none"/>
+      <circle cx="21" cy="21" r="20.5" fill="none"/>
+    </g>
+    <g id="Ellipse_24" data-name="Ellipse 24" transform="translate(1022.346 1436.846)" fill="#f2f6fc" stroke="rgba(212,222,239,0.36)" stroke-width="1">
+      <circle cx="17" cy="17" r="17" stroke="none"/>
+      <circle cx="17" cy="17" r="16.5" fill="none"/>
+    </g>
+    <path id="Icon_awesome-user-edit" data-name="Icon awesome-user-edit" d="M7.227,8.26A4.13,4.13,0,1,0,3.1,4.13,4.13,4.13,0,0,0,7.227,8.26Zm2.891,1.032H9.58a5.617,5.617,0,0,1-4.7,0H4.336A4.338,4.338,0,0,0,0,13.629v1.342A1.549,1.549,0,0,0,1.549,16.52h8.87a1.549,1.549,0,0,1-.084-.687l.219-1.965.039-.358.255-.255,2.494-2.494a4.292,4.292,0,0,0-3.223-1.468Zm1.462,4.688-.219,1.968a.514.514,0,0,0,.568.568l1.965-.219,4.449-4.449L16.029,9.534,11.58,13.981Zm8.844-5.3L19.2,7.453a.773.773,0,0,0-1.091,0l-1.22,1.22-.132.132,2.317,2.313L20.424,9.77A.777.777,0,0,0,20.424,8.676Z" transform="translate(1029.618 1445.507)" fill="#55a0ff"/>
+  </g>
+</svg>

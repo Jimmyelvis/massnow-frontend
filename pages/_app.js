@@ -3,6 +3,7 @@ import React from "react";
 import Head from "next/head";
 import { AppProvider } from "../context/context";
 import { AuthProvider } from "../context/auth_context";
+import { AdminContextProvider } from "../context/AdminContextProvider";
 import "../scss/style.scss";
 
 function MyApp({ Component, pageProps }) {
@@ -36,9 +37,11 @@ function MyApp({ Component, pageProps }) {
         <meta name="theme-color" content="#0058d3" />
       </Head>
       <AuthProvider>
-        <AppProvider>
-          <Component {...pageProps} />
-        </AppProvider>
+        <AdminContextProvider>
+          <AppProvider>
+            <Component {...pageProps} />
+          </AppProvider>
+        </AdminContextProvider>
       </AuthProvider>
       {/* <Component {...pageProps} /> */}
     </>

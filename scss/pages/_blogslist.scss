@@ -21,6 +21,8 @@
     grid-column: 2/14;
   }
 
+  
+
   .story {
     display: grid;
     grid-template-columns: 16rem 1fr 1fr;
@@ -48,7 +50,7 @@
       }
     }
 
-    .heading-3 {
+    .admin_heading-3 {
       grid-column: 2 / -1;
       padding-bottom: 0.8rem;
       font-size: 2.3rem;
@@ -245,7 +247,7 @@
     }
   }
 
-  .heading-3 {
+  .admin_heading-3 {
     font-size: 2.3rem;
     margin-bottom: 1.4rem;
     font-weight: bold;

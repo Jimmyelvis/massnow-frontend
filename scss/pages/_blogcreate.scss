@@ -26,10 +26,88 @@
   }
 }
 
+.uploadpreview {
+  grid-column: full-start/full-end;
+  height: 50rem;
+  overflow: hidden;
+  position: relative;
+  margin-top: 7.3rem;
+
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    z-index: 2000;
+
+    @include absCenter;
+
+    .admin_heading-4 {
+      font-size: 2.9rem;
+      z-index: 3000;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .uploaded_photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    .img_info {
+      width: 32rem;
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      bottom: 5rem;
+      right: 10rem;
+      z-index: 200;
+
+      .admin_heading-4 {
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 0.8rem;
+        font-weight: 500;
+      }
+
+      .btns {
+        display: flex;
+
+        .change_photo,
+        .delete_photo {
+          width: 5rem;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .main-photo {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      position: absolute;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      top: 0;
+    }
+  }
+
+}
+
 .formCreation {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: 3rem;
+  grid-column: col-start 2 / col-end 11;
+  margin-top: 8rem;
 
   .inputFields {
     grid-column: 1 / 6;
@@ -52,7 +130,7 @@
       height: auto;
       flex-direction: column;
       justify-content: space-around;
-      margin-bottom: 3rem;
+      margin: 0 0 0.6rem 0;
 
       .fieldLable {
         margin-bottom: 1rem;
@@ -61,6 +139,11 @@
       .form-control {
         height: 4rem;
         color: $maintext;
+
+        &::-webkit-input-placeholder {
+          color: rgba($placeholder-blue, .7);
+          font-weight: 600;
+        }
       }
     }
 
@@ -98,23 +181,6 @@
     grid-column: 1/-1;
     text-align: center;
     padding: 7rem 0;
-  }
-
-  .uploadpreview,
-  .inputTextbox {
-    grid-column: 1 / 3;
-  }
-
-  .uploadpreview {
-    height: 43rem;
-    grid-column: 1 / -1;
-    overflow: hidden;
-
-    img {
-      object-fit: cover;
-      object-position: top;
-      height: 100%;
-    }
   }
 
   .upload-btn {

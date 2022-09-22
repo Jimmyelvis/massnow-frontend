@@ -1,4 +1,4 @@
-import Layout from "../../../components/Layout";
+import AdminLayout from "../../../components/AdminLayout";
 import Admin from "../../../components/auth/Admin";
 import Author from "../../../components/auth/Author";
 import BlogCreate from "../../../components/crud/BlogCreate";
@@ -9,7 +9,7 @@ import Head from "next/head";
 
 const Blog = () => {
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Welcome To MassNow News Site</title>
         <link
@@ -19,25 +19,18 @@ const Blog = () => {
       </Head>
 
       <Author>
-        <Sectionhero
-          /**
-           *  contentColCount -- determines how many columns the content section
-           *  will have. Additional options can be set such as  "narrow-wide" which
-           *  means the first coloum will be smaller than the second, "wide-narrow"
-           *  which will be the reverse, or even in both will have equal width. Default
-           * is even
-           */
-
+        {/* <Sectionhero
           headline={"Create A New Article"}
           image={"/images/pexels-freestocksorg-58639.jpg"}
           heroclasses={"hero section-hero"}
           readmoreSection={false}
-        ></Sectionhero>
+        ></Sectionhero> */}
+
         <div className="crud-content">
           <BlogCreate />
         </div>
       </Author>
-    </Layout>
+    </AdminLayout>
   );
 };
 

@@ -30,7 +30,7 @@ const ScrollToTop = () => {
 
 
    return (
-     <div className="fixed bottom-2 right-2">
+     <>
        <button
          type="button"
          onClick={scrollUp}
@@ -38,9 +38,9 @@ const ScrollToTop = () => {
            isVisible ? "scroll-btn opacity-100" : "scroll-btn opacity-0"
          }`}
        >
-         <BiArrowFromBottom className="h-6 w-6" aria-hidden="true" />
+         <BiArrowFromBottom aria-hidden="true" />
        </button>
-     </div>
+     </>
    );
 }
 

@@ -1,36 +1,28 @@
 import React from "react";
-import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
 import Category from "../../../components/crud/Category";
 import Tag from "../../../components/crud/Tag";
 import Sectionhero from "../../../components/hero/Sectionhero";
 import Link from "next/link";
+import AdminLayout from "../../../components/AdminLayout";
+import Pageheading from "../../../components/admin/Pageheading";
+
 
 const CategoryTag = () => {
   return (
-    <Layout>
+    <AdminLayout>
       <Admin>
-        <Sectionhero
-          /**
-           *  contentColCount -- determines how many columns the content section
-           *  will have. Additional options can be set such as  "narrow-wide" which
-           *  means the first coloum will be smaller than the second, "wide-narrow"
-           *  which will be the reverse, or even in both will have equal width. Default
-           * is even
-           */
-
-          headline={"Manage Categories and Tags"}
-          image={"/images/pexels-freestocksorg-58639.jpg"}
-          heroclasses={"hero section-hero"}
-          readmoreSection={false}
-        ></Sectionhero>
+        <Pageheading
+          title="Manage Categories"
+          subtitle="Create categories for the site."
+        />
 
         <div className="cat-tags-contain">
           <Category />
-          <Tag />
+          {/* <Tag /> */}
         </div>
       </Admin>
-    </Layout>
+    </AdminLayout>
   );
 };
 

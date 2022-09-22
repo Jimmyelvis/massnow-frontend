@@ -1,0 +1,24 @@
+.alert_box_style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  font-family: $font-primary;
+  height: 6rem;
+  text-align: center;
+  position: absolute;
+  top: -11rem;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 40%;
+  max-width: 80%;
+  font-weight: bold;
+}
+
+.alert_success {
+  background-color: $success;
+}
+
+.alert_danger {
+  background-color: $danger;
+}

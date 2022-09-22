@@ -79,7 +79,7 @@ const BlogRead = () => {
       return (
         <div key={i} className="story">
           <img src={blog.mainphoto} alt="" className="mainphoto" />
-          <h3 className="heading-3">
+          <h3 className="admin_heading-3">
             <Link href={`/blogs/${blog.slug}`}>
               <a>{blog.title}</a>
             </Link>

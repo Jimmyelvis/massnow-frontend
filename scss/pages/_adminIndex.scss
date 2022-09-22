@@ -26,7 +26,7 @@
       .label {
         position: absolute;
         z-index: 20;
-  
+
         .heading-3 {
           font-size: 3.1rem;
           color: #fff;
@@ -34,12 +34,12 @@
           font-weight: bold;
           margin-bottom: 0.5rem;
 
-            @include respond(bp-smallest) {
-              font-size: 2.6rem;
-            }
+          @include respond(bp-smallest) {
+            font-size: 2.6rem;
+          }
         }
       }
-  
+
       .overlay {
         position: absolute;
         width: 100%;
@@ -53,53 +53,51 @@
 
 }
 
-.cat-tags-contain { 
-    grid-column: center-start / center-end;
-    display: grid;
-    grid-template-columns: repeat(2, 47%);
-    justify-content: space-around;
-    min-height: 60rem;
-    margin-top: 5rem;
-    position: relative;
-    padding-top: 5rem;
+.cat-tags-contain {
+  grid-column: col-start 4 / col-end 8;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: space-around;
+  min-height: 60rem;
+  position: relative;
 
-    @include respond(bp-medium) {
-      grid-template-columns: 1fr;
-      margin-bottom: 15rem;
-      margin-top: 0rem;
-    }
+  @include respond(bp-medium) {
+    grid-template-columns: 1fr;
+    margin-bottom: 15rem;
+    margin-top: 0rem;
+  }
 
-    .msg {
-      position: absolute;
-      text-align: center;
-      width: 60%;
-      font-size: 2.2rem;
+  .msg {
+    position: absolute;
+    text-align: center;
+    width: 60%;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .form-group {
+    margin-bottom: 2rem;
+    margin-top: 7rem;
+
+    label {
+      color: $thirdcolor;
       font-weight: bold;
-      color: #ffffff;
-      left: 50%;
-      transform: translateX(-50%);
     }
 
-    .form-group {
-      margin-bottom: 2rem;
-      margin-top: 7rem;
 
-      label {
-        color: $thirdcolor;
-        font-weight: bold;
-      }
-
-
-      .form-control {
-        padding: 0.775rem 0.75rem;
-        margin-top: 2rem;
-      }
+    .form-control {
+      padding: 0.775rem 0.75rem;
+      margin-top: 2rem;
     }
+  }
 
-    .entries {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-      gap: 0.4rem;
-    }
+  .entries {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 0.4rem;
+  }
 }

@@ -1,13 +1,13 @@
-import Layout from "../../../components/Layout";
+import AdminLayout from "../../../components/AdminLayout";
 import Admin from "../../../components/auth/Admin";
 import Sectionhero from "../../../components/hero/Sectionhero";
 import Head from "next/head";
 import AllUsers from "../../../components/crud/AllUsers";
-
+import Pageheading from "../../../components/admin/Pageheading";
 
 const Users = () => {
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
         <title>Welcome To MassNow News Site</title>
         <link
@@ -17,25 +17,16 @@ const Users = () => {
       </Head>
 
       <Admin>
-        <Sectionhero
-          /**
-           *  contentColCount -- determines how many columns the content section
-           *  will have. Additional options can be set such as  "narrow-wide" which
-           *  means the first coloum will be smaller than the second, "wide-narrow"
-           *  which will be the reverse, or even in both will have equal width. Default
-           * is even
-           */
+        <Pageheading
+          title="Edit Users"
+          subtitle="Edit user roles."
+        />
 
-          headline={"Edit  Users"}
-          image={"/images/pexels-freestocksorg-58639.jpg"}
-          heroclasses={"hero section-hero"}
-          readmoreSection={false}
-        ></Sectionhero>
         <div className="crud-content">
-          <AllUsers/>
+          <AllUsers />
         </div>
       </Admin>
-    </Layout>
+    </AdminLayout>
   );
 };
 

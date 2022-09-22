@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fffcf8"/>
+      <stop offset="1" stop-color="#d6e8ff"/>
+    </radialGradient>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#9fd3ff"/>
+      <stop offset="1" stop-color="#0388f9"/>
+    </linearGradient>
+  </defs>
+  <g id="favorite_icon" transform="translate(-1531.771 -813.281)">
+    <g id="Ellipse_33" data-name="Ellipse 33" transform="translate(1531.771 813.281)" stroke="rgba(5,80,193,0.15)" stroke-width="2" fill="url(#radial-gradient)">
+      <circle cx="16.5" cy="16.5" r="16.5" stroke="none"/>
+      <circle cx="16.5" cy="16.5" r="15.5" fill="none"/>
+    </g>
+    <path id="Icon_material-favorite" data-name="Icon material-favorite" d="M10.8,18.806l-1.13-1.029C5.651,14.136,3,11.735,3,8.788A4.246,4.246,0,0,1,7.288,4.5,4.669,4.669,0,0,1,10.8,6.129,4.669,4.669,0,0,1,14.3,4.5a4.246,4.246,0,0,1,4.288,4.288c0,2.947-2.651,5.348-6.666,9Z" transform="translate(1537.995 818.166)" stroke="#9fd3ff" stroke-width="1" fill="url(#linear-gradient)"/>
+  </g>
+</svg>

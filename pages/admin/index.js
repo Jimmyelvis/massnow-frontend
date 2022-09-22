@@ -1,4 +1,5 @@
 import Layout from '../../components/Layout';
+import AdminLayout from '../../components/AdminLayout';
 import Admin from '../../components/auth/Admin';
 import Author from "../../components/auth/Author";
 import Sectionhero from "../../components/hero/Sectionhero";
@@ -8,22 +9,9 @@ import { AuthContext } from '../../context/auth_context';
 
 const AdminIndex = () => {
     return (
-      <Layout>
+      <AdminLayout>
         <Author>
-          <Sectionhero
-            /**
-             *  contentColCount -- determines how many columns the content section
-             *  will have. Additional options can be set such as  "narrow-wide" which
-             *  means the first coloum will be smaller than the second, "wide-narrow"
-             *  which will be the reverse, or even in both will have equal width. Default
-             * is even
-             */
-
-            headline={"Admin Section"}
-            image={"/images/pexels-freestocksorg-58639.jpg"}
-            heroclasses={"hero section-hero"}
-            readmoreSection={false}
-          ></Sectionhero>
+     
 
           <div className="admin-Links">
             <div className="entry">
@@ -146,7 +134,7 @@ const AdminIndex = () => {
             )}
           </div>
         </Author>
-      </Layout>
+      </AdminLayout>
     );
 };
 

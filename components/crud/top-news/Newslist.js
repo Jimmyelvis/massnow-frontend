@@ -104,12 +104,12 @@ const NewsList = ({ listFrom }) => {
 
       return (
         <div key={topnewsblog._id} className="entry">
-          <h3 className="heading-3 label">{label}</h3>
+          <h3 className="admin_heading-3 label">{label}</h3>
 
-          <div className="story">
+          <div className="card story">
             <img src={topnewsblog.mainphoto} alt="" className="mainphoto" />
 
-            <h3 className="heading-3">
+            <h3 className="admin_heading-3">
               <Link href={`/blogs/${topnewsblog.slug}`}>
                 <a>{topnewsblog.title}</a>
               </Link>
@@ -120,7 +120,7 @@ const NewsList = ({ listFrom }) => {
               {moment(topnewsblog.createdAt).fromNow()}
             </p>
 
-            <p className="excerpt">{topnewsblog.mdesc}</p>
+            {/* <p className="excerpt">{topnewsblog.mdesc}</p> */}
 
             <div className="buttons">
               <button

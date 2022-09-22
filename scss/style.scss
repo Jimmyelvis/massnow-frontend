@@ -1,11 +1,15 @@
+// @tailwind base;
+// @tailwind components;
 
 @import "abstracts/_mixins";
 @import "abstracts/_variables";
 
-@import "base/_base";
 @import "base/_typo";
+@import "base/_base";
 @import "base/_utilities";
 
+@import "components/_alerts.scss";
+@import "components/_admin.scss";
 @import "components/_avatar";
 @import "components/_card";
 @import "components/_buttons";
@@ -29,9 +33,11 @@
 
 @import "pages/_adminIndex";
 @import "pages/_adminusers";
+@import "pages/_adminallcomments";
 @import "pages/_blogcreate.scss";
 @import "pages/_blogslist.scss";
 @import "pages/categories";
+@import "pages/_commentDetail";
 @import "pages/_detail.scss";
 @import "pages/_home";
 @import "pages/_profile";
@@ -42,3 +48,4 @@
 @import "pages/_topnewseditor.scss";
 
 
+@tailwind utilities;

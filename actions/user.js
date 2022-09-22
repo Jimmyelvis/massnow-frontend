@@ -35,7 +35,7 @@ export const update = (token, user) => {
       Accept: "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: user
+    body: user,
   })
     .then((response) => {
       return response.json();
@@ -44,10 +44,9 @@ export const update = (token, user) => {
 };
 
 export const getOneUser = (token, username) => {
-
   const data = {
-    username
-  }
+    username,
+  };
 
   return fetch(`${API}/api/user/admin/oneuser`, {
     method: "POST",
@@ -67,7 +66,7 @@ export const getOneUser = (token, username) => {
 export const changeUserRole = (token, username, role) => {
   const data = {
     username,
-    role
+    role,
   };
 
   return fetch(`${API}/api/user/admin/changeuser`, {

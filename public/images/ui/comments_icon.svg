@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33" height="33" viewBox="0 0 33 33">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#63a8ff"/>
+      <stop offset="1" stop-color="#5495e8"/>
+    </linearGradient>
+    <radialGradient id="radial-gradient" cx="0.5" cy="0.5" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fffcf8"/>
+      <stop offset="1" stop-color="#d6e8ff"/>
+    </radialGradient>
+    <clipPath id="clip-path">
+      <path id="Icon" d="M16,16h0l-3.2-3.2H4a.8.8,0,0,1-.8-.8V10.4H13.6V3.2h1.6A.8.8,0,0,1,16,4V16ZM0,12V.8A.8.8,0,0,1,.8,0H11.2a.8.8,0,0,1,.8.8V8a.8.8,0,0,1-.8.8h-8L0,12Z" transform="translate(0 0)" fill="url(#linear-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="comments_icon" transform="translate(3 -14)">
+    <g id="Ellipse_19" data-name="Ellipse 19" transform="translate(-3 14)" stroke="rgba(5,80,193,0.15)" stroke-width="2" fill="url(#radial-gradient)">
+      <circle cx="16.5" cy="16.5" r="16.5" stroke="none"/>
+      <circle cx="16.5" cy="16.5" r="15.5" fill="none"/>
+    </g>
+    <g id="_3._Icons_ic_forum" data-name="3. Icons/ic_forum" transform="translate(1 17)">
+      <path id="Icon-2" data-name="Icon" d="M16,16h0l-3.2-3.2H4a.8.8,0,0,1-.8-.8V10.4H13.6V3.2h1.6A.8.8,0,0,1,16,4V16ZM0,12V.8A.8.8,0,0,1,.8,0H11.2a.8.8,0,0,1,.8.8V8a.8.8,0,0,1-.8.8h-8L0,12Z" transform="translate(5 5)" fill="url(#linear-gradient)"/>
+      <g id="_3._Icons_ic_forum-2" data-name="3. Icons/ic_forum" transform="translate(5 5)" clip-path="url(#clip-path)">
+        <g id="Icon_Color" data-name="Icon Color" transform="translate(-2.4 -2.4)">
+          <rect id="White" width="20" height="20" transform="translate(0.401 0.401)" fill="url(#linear-gradient)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

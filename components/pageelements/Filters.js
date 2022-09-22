@@ -112,7 +112,7 @@ const Filters = () => {
         <div className="contain">
           {filterText()}
 
-          <h3 className="heading-3">Catagories</h3>
+          <h3 className="admin_heading-3">Catagories</h3>
 
           <div className="links">
             {showCategories()}

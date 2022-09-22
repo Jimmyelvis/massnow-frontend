@@ -1,9 +1,11 @@
-import Layout from "../../../components/Layout";
+import AdminLayout from "../../../components/AdminLayout";
 import Admin from "../../../components/auth/Admin";
 import Secheading from "../../../components/pageelements/Secheading";
 import NewsList from "../../../components/crud/top-news/Newslist"
 import Head from "next/head";
 import { useGlobalContext } from "../../../context/context";
+import Pageheading from "../../../components/admin/Pageheading";
+
 
 const Localnewseditor = () => {
   const { isModalOpen, openModal, loading } = useGlobalContext();
@@ -17,40 +19,22 @@ const Localnewseditor = () => {
   }
 
   return (
-    <Layout>
+    <AdminLayout>
       <Head>
-        <title>Welcome To MassNow News Site</title>
+        <title>Local News Selector</title>
       </Head>
 
       <Admin>
-        {/* <Modal
-          contentBgcolor={null}
-          overlayColor={`rgba(242, 246, 252, 0.95)`}
-          gridType={`Choosefromlist`}
-          transition={`all 0.7s linear`}
-        >
-        </Modal> */}
-
-        <div className="hero blogcreate">
-          <div className="overlay"></div>
-          <img
-            src="/images/pexels-freestocksorg-58639.jpg"
-            className="herobg"
-            alt=""
-          />
-
-          <h2 className="heading-2">Edit the Local News Section</h2>
-        </div>
-
-        {/* <button onClick={openModal} className="btn btn-secondary btn-openModel">
-          Add Story
-        </button> */}
+        <Pageheading
+          title="Local News Selector"
+          subtitle="Select which articles to include on the Local News featured stories."
+        />
 
         <div className="crud-topnewseditor">
           <NewsList listFrom={"Top Local"} />
         </div>
       </Admin>
-    </Layout>
+    </AdminLayout>
   );
 };
 

@@ -2,11 +2,20 @@ import fetch from "isomorphic-fetch";
 import { API } from "../config";
 import queryString from "query-string";
 
-export const listFromArticle = (post_id) => {
+export const list = () => {
+  return fetch(`${API}/api/comments/all`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
 
-   const data = {
-     post_id,
-   };
+export const listFromArticle = (post_id) => {
+  const data = {
+    post_id,
+  };
 
   return fetch(`${API}/api/comments`, {
     method: "POST",
@@ -22,13 +31,32 @@ export const listFromArticle = (post_id) => {
     .catch((err) => console.log(err));
 };
 
-export const createComment = (user_id,post_id , body, token) => {
+export const getSingleComment = (comment_id, flag) => {
+  const data = {
+    comment_id,
+    flag,
+  };
 
+  return fetch(`${API}/api/comments/single`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const createComment = (user_id, post_id, body, token) => {
   const data = {
     user_id,
     post_id,
     body,
-    token
+    token,
   };
 
   return fetch(`${API}/api/comment`, {
@@ -94,10 +122,9 @@ export const createRecommended = (user_id, comment_id, post_id, token) => {
 };
 
 export const commentsFromUser = (user_id) => {
-
-   const data = {
-     user_id,
-   };
+  const data = {
+    user_id,
+  };
 
   return fetch(`${API}/api/commentsFromUser`, {
     method: "POST",
@@ -114,12 +141,10 @@ export const commentsFromUser = (user_id) => {
 };
 
 export const repliesFromUser = (username, user_id) => {
-
-   const data = {
-      username,
-     user_id,
-   };
-
+  const data = {
+    username,
+    user_id,
+  };
 
   return fetch(`${API}/api/comments/repliesFromUser`, {
     method: "POST",

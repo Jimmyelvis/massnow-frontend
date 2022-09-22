@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="flagged_icon" transform="translate(-193 -887)">
+    <g id="Ellipse_28" data-name="Ellipse 28" transform="translate(193 887)" fill="#0550c1" stroke="#d4deef" stroke-width="1">
+      <circle cx="15" cy="15" r="15" stroke="none"/>
+      <circle cx="15" cy="15" r="14.5" fill="none"/>
+    </g>
+    <path id="Icon_awesome-flag" data-name="Icon awesome-flag" d="M8.6,2.325c-1.261,0-2.3-.819-3.889-.819a4.575,4.575,0,0,0-1.6.283,1.318,1.318,0,1,0-1.984.61v9.087a.565.565,0,0,0,.565.565h.377a.565.565,0,0,0,.565-.565V9.264a6.576,6.576,0,0,1,2.693-.521c1.261,0,2.3.819,3.889.819A4.927,4.927,0,0,0,12.1,8.6a.752.752,0,0,0,.326-.62V2.258a.753.753,0,0,0-1.071-.683,6.852,6.852,0,0,1-2.753.75Z" transform="translate(201.873 896.475)" fill="#fa9c50"/>
+  </g>
+</svg>

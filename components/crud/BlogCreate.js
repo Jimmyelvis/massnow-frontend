@@ -33,6 +33,8 @@ const CreateBlog = ({ router }) => {
 
   const [checked, setChecked] = useState([]); // categories
 
+  const [imgFile, setimgFile] = useState(null);
+
   const [body, setBody] = useState(blogFromLS());
   const [values, setValues] = useState({
     error: "",
@@ -42,7 +44,8 @@ const CreateBlog = ({ router }) => {
     title: "",
     subtitle: "",
     tags: "",
-    mainphoto: "",
+    mainphoto:
+      "",
     hidePublishButton: false,
   });
 
@@ -87,7 +90,8 @@ const CreateBlog = ({ router }) => {
           subtitle: "",
           tags: "",
           error: "",
-          mainphoto: "",
+          mainphoto:
+            "",
           success: `A new blog titled "${data.title}" is created`,
         });
         setChecked([])
@@ -165,7 +169,12 @@ const CreateBlog = ({ router }) => {
     e.preventDefault();
     const value = e.target.value;
 
+    
+
     window.cloudinary.openUploadWidget(Widgetsetting(), (error, result) => {
+
+      
+
       if (result && result.event === "success") {
         formData.set(name, result.info.url);
         setValues({
@@ -175,31 +184,91 @@ const CreateBlog = ({ router }) => {
           formData,
           error: "",
         });
+
+        setimgFile(result.info.path)
+
       }
     });
   };
 
+  const clearImages = () => {
+    setValues({
+      ...values,
+      mainphoto: "",
+    })
+
+    setimgFile(null)
+  }
+
   return (
     <React.Fragment>
+      <div
+        className={`${
+          mainphoto
+            ? "uploadpreview"
+            : "uploadpreview form-control"
+        }`}
+      >
+        {!mainphoto ? (
+          <div className="heading">
+            <h4 className="admin_heading-4">Upload a main header image</h4>
+
+            <div className="upload-btn">
+              <button
+                id="upload_widget"
+                className="btn btn-primary-grad"
+                onClick={fullArticleHeaderSubmit("mainphoto")}
+              >
+                Upload Photo
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="uploaded_photo">
+            <div className="img_info">
+              <h4 className="admin_heading-4 filename">{imgFile}</h4>
+
+              <div className="btns">
+                <img
+                  src="/images/ui/change-photo.svg"
+                  alt=""
+                  className="change_photo"
+                  onClick={fullArticleHeaderSubmit("mainphoto")}
+                />
+                <img
+                  src="/images/ui/delete-photo.svg"
+                  alt=""
+                  className="delete_photo"
+                  onClick={() => {
+                    clearImages();
+                  }}
+                />
+              </div>
+            </div>
+            <img src={mainphoto} className="main-photo" />
+            <div className="overlay"></div>
+          </div>
+        )}
+      </div>
+
       <form onSubmit={publishBlog} className="formCreation">
         <div className="inputFields">
           <Inputfield
-            label="Title"
             value={title}
             onChangeFunction={handleChange("title")}
+            placeHolder="Title"
           />
 
           <Inputfield
-            label="Sub Title"
             value={subtitle}
             onChangeFunction={handleChange("subtitle")}
+            placeHolder="Sub Title"
           />
 
           <Inputfield
-            label="Tags"
             value={tags}
             onChangeFunction={handleChange("tags")}
-            placeholder="*  Please use comma separated values (eg. Local, Politics, etc)"
+            placeHolder="Tags:  Please use comma separated values (eg. Local, Politics, etc)"
           />
         </div>
 
@@ -207,22 +276,6 @@ const CreateBlog = ({ router }) => {
           <h4 className="heading-5">Categories</h4>
 
           <ul>{showCategories()}</ul>
-        </div>
-
-        <h4 className="heading-4">Upload a main header image</h4>
-
-        <div className="uploadpreview form-control">
-          {!mainphoto ? null : <img src={mainphoto} />}
-        </div>
-
-        <div className="upload-btn">
-          <button
-            id="upload_widget"
-            className="btn btn-primary-grad"
-            onClick={fullArticleHeaderSubmit("mainphoto")}
-          >
-            Upload Photo
-          </button>
         </div>
 
         <div className="inputTextbox">

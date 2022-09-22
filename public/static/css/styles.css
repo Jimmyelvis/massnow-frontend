@@ -21,3 +21,7 @@
     object-position: center;
 
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

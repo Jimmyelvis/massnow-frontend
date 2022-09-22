@@ -4,66 +4,138 @@ import { useState, useEffect } from "react";
 import Router from "next/router";
 import { getCookie, isAuth } from "../../actions/auth";
 import { list } from "../../actions/user";
-import moment from "moment";
 import { useFilterContext } from "../../context/filter_context";
 import Sort from "../pageelements/Sort";
 import Filter from "../pageelements/Filters";
-import {getuserRoles} from "../../helpers/getuserroles";
+import { getuserRoles } from "../../helpers/getuserroles";
+import { Select } from "../pageelements/Select";
+import { Inputfield_With_Icon } from "../pageelements/forms/Inputfields";
+import { IoIosCloseCircle } from "react-icons/io";
 
 
 const AllUsers = () => {
-
   const [users, setusers] = useState([]);
+  const [searchTerm, setsearchTerm] = useState("");
+  const [action, setaction] = useState("");
 
   useEffect(() => {
-   list().then((data) => {
-    if (data.error) {
-      console.log(data.error);
-    } else {
-      setusers(data)
-    }
-   })
+    list().then((data) => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        setusers(data);
+      }
+    });
   }, []);
 
+  useEffect(() => {
+    if (searchTerm === "") {
+      setaction("");
+    }
+  }, [searchTerm]);
+
+  const filterUsers = (e) => {
+    let value = e.target.value;
+
+    setsearchTerm(value);
+  };
+
+  const filterDropdown = (e) => {
+
+    const options = [
+      {
+        value: "all",
+        text: "All Roles",
+      },
+      {
+        value: "0",
+        text: "Subscribers",
+      },
+      {
+        value: "1",
+        text: "Authors",
+      },
+      {
+        value: "2",
+        text: " Admins",
+      },
+    ];
+
+    return (
+      <Select
+        options={options}
+        onChange={(e) => {
+          filterUsers(e);
+          setaction("role");
+        }}
+      />
+    );
+  };
+
+  const filterText = () => {
+    return (
+      <input
+        type="text"
+        name="text"
+        placeholder="search"
+        className="form-control"
+        onChange={(e) => {
+          filterUsers(e);
+          setaction("name");
+        }}
+      />
+    );
+  };
 
   const showAllUsers = () => {
-    
-    return users.map((user, i) => {
+    let tempUsers;
 
+    if (action === "") {
+      tempUsers = users;
+    } else if (action === "name") {
+      tempUsers = users.filter((user) => {
+        return user.name.toLowerCase().includes(searchTerm);
+      });
+    } else {
+      tempUsers = users.filter((user) => {
+        if (searchTerm === "all" || searchTerm === "") {
+          return user;
+        } else {
+          return user.role.toString() === searchTerm;
+        }
+      });
+    }
+
+    return tempUsers.map((user, i) => {
       return (
-        <div className="user" key={i}>
-          <div className="left">
-            <div className="avatar">
-              {!user.photo ? (
-                <img src="/images/ui/avatar.jpg" alt="" />
-              ) : (
-                <img src={user.photo} alt="" />
-              )}
-            </div>
-          </div>
+        <div className="card user" key={i}>
+          <Link href={`/admin/crud/user/${user.username}`}>
+            <a>
+              <img src="/images/ui/Edit_btn.svg" alt="" className="edit_btn" />
+            </a>
+          </Link>
 
-          <div className="right">
-            <h3 className="heading-3">{user.name}</h3>
+          <div className="avatar">{!user.photo ? <img src="/images/ui/avatar.jpg" alt="" /> : <img src={user.photo} alt="" />}</div>
 
-            <h4 className="heading-4">{getuserRoles(user.role)}</h4>
+          <h3 className="admin_heading-3">{user.name}</h3>
 
-            <div className="btn btn-primary-grad btn-edit">
-              <Link href={`/admin/crud/user/${user.username}`}>
-                Edit
-              </Link>
-            </div>
-          </div>
+          <h4 className="admin_heading-4">{getuserRoles(user.role)}</h4>
         </div>
       );
-    })
-  }
-  
-  { console.log(users)}
+    });
+  };
+
+
   return (
     <React.Fragment>
+      <div className="userfilters">
+        <div className="filter_text">{filterText()}</div>
+
+        <div className="filter_role">{filterDropdown()}</div>
+      </div>
       <div className="users-list">{showAllUsers()}</div>
     </React.Fragment>
   );
-}
+};
 
 export default AllUsers;

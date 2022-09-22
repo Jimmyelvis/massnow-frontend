@@ -1,0 +1,286 @@
+.comment_info_cards {
+  grid-column: 3 / 13;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(40rem, 55rem));
+  gap: 2%;
+  grid-auto-rows: max-content;
+  justify-content: center;
+
+  @include respond(bp-medium) {
+    grid-template-columns: minmax(40rem, 60rem);
+  }
+
+  @include respond(bp-smallest) {
+    grid-template-columns: minmax(32rem, 60rem);
+  }
+
+
+  .comment_info_card {
+    height: 42.1rem;
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    grid-auto-rows: max-content;
+
+    @include respond(bp-medium) {
+      height: 46.1rem;
+    }
+
+    @include respond(bp-smallest) {
+      height: 42.1rem;
+    }
+
+
+    .card_title {
+      text-align: center;
+      margin-top: 5.1rem;
+      font-size: 3.3rem;
+      color: $primary;
+      grid-column: 1 / -1;
+    }
+
+  }
+
+  .author_details {
+
+
+    .comment_author {
+      display: flex;
+      margin: 5rem 0;
+      align-items: center;
+      border-radius: 7rem;
+      grid-column: 1 / 5;
+      gap: 2.5rem;
+      justify-self: center;
+
+      .avatar {
+        position: relative;
+        z-index: 1000;
+        width: 7.2rem;
+        height: 7.2rem;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 0px solid #fff;
+
+        img {
+          height: 100%;
+          position: absolute;
+          -o-object-fit: cover;
+          object-fit: cover;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      .posted_by_info {
+
+        .name {
+          color: $primary;
+        }
+
+        .username {
+          color: $night-time;
+        }
+
+        .email {}
+      }
+
+
+    }
+
+    .role {
+      grid-column: 2 / 4;
+      text-align: center;
+      background-color: $night-time;
+      color: $white;
+      padding: 1rem 1rem;
+      width: 16rem;
+      justify-self: center;
+      border-radius: 3rem;
+      font-weight: bold;
+    }
+  }
+
+  .comment_body {
+
+    .body {
+      width: 80%;
+      justify-self: center;
+      grid-column: 1 / -1;
+      margin-top: 4rem;
+
+      @include lineClamp(7)
+    }
+
+  }
+
+  .article_details {
+    position: relative;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+
+    .card_title {
+      position: relative;
+      z-index: 20;
+      color: $night-time;
+    }
+
+    .headline {
+      position: relative;
+      z-index: 20;
+      grid-column: 1/-1;
+      grid-row: 4/4;
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: 1.1rem repeat(5, 1fr);
+      grid-template-rows: min-content;
+
+      @include respond(bp-smallest) {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .block {
+        display: block;
+        background-color: $night-time;
+        grid-column: 1 / 1;
+        grid-row: 1 / 3;
+
+        @include respond(bp-smallest) {
+          display: none;
+        }
+      }
+
+      a {
+        
+        grid-column: 2 / 6;
+        margin-left: 1.3rem;
+        margin-bottom: 0.3rem;
+        
+        @include lineClamp(2);
+        
+        @include respond(bp-smallest) {
+          grid-column: 1 / -1;
+          width: 80%;
+          margin: 0 auto 1rem auto;
+        }
+        
+        .title {
+          font-size: 2.8rem;
+          color: $white;
+        }
+
+      }
+
+
+      .subtitle {
+        color: #a09fb7;
+        font-size: 2rem;
+        grid-column: 2 / 6;
+        margin-left: 1.3rem;
+
+        @include lineClamp(2);
+
+        @include respond(bp-smallest) {
+          grid-column: 1 / -1;
+          width: 80%;
+          margin: 0 auto 1rem auto;
+        }
+      }
+    }
+
+    .comments_likes {
+      display: flex;
+      position: relative;
+      z-index: 20;
+      grid-row: 5 / 6;
+      grid-column: 4 / -1;
+      margin-bottom: 3rem;
+
+      @include respond(bp-smallest) {
+        grid-column: 1/-1;
+        justify-content: space-evenly;
+      }
+
+      .likes_container,
+      .comments_container {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          margin-right: 1rem;
+        }
+
+        .number {
+          color: #fff;
+          font-size: 2rem;
+          font-weight: bold;
+        }
+      }
+
+      .likes_container {
+        margin-right: 4rem;
+
+        @include respond(bp-smallest) {
+          margin: 0;
+        }
+      }
+    }
+
+    @include overlay(rgba(0, 0, 0, 0.5));
+
+    .img_bg {
+      position: absolute;
+      object-fit: cover;
+      top: 0;
+      object-position: center;
+      height: 100%;
+    }
+  }
+
+  .comment_details {
+
+    .details {
+      grid-column: 2 / 4;
+      list-style: none;
+      margin-top: 6rem;
+
+      @include respond(bp-tiny) {
+      grid-column: 1 / 5;
+      }
+
+      li {
+        align-items: center;
+        margin-bottom: 2rem;
+        display: grid;
+        grid-template-columns: 10rem 13rem 5rem;
+
+        @include respond(bp-small) {
+          grid-template-columns: 8rem 13rem 5rem;
+        }
+
+        @include respond(bp-smallest) {
+          grid-template-columns: 7rem 10rem 5rem;
+        }
+
+        @include respond(bp-tiny) {
+          grid-template-columns: 8.4rem 15rem 7rem;
+          width: 80%;
+          margin: 0 auto 2rem auto;
+        }
+
+
+        .icon {
+          width: 4rem;
+        }
+
+        .label {
+          color: $primary;
+        }
+
+        .value {
+          color: $night-time;
+          font-size: 2.6rem;
+        }
+      }
+    }
+  }
+}

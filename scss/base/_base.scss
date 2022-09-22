@@ -10,7 +10,6 @@ img {
   width: 100%;
 }
 
-@import url("https://use.typekit.net/znh5rcn.css");
 
 // RESPONSIVE BREAKPOINTS
 $bp-largest: 75em; // 1200px
@@ -30,7 +29,7 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family:  interstate, sans-serif;
+  font-family: $font-primary, sans-serif;
   line-height: 1.4;
   color: $maintext;
   // background: linear-gradient(to bottom, aliceblue 0%, #f9fcff 24%, white 73%);
@@ -41,7 +40,7 @@ p {
   line-height: 1.6;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -87,5 +86,14 @@ a:active {
   display: none;
 }
 
+#nprogress .bar {
+  background: rgb(103, 179, 255);
+  z-index: 6000;
+}
 
 
+#nprogress .spinner-icon {
+  z-index: 6000;
+  border-top-color: rgb(103, 179, 255);
+  border-left-color: rgb(103, 179, 255);
+}
