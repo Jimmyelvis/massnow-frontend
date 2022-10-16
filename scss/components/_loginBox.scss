@@ -3,9 +3,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-column: 1 / -1;
 
   .contentbox {
-    // background-image: url(/images/ui/login-bg.jpg);
     height: 80.4rem;
     display: flex;
     flex-direction: column;

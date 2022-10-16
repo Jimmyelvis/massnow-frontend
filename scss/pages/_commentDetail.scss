@@ -204,6 +204,7 @@
       .comments_container {
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         .icon {
           margin-right: 1rem;
@@ -252,6 +253,7 @@
         margin-bottom: 2rem;
         display: grid;
         grid-template-columns: 10rem 13rem 5rem;
+        cursor: pointer;
 
         @include respond(bp-small) {
           grid-template-columns: 8rem 13rem 5rem;

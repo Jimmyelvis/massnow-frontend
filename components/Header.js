@@ -20,6 +20,7 @@ import { HiSearch } from "react-icons/hi";
 import SearchOverLay from "../components/pageelements/SearchOverlay";
 import Nav from "./header-elements/Nav";
 import MobileNav from "./header-elements/MobileNav";
+import LoginBox from "./pageelements/LoginBox";
 
 // Router.onRouteChangeStart = (url) => NProgress.start();
 // Router.onRouteChangeComplete = (url) => NProgress.done();
@@ -28,8 +29,13 @@ import MobileNav from "./header-elements/MobileNav";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [formShown, setFormShown] = useState("signIn");
-  const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
-    useGlobalContext();
+  const { isModalOpen, openModal, openOverlay, isOverlayOpen } = useGlobalContext();
+
+  /**
+   * Piece of state that will be used to determine, what component
+   * that wil be rendered in the modal
+   */
+  const [modalTarget, setModalTarget] = useState(null);
 
   const toggle = () => {
     setIsOpen(!isOpen);
@@ -39,64 +45,43 @@ const Header = () => {
     Router.onRouteChangeStart = (url) => NProgress.start();
     Router.onRouteChangeComplete = (url) => NProgress.done();
     Router.onRouteChangeError = (url) => NProgress.done();
-  }, [Router])
+  }, [Router]);
+
+    /**
+   * Check what is the target state, then determine
+   * what component should be rendered in the modal.
+   */
+  const checkTarget = () => {
+    
+    if (modalTarget === "login_box") {
+      
+      return <LoginBox formShown={formShown} setFormShown={setFormShown} />;
+
+    } else if (modalTarget === "search_overlay") {
+
+        return <Search />;
+    } 
+  };
 
   return (
     <React.Fragment>
-      <Nav />
-      <MobileNav />
+      <Nav
+        setModalTarget={setModalTarget}
+      />
+      <MobileNav
+        setModalTarget={setModalTarget}
+      
+      />
 
       <Modal
-        contentBgcolor={null}
-        overlayColor={`rgba(0, 45, 112, 0.95)`}
-        transition={`all 0.7s linear`}
+        selector={"#root_modal"}
+        overlayColor={`${modalTarget === "login_box" ? 
+        "rgba(0, 45, 112, 0.95)" : "rgba(255, 255, 255, 0.95)"}`}
+        modalTarget={modalTarget}
       >
-        <div className="loginbox">
-          <div className="contentbox">
-            <div className="logo">
-              <img src="/images/ui/logo-full-word-white-txt.png" alt="" />
-            </div>
-
-            <div
-              className="signinForm"
-              style={
-                formShown === "signIn"
-                  ? { display: "block" }
-                  : { display: "none" }
-              }
-            >
-              <SigninComponent originFrom="modal" />
-
-              <span className="warning" onClick={() => setFormShown("signUp")}>
-                Don't have an account? Click here to create one.
-              </span>
-            </div>
-
-            <div
-              className="signupForm"
-              style={
-                formShown === "signUp"
-                  ? { display: "block" }
-                  : { display: "none" }
-              }
-            >
-              <SignupComponent originFrom="modal" />
-
-              <span className="warning" onClick={() => setFormShown("signIn")}>
-                Already have an account? Click here to log in.
-              </span>
-            </div>
-          </div>
-        </div>
+        {checkTarget()}
       </Modal>
 
-      <SearchOverLay
-        contentBgcolor={null}
-        overlayColor={`rgba(255, 255, 255, 0.95)`}
-        transition={`all 0.7s linear`}
-      >
-        <Search />
-      </SearchOverLay>
     </React.Fragment>
   );
 };

@@ -1,20 +1,11 @@
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { getCookie, isAuth } from "../../../actions/auth";
-import {
-  list,
-  listNotTopnews,
-  listNotTopSportsnews,
-  listNotTopLocalnews,
-  singleBlog,
-  updateBlogSection,
-  updateSportsBlogSection,
-  updateLocalBlogSection
-} from "../../../actions/blog";
+import { list, listNotTopnews, listNotTopSportsnews, listNotTopLocalnews, singleBlog, updateBlogSection, updateSportsBlogSection, updateLocalBlogSection } from "../../../actions/blog";
 import moment from "moment";
 import { useGlobalContext } from "../../../context/context";
 
-const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
+const ListedBlogs = ({ blogentry, positionNumber, listFrom, isModalOpen }) => {
   const { closeModal } = useGlobalContext();
 
   /**
@@ -40,12 +31,22 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
     getReplacedBlog();
   }, []);
 
+  useEffect(() => {
+    if (isModalOpen == true) {
+      document.body.classList.add("overflow");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow");
+    };
+  });
+
   const loadBlogs = () => {
     /**
      *
      * Get all blogs that are NOT currently in the top
      * news section. They will be assigned to the (blogs)
-     * state varible
+     * state variable
      */
 
     if (listFrom == "Top Sports") {
@@ -116,23 +117,10 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
 
     return blogs.map((blog, i) => {
       return (
-        <div
-          key={blog._id}
-          className={activeItem === blog._id ? "story active" : "story"}
-        >
+        <div key={blog._id} className={activeItem === blog._id ? "story active" : "story"}>
           <div className="mainphoto">
-            <div
-              className={
-                activeItem === blog._id
-                  ? "activeInfo activeInfoactive"
-                  : "activeInfo"
-              }
-            >
-              <img
-                src="/images/ui/checkmark.png"
-                alt=""
-                className="checkmark"
-              />
+            <div className={activeItem === blog._id ? "activeInfo activeInfoactive" : "activeInfo"}>
+              <img src="/images/ui/checkmark.png" alt="" className="checkmark" />
               <h3 className="heading-3">SELECTED</h3>
               <h4 className="heading-4">Click submit to save your changes</h4>
             </div>
@@ -163,11 +151,7 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
             </button>
 
             <button
-              className={
-                activeItem === blog._id
-                  ? "btn btn-secondary-grad btn-secondary-grad-enabled"
-                  : "btn-secondary-grad"
-              }
+              className={activeItem === blog._id ? "btn btn-secondary-grad btn-secondary-grad-enabled" : "btn-secondary-grad"}
               onClick={() => {
                 submitReplacementBlog();
               }}
@@ -183,12 +167,7 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
 
   const submitReplacementBlog = () => {
     if (listFrom == "Top Sports") {
-      updateSportsBlogSection(
-        prevPostId,
-        nextPostId,
-        nextPostPosNumber,
-        token
-      ).then((data) => {
+      updateSportsBlogSection(prevPostId, nextPostId, nextPostPosNumber, token).then((data) => {
         if (data.error) {
         } else {
           // console.log(data);
@@ -196,12 +175,7 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
         }
       });
     } else if (listFrom == "Top Local") {
-      updateLocalBlogSection(
-        prevPostId,
-        nextPostId,
-        nextPostPosNumber,
-        token
-      ).then((data) => {
+      updateLocalBlogSection(prevPostId, nextPostId, nextPostPosNumber, token).then((data) => {
         if (data.error) {
         } else {
           // console.log(data);
@@ -209,22 +183,20 @@ const ListedBlogs = ({ blogentry, positionNumber, listFrom }) => {
         }
       });
     } else {
-      updateBlogSection(prevPostId, nextPostId, nextPostPosNumber, token).then(
-        (data) => {
-          if (data.error) {
-          } else {
-            // console.log(data);
-            closeModal();
-          }
+      updateBlogSection(prevPostId, nextPostId, nextPostPosNumber, token).then((data) => {
+        if (data.error) {
+        } else {
+          // console.log(data);
+          closeModal();
         }
-      );
+      });
     }
   };
 
   return (
     <React.Fragment>
       {/* {showReplacedBlog()} */}
-      {showAllBlogs()}
+      <div className="Choosefromlist">{showAllBlogs()}</div>
     </React.Fragment>
   );
 };

@@ -9,7 +9,7 @@ import { GiHamburgerMenu as MobileIcom } from "react-icons/gi";
 import { RiCloseCircleFill } from "react-icons/ri";
 
 
-const MobileNav = () => {
+const MobileNav = ({ setModalTarget }) => {
 
   // const [mobileMenuActive, setMobileMenuActive] = useState(false);
     const {
@@ -91,11 +91,7 @@ const MobileNav = () => {
           </li>
         </ul>
       </div>
-      <div
-        className={`${
-          mobileMenuActive ? "mobile-menu mobile-menu active" : "mobile-menu"
-        }`}
-      >
+      <div className={`${mobileMenuActive ? "mobile-menu mobile-menu active" : "mobile-menu"}`}>
         <RiCloseCircleFill
           className="close"
           onClick={() => {
@@ -109,7 +105,12 @@ const MobileNav = () => {
             <Weather />
           </li>
           <li>
-            <HiSearch className="search-icon" onClick={openOverlay} />
+            <HiSearch
+              className="search-icon"
+              onClick={() => {
+                openModal(), setModalTarget("search_overlay");
+              }}
+            />
           </li>
           <li>
             <Link href="/" passHref>

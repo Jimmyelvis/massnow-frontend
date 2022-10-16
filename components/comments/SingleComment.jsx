@@ -5,11 +5,19 @@ import { getSingleComment } from "../../actions/comments";
 import { getuserRoles } from "../../helpers/getuserroles";
 import { useGlobalContext } from "../../context/context";
 import AdminModal from "../pageelements/AdminModal";
-
+import Tooltip from "../pageelements/Tooltip";
+import CommentListOverlay from "./CommentListOverlay";
+import RecListOverlay from "../recs/RecListOverlay";
 
 const SingleComment = ({ router }) => {
   const [comment, setComment] = useState({});
-    const { isModalOpen, openModal, openOverlay, isOverlayOpen } = useGlobalContext();
+  const { isModalOpen, openModal, openOverlay, isOverlayOpen } = useGlobalContext();
+  
+  /**
+   * Piece of state that will be used to determine, what component
+   * that wil be rendered in the modal
+   */
+  const [modalTarget, setModalTarget] = useState(null);
 
   useEffect(() => {
     getComment();
@@ -31,6 +39,54 @@ const SingleComment = ({ router }) => {
         }
       });
       // }
+    }
+  };
+
+  /**
+   * Check what is the target state, then determine
+   * what component should be rendered in the modal.
+   */
+  const checkTarget = () => {
+    
+    if (modalTarget === "post likes") {
+      
+      return (
+        <CommentListOverlay
+          list={comment.post_liked_by}
+          subTitle={comment.post.title}
+          source="post likes"
+          title="People who favored this article"
+        />
+      );
+
+    } else if (modalTarget === "post comments") {
+
+        return (
+          <CommentListOverlay
+            list={comment.comments_for_post}
+            subTitle={comment.post.title}
+            source="post comments"
+            title="People who commented on this article"
+          />
+        );
+    } else if (modalTarget === "comment replies") {
+      return (
+        <CommentListOverlay
+          list={comment.replies}
+          subTitle={comment.body}
+          source="comment replies"
+          title="Replies to this comment"
+        />
+      );
+    } else if (modalTarget === "comment recs") {
+      return (
+        <CommentListOverlay
+          list={comment.recommended}
+          subTitle={comment.body}
+          source="comment recs"
+          title="People who recommended this comment"
+        />
+      )
     }
   };
 
@@ -87,12 +143,12 @@ const SingleComment = ({ router }) => {
           </div>
 
           <div className="comments_likes">
-            <div className="likes_container">
+            <div className="likes_container" onClick={() => { openModal(), setModalTarget("post likes") }}>
               <img src="/images/ui/favorite_icon.svg" alt="" className="icon number heart_icon" />
               <span className="number likes_number">{comment.likes_length}</span>
             </div>
 
-            <div className="comments_container">
+            <div className="comments_container" onClick={() => { openModal(), setModalTarget("post comments") }}>
               <img src="/images/ui/comments_icon.svg" alt="" className="icon number comment_icon" />
               <span className="number comments_number">{comment.comments_length}</span>
             </div>
@@ -107,13 +163,13 @@ const SingleComment = ({ router }) => {
           <h3 className="admin_heading-3 card_title">Comment Details</h3>
 
           <ul className="details">
-            <li>
+            <li onClick={() =>{ openModal(), setModalTarget("comment replies")}}>
               <img src="/images/ui/comments_icon.svg" alt="" className="icon" />
               <h3 className="admin_heading-3 label">Replies</h3>
               <div className="value">{comment.replies && comment.replies.length}</div>
             </li>
 
-            <li>
+            <li onClick={() =>{ openModal(), setModalTarget("comment recs")}}>
               <img src="/images/ui/favorite_icon.svg" alt="" className="icon" />
               <h3 className="admin_heading-3 label">Recs</h3>
               <div className="value">{comment.recommended && comment.recommended.length}</div>
@@ -128,7 +184,20 @@ const SingleComment = ({ router }) => {
         </div>
       </div>
 
-      <AdminModal />
+      {/* <Tooltip
+        selector="#tooltip"
+      >
+        <p className="tooltip">
+          hey man
+        </p>
+      </Tooltip> */}
+
+      <AdminModal selector="#root_modal">
+
+        {checkTarget()}
+
+      
+      </AdminModal>
     </>
   );
 };

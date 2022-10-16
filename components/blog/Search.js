@@ -5,12 +5,8 @@ import { listSearch } from "../../actions/blog";
 import { BsSearch } from "react-icons/bs";
 import { useGlobalContext } from "../../context/context";
 
-
-
 const Search = () => {
-
   const refContainer = useRef(null);
- 
 
   const [values, setValues] = useState({
     search: undefined,
@@ -19,56 +15,54 @@ const Search = () => {
   });
 
   const { search, results, searched, message } = values;
-   const {
-     isModalOpen,
-     openModal,
-     openOverlay,
-     closeOverlay,
-     isOverlayOpen,
-     mobileMenuActive,
-     mobileMenu_Active,
-     mobileMenu_InActive,
-   } = useGlobalContext();
+  const { isModalOpen, openModal, openOverlay, closeOverlay, isOverlayOpen, mobileMenuActive, mobileMenu_Active, mobileMenu_InActive } = useGlobalContext();
 
   const handleChange = (e) => {
-
     setValues({
       ...values,
       search: e.target.value,
     });
-
   };
 
   useEffect(() => {
-
     if (search === "" || search === undefined) {
       setValues({
         ...values,
         results: [],
-        message: ""
-      })
-    }
-  
-    else if (search && !results.length) {
-
-       listSearch({ search }).then((data) => {
-         setValues({
-           ...values,
-           results: data,
-           message: `${data.length} blogs found`,
-         });
-       });
-      
+        message: "",
+      });
+    } else if (search && !results.length) {
+      listSearch({ search }).then((data) => {
+        setValues({
+          ...values,
+          results: data,
+          message: `${data.length} blogs found`,
+        });
+      });
     } else {
       const timeoutId = setTimeout(() => {
         if (search) {
-            listSearch({ search }).then((data) => {
+          listSearch({ search }).then((data) => {
+            if (data.length === 0) {
+              setValues({
+                ...values,
+                results: data,
+                message: `No blogs found`,
+              });
+            } else if (data.length < 2) {
+              setValues({
+                ...values,
+                results: data,
+                message: `${data.length} blog found`,
+              });
+            } else {
               setValues({
                 ...values,
                 results: data,
                 message: `${data.length} blogs found`,
               });
-            });
+            }
+          });
         }
       }, 500);
 
@@ -76,28 +70,23 @@ const Search = () => {
         clearTimeout(timeoutId);
       };
     }
-
   }, [search]);
 
   const closeAndClear = () => {
-    closeOverlay()
-    mobileMenu_InActive()
-      setValues({
-        ...values,
-        results: [],
-        message: ``,
-      });
+    closeOverlay();
+    mobileMenu_InActive();
+    setValues({
+      ...values,
+      results: [],
+      message: ``,
+    });
 
-      refContainer.current.value = '';
- 
-  }
-  
-
+    refContainer.current.value = "";
+  };
 
   const searchedBlogs = (results = []) => {
     return (
       <div className="blogs">
-
         {results.map((blog, i) => {
           return (
             <div className="card-OverlayType" key={i}>
@@ -128,7 +117,7 @@ const Search = () => {
         ...values,
         results: data,
         searched: true,
-        message: `${data.length} blogs found`,
+        // message: `${data.length} blogs found`,
       });
     });
   };
@@ -139,26 +128,19 @@ const Search = () => {
         <BsSearch color="#BAC3E6" />
       </div>
 
-      <input
-        className="form-control"
-        placeholder="Search blogs"
-        onChange={handleChange}
-        ref={refContainer}
-      />
+      <input className="form-control" placeholder="Search blogs" onChange={handleChange} ref={refContainer} />
     </form>
   );
 
-
   return (
-    <div className="searchResults" >
-
-        
+    <div className="search-overlay">
       {searchForm()}
-      {message && <h2 className="heading-2">{message}</h2>}
 
-      {searchedBlogs(results)}
+      <div className="searchResults">
+        {message && <h2 className="heading-2">{message}</h2>}
 
-      
+        {searchedBlogs(results)}
+      </div>
     </div>
   );
 };

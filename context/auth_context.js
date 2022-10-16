@@ -22,8 +22,11 @@ const AuthProvider = ({ children }) => {
 
   const [isSignedIn, setIsSignedIn] = useState(authFromLS());
 
+  // const [isSignedIn, setIsSignedIn] = useState(false);
+
+
   const updateAuthStatus = () => {
-    
+
     setIsSignedIn(!isSignedIn);
 
      

@@ -10,20 +10,21 @@ import { HiSearch } from "react-icons/hi";
 
 
 
-const Nav = () => {
+const Nav = ({ setModalTarget }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formShown, setFormShown] = useState("signIn");
-  const { isModalOpen, openModal, openOverlay, isOverlayOpen } =
-    useGlobalContext();
+  const { isModalOpen, openModal, openOverlay, isOverlayOpen } = useGlobalContext();
   const { isSignedIn, updateAuthStatus } = useAuthContext();
-  
 
   const getAvatar = () => {
-    return !isAuth().photo ? (
-      <img src="/images/ui/Profile.svg" alt="" />
-    ) : (
-      <img src={`${isAuth().photo}`} alt="" />
-    );
+    return !isAuth().photo ? <img src="/images/ui/Profile.svg" alt="" /> : <img src={`${isAuth().photo}`} alt="" />;
+  };
+
+  const getSearchIcon = () => {
+    return <HiSearch className="search-icon" 
+    onClick={() => {
+      openModal(), setModalTarget("search_overlay");
+    }} />;
   };
 
   return (
@@ -39,10 +40,13 @@ const Nav = () => {
 
         {!isAuth() && (
           <ul className="authDashSignout">
-            <li>
-              <HiSearch className="search-icon" onClick={openOverlay} />
-            </li>
-            <div className="profile-logo" onClick={openModal}>
+            <li>{getSearchIcon()}</li>
+            <div
+              className="profile-logo"
+              onClick={() => {
+                openModal(), setModalTarget("login_box");
+              }}
+            >
               <img src="/images/ui/Profile.svg" alt="" />
             </div>
           </ul>
@@ -50,18 +54,13 @@ const Nav = () => {
 
         {isAuth() && isAuth().role === 0 && (
           <ul className="authDashSignout">
-            <li>
-              <HiSearch className="search-icon" onClick={openOverlay} />
-            </li>
+            <li>{getSearchIcon()}</li>
             <li>
               <Link href={`/profile/${isAuth().username}`}>
                 <a className="avatar">{getAvatar()}</a>
               </Link>
             </li>
-            <li
-              className="sign-out"
-              onClick={() => signout(() => updateAuthStatus())}
-            >
+            <li className="sign-out" onClick={() => signout(() => updateAuthStatus())}>
               Signout
             </li>
           </ul>
@@ -69,18 +68,13 @@ const Nav = () => {
 
         {isAuth() && isAuth().role >= 1 && (
           <ul className="authDashSignout">
-            <li>
-              <HiSearch className="search-icon" onClick={openOverlay} />
-            </li>
+            <li>{getSearchIcon()}</li>
             <li>
               <Link href="/admin">
                 <a className="avatar">{getAvatar()}</a>
               </Link>
             </li>
-            <li
-              className="sign-out"
-              onClick={() => signout(() => updateAuthStatus())}
-            >
+            <li className="sign-out" onClick={() => signout(() => updateAuthStatus())}>
               Signout
             </li>
           </ul>

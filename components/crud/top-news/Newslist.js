@@ -149,15 +149,16 @@ const NewsList = ({ listFrom }) => {
     <React.Fragment>
       {isModalOpen ? (
         <Modal
-          contentBgcolor={null}
+          selector={"#root_modal"}
           overlayColor={`rgba(242, 246, 252, 0.95)`}
           gridType={`Choosefromlist`} // This will need to be turned off
           transition={`all 0.7s linear`}
         >
-          <ListedBlogs
-            blogentry={choosenBlog}
-            positionNumber={choosenPosNumber}
-            listFrom={listFrom}
+          <ListedBlogs 
+            blogentry={choosenBlog} 
+            positionNumber={choosenPosNumber} 
+            listFrom={listFrom} 
+            isModalOpen={isModalOpen}
           />
         </Modal>
       ) : (

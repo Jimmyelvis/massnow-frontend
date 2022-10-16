@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { sortElems } from "../../helpers/sorting";
+import { Smallblogcard } from "../pageelements/Cards";
 
  /**
      *  This section (News) is for the rest of the articles
@@ -37,17 +38,11 @@ const local = ({ articles }) => {
 
      return  therestof.map((blog) => {
         return (
-          <div className="entry">
-            <div className="thumb">
-              <img src={blog.mainphoto} alt="" />
-            </div>
-
-            <Link href={`blogs/${blog.slug}`} key={blog.slug}>
-              <a>
-                <h4 className="heading-4">{blog.title}</h4>
-              </a>
-            </Link>
-          </div>
+           <Smallblogcard
+            mainphoto={blog.mainphoto}
+            title={blog.title}
+            slug={blog.slug}
+          />
         );
       });
       

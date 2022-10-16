@@ -1,9 +1,10 @@
 import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
-import { isAuth } from "../../actions/auth";
+import { isAuth, signout } from "../../actions/auth";
 import { getuserRoles } from "../../helpers/getuserroles";
 import CloseBtn from "../pageelements/CloseBtn";
 import Link from "next/link";
+import { useAuthContext } from "../../context/auth_context";
 
 // import Button from "./Button";
 import { userProfileData } from "./data/dummy";
@@ -12,6 +13,8 @@ import avatar from "./data/avatar.jpg";
 
 const UserProfile = () => {
   const { currentColor, handleClick } = useAdminContext();
+  const { isSignedIn, updateAuthStatus } = useAuthContext();
+
 
   const getAvatar = () => {
     return !isAuth().photo ? (
@@ -62,11 +65,13 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="mt-5">
-        {/**
-         *  todo: Figure out how to intrgrate t-wind classes for btn and my btn classes
-         */}
 
-        <button className="btn btn-primary-grad w-full mt-9">Logout</button>
+        <button 
+            className="btn btn-primary-grad w-full mt-9"
+            onClick={()  => signout(() => updateAuthStatus())}
+        >
+          Logout
+        </button>
       </div>
     </div>
   );

@@ -135,12 +135,13 @@ const LatestNews = ({ articles }) => {
           <div className="majorsection">{showMajorSectionBlogs()}</div>
 
           <div className="minorsection">
-            {/* <div className="column">{showCol(col_1)}</div>
+            <div className="column">{showCol(col_1)}</div>
             <div className="column">{showCol(col_2)}</div>
-            <div className="column">{showCol(col_3)}</div> */}
+            <div className="column">{showCol(col_3)}</div>
 
-            {showTheRest()}
           </div>
+
+            {/* {showTheRest()} */}
         </div>
       </div>
     </Layout>
