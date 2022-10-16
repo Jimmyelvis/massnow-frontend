@@ -12,20 +12,10 @@ const Blog = () => {
     <AdminLayout>
       <Head>
         <title>Welcome To MassNow News Site</title>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/react-quill/0.4.1/quill.snow.css"
-        />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/react-quill/0.4.1/quill.snow.css" />
       </Head>
 
       <Author>
-        {/* <Sectionhero
-          headline={"Create A New Article"}
-          image={"/images/pexels-freestocksorg-58639.jpg"}
-          heroclasses={"hero section-hero"}
-          readmoreSection={false}
-        ></Sectionhero> */}
-
         <div className="crud-content">
           <BlogCreate />
         </div>

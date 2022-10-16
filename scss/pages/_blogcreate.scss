@@ -61,7 +61,7 @@
       flex-direction: column;
       position: absolute;
       bottom: 5rem;
-      right: 10rem;
+      right: 30rem;
       z-index: 200;
 
       .admin_heading-4 {
@@ -203,5 +203,25 @@
     grid-column: 1 / -1;
     justify-self: end;
     margin: 3rem 0;
+  }
+}
+
+.status-msg {
+  grid-column: 5 / 11;
+  margin-top: 6rem;
+  text-align: center;
+
+  .alert {
+    padding: 2rem;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .alert-success {
+    background: $success;
+  }
+
+  .alert-danger {
+    background: $danger;
   }
 }

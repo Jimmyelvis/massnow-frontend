@@ -44,6 +44,9 @@ const BlogUpdate = ({ router }) => {
     mainphoto,
   } = values;
 
+  const [imgFile, setimgFile] = useState(null);
+
+
   const token = getCookie("token");
 
   useEffect(() => {
@@ -204,41 +207,57 @@ const BlogUpdate = ({ router }) => {
           formData,
           error: "",
         });
+
+        setimgFile(result.info.path);
+
       }
     });
   };
 
   return (
     <React.Fragment>
-      <div class="hero blogcreate">
-        <div class="overlay"></div>
-        {/* <img src={mainphoto} class="herobg" alt="" /> */}
-        {!mainphoto ? null : <img src={mainphoto} class="herobg" alt="" />}
+      <div className={`${mainphoto ? "uploadpreview" : "uploadpreview form-control"}`}>
+        {!mainphoto ? (
+          <div className="heading">
+            <h4 className="admin_heading-4">Upload a main header image</h4>
 
-        <h2 className="heading-2">{title}</h2>
+            <div className="upload-btn">
+              <button id="upload_widget" className="btn btn-primary-grad" onClick={fullArticleHeaderSubmit("mainphoto")}>
+                Upload Photo
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="uploaded_photo">
+            <div className="img_info">
+              <h4 className="admin_heading-4 filename">{imgFile}</h4>
+
+              <div className="btns">
+                <img src="/images/ui/change-photo.svg" alt="" className="change_photo" onClick={fullArticleHeaderSubmit("mainphoto")} />
+                <img
+                  src="/images/ui/delete-photo.svg"
+                  alt=""
+                  className="delete_photo"
+                  onClick={() => {
+                    clearImages();
+                  }}
+                />
+              </div>
+            </div>
+            <img src={mainphoto} className="main-photo" />
+            <div className="overlay"></div>
+          </div>
+        )}
       </div>
 
-      <div className="crud-content">
         <form onSubmit={editBlog} className="formCreation">
+
           <div className="inputFields">
-            <Inputfield
-              label="Title"
-              value={title}
-              onChangeFunction={handleChange("title")}
-            />
+            <Inputfield label="Title" value={title} onChangeFunction={handleChange("title")} />
 
-            <Inputfield
-              label="Sub Title"
-              value={subtitle}
-              onChangeFunction={handleChange("subtitle")}
-            />
+            <Inputfield label="Sub Title" value={subtitle} onChangeFunction={handleChange("subtitle")} />
 
-            <Inputfield
-              label="Tags"
-              value={tags}
-              onChangeFunction={handleChange("tags")}
-              placeholder="*  Please use comma separated values (eg. Local, Politics, etc)"
-            />
+            <Inputfield label="Tags" value={tags} onChangeFunction={handleChange("tags")} placeholder="*  Please use comma separated values (eg. Local, Politics, etc)" />
           </div>
 
           <div className="cat-list">
@@ -247,30 +266,16 @@ const BlogUpdate = ({ router }) => {
             <ul>{showCategories()}</ul>
           </div>
 
-          <h4 className="heading-4">Upload a main header image</h4>
-
-          <div className="uploadpreview form-control">
-            {!mainphoto ? null : <img src={mainphoto} />}
-          </div>
+     
 
           <div className="upload-btn">
-            <button
-              id="upload_widget"
-              className="btn btn-primary-grad"
-              onClick={fullArticleHeaderSubmit("mainphoto")}
-            >
+            <button id="upload_widget" className="btn btn-primary-grad" onClick={fullArticleHeaderSubmit("mainphoto")}>
               Upload Photo
             </button>
           </div>
 
           <div className="inputTextbox">
-            <ReactQuill
-              modules={QuillModules}
-              formats={QuillFormats}
-              value={body}
-              placeholder="Write something amazing..."
-              onChange={handleBody}
-            />
+            <ReactQuill modules={QuillModules} formats={QuillFormats} value={body} placeholder="Write something amazing..." onChange={handleBody} />
           </div>
 
           <button type="submit" className="btn btn-publish btn-primary-grad ">
@@ -282,7 +287,7 @@ const BlogUpdate = ({ router }) => {
           {showSuccess()}
           {showError()}
         </div>
-      </div>
+      
     </React.Fragment>
   );
 };

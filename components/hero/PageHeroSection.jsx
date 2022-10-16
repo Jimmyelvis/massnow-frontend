@@ -65,7 +65,7 @@ const PageHeroSection = ({ articles, linkFrom }) => {
       });
    }
    else {
-    topStory = blogs.slice(1,2);
+    topStory = blogs;
    }
 
 

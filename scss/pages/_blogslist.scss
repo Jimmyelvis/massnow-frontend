@@ -6,6 +6,7 @@
   row-gap: 4rem;
   column-gap: 3rem;
   padding-bottom: 10rem;
+  grid-row: 3 / 4;
 
 
   @include respond(bp-large) {
@@ -131,10 +132,11 @@
 
 .sorting {
   grid-column: 4/ 13;
-  padding: 10rem 0 3rem 0;
+  padding: 1rem 0 3rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  grid-row: 2 / 3;
 
   @include respond(bp-large) {
     grid-column: 5/14;
@@ -225,6 +227,7 @@
 
 .filters {
   grid-column: 2/4;
+  grid-row: 3 / 4;
 
   @include respond(bp-medium) {
     display: none;

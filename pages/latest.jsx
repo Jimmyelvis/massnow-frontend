@@ -19,9 +19,17 @@ const LatestNews = ({ articles }) => {
     sortedByUpdated = articles.sort((art1, art2) => {
       return sortElems(art2, art1, "createdAt");
     });
+
+    console.log("=============sortedByUpdated=======================");
+    console.log(sortedByUpdated);
+    console.log('====================================');
     
     latestFeatured = sortedByUpdated.slice(0, 3);
     sortedByUpdated = sortedByUpdated.slice(4, 7);
+
+    console.log('=============lateest=======================');
+    console.log(latestFeatured);
+    console.log('====================================');
 
    }
 
