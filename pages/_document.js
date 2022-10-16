@@ -12,7 +12,6 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          {/* <div id="tooltip" /> */}
           <div id="root_modal" />
 
           <NextScript />

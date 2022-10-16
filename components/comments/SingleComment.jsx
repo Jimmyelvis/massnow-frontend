@@ -5,7 +5,6 @@ import { getSingleComment } from "../../actions/comments";
 import { getuserRoles } from "../../helpers/getuserroles";
 import { useGlobalContext } from "../../context/context";
 import AdminModal from "../pageelements/AdminModal";
-import Tooltip from "../pageelements/Tooltip";
 import CommentListOverlay from "./CommentListOverlay";
 import RecListOverlay from "../recs/RecListOverlay";
 
@@ -33,9 +32,6 @@ const SingleComment = ({ router }) => {
         } else {
           setComment(data);
 
-          console.log("====================================");
-          console.log(data);
-          console.log("====================================");
         }
       });
       // }
@@ -89,11 +85,6 @@ const SingleComment = ({ router }) => {
       )
     }
   };
-
-  /**
-   * TODO: When rendering a key that has an object for it's value we need to
-   * TODO: make sure that it is read through first ie. {comment.postedBy ? comment.postedBy.name : " "}
-   */
 
   return (
     <>
@@ -184,13 +175,6 @@ const SingleComment = ({ router }) => {
         </div>
       </div>
 
-      {/* <Tooltip
-        selector="#tooltip"
-      >
-        <p className="tooltip">
-          hey man
-        </p>
-      </Tooltip> */}
 
       <AdminModal selector="#root_modal">
 
