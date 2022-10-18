@@ -12,6 +12,7 @@ const LatestNews = ({ articles }) => {
 
   let sortedByUpdated;
   let latestFeatured; 
+  let midTierNewsBlock;
   let therestof;
 
   if (articles.length > 0) {
@@ -20,29 +21,23 @@ const LatestNews = ({ articles }) => {
       return sortElems(art2, art1, "createdAt");
     });
 
-    console.log("=============sortedByUpdated=======================");
-    console.log(sortedByUpdated);
-    console.log('====================================');
     
     latestFeatured = sortedByUpdated.slice(0, 3);
-    sortedByUpdated = sortedByUpdated.slice(4, 7);
-
-    console.log('=============lateest=======================');
-    console.log(latestFeatured);
-    console.log('====================================');
+    midTierNewsBlock = sortedByUpdated.slice(4, 7);
+    therestof = sortedByUpdated.slice(8, 14);
 
    }
 
   const showMajorSectionBlogs = () => {
 
-    if (sortedByUpdated.length > 0) {
-      return sortedByUpdated.map((blog) => {
+    if (midTierNewsBlock.length > 0) {
+      return midTierNewsBlock.map((blog) => {
         return (
           <div className="entry" key={blog.slug}>
             <div className="thumb">
               <img src={blog.mainphoto} alt="" />
             </div>
-  
+
             <Link href={`blogs/${blog.slug}`} key={blog.slug}>
               <a>
                 <h4 className="heading-4">{blog.title} </h4>
@@ -58,13 +53,7 @@ const LatestNews = ({ articles }) => {
       return "";
     }
   };
-   
- 
-   therestof = articles.filter((article) => {
-     return !article.featuredTopstory > 0 && !article.featuredSports > 0;
-   });
- 
-    
+
  
    let col_1 = therestof.slice(0, 2);
    let col_2 = therestof.slice(2, 4);

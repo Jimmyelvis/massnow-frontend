@@ -27,15 +27,30 @@ const MobileNav = ({ setModalTarget }) => {
 
     return (
       <div className="avatarMobile">
+        {/**
+         * If user is not logged in
+         */}
         {!isAuth() && (
-          <div className="profile-logo" onClick={openModal}>
+          <div
+            className="profile-logo"
+            onClick={() => {
+              openModal(), setModalTarget("login_box");
+            }}
+          >
             <img src="/images/ui/Profile.svg" alt="" />
           </div>
         )}
 
+        {/**
+         * If user is logged in and is a only a subscriber
+         */}
         {isAuth() && isAuth().role === 0 && (
           <ul className="authDashSignout">
-            <li>
+            <li
+              onClick={() => {
+                mobileMenu_InActive();
+              }}
+            >
               <Link href="/user">
                 <a className="avatar">
                   {/* <img src="/images/ui/Profile.svg" alt="" /> */}
@@ -43,28 +58,29 @@ const MobileNav = ({ setModalTarget }) => {
                 </a>
               </Link>
             </li>
-            <li
-              className="sign-out"
-              onClick={() => signout(() => Router.replace(`/`))}
-            >
+            <li className="sign-out" onClick={() => signout(() => Router.replace(`/`))}>
               Signout
             </li>
           </ul>
         )}
 
-        {isAuth() && isAuth().role === 1 && (
+        {/**
+         * If user is logged in and their role is at least an author
+         */}
+        {isAuth() && isAuth().role >= 1 && (
           <ul className="authDashSignout">
-            <li>
+            <li
+              onClick={() => {
+                mobileMenu_InActive();
+              }}
+            >
               <Link href="/admin">
                 <a className="avatar">
                   <img src={`${isAuth().photo}`} alt="" />
                 </a>
               </Link>
             </li>
-            <li
-              className="sign-out"
-              onClick={() => signout(() => Router.replace(`/`))}
-            >
+            <li className="sign-out" onClick={() => signout(() => Router.replace(`/`))}>
               Signout
             </li>
           </ul>

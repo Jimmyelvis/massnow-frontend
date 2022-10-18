@@ -29,7 +29,7 @@ const Footer = () => {
         </ul>
       </div>
 
-      <p className="copyright">Copyright 2021</p>
+      <p className="copyright">Copyright 2022</p>
     </footer>
   );
 }

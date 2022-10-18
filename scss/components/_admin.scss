@@ -51,6 +51,10 @@ $sidebar_width: 21rem;
     height: 100vh;
     background: #fff;
 
+    @include respond(bp-smallest) {
+     overflow-y: auto;
+    }
+
     .close-modal-btn {
       top: 0.8rem;
       right: 1.4rem;

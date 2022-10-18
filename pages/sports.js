@@ -28,12 +28,13 @@ const sports = ({ articles }) => {
    */
   allsports = articles.filter((article) => {
     return (
-      article.featuredSports < 1
+      article.featuredSports === 0 || article.featuredSports > 3
     );
   });
 
   let allsportsFeatured = allsports.slice(0, 3);
   let therestof = allsports.slice(4);
+
 
   const showMajorSectionBlogs = () => {
     return allsportsFeatured.map((blog) => {

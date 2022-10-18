@@ -135,7 +135,7 @@
       position: relative;
 
       @include respond(bp-small) {
-        padding-top: 4rem;
+        padding-top: 8rem;
       }
 
 
@@ -224,7 +224,8 @@
           }
 
           p {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
+            font-weight: bold;
             width: 90%;
             display: -webkit-box;
             -webkit-line-clamp: 2;
