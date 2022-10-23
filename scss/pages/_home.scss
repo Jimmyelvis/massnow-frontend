@@ -118,7 +118,7 @@
         margin-bottom: 3.7rem;
         display: grid;
         // grid-template-rows: min-content 10.5rem 12.2rem;
-        grid-template-rows: 6.2rem 4.5rem 14.1rem;
+        grid-template-rows: max-content 4.5rem 14.1rem;
         grid-template-columns: 60% 34%;
         position: relative;
         justify-content: space-between;
@@ -189,6 +189,7 @@
         .heading-3 {
           font-size: 2.2rem;
           grid-column: 1 / -1;
+          @include lineClamp(2);
 
           @include respond(bp-large) {
             z-index: 3000;
@@ -205,7 +206,7 @@
           font-weight: bold;
           color: $secondary;;
           grid-column: 1 / -1;
-          align-self: start;
+          align-self: center;
 
           @include respond(bp-medium) {
             font-size: 2.1rem;

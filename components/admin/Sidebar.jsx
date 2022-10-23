@@ -91,9 +91,7 @@ const Sidebar = () => {
         
         setlinkActive(linksCheck[0].href)
     
-        console.log('====================================');
-        console.log(linksCheck[0].href);
-        console.log('====================================');
+       
       }
     }
 

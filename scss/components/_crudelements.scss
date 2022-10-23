@@ -29,15 +29,29 @@
 
 .crud-topnewseditor {
   grid-column: 3 / 13;
-  margin: 13rem 0;
+  margin: 3rem 0 12rem 0;
   display: grid;
   padding-bottom: 8%;
 
   .topnewslistings {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(36rem, 54rem));
     column-gap: 1.9rem;
     row-gap: 12rem;
+    grid-auto-rows: 53rem;
+
+    @include respond(bp-large) {
+      grid-template-columns: repeat(2, minmax(36rem, 44rem));
+      row-gap: 8rem;
+      grid-auto-rows: 53rem;
+      justify-content: center;
+    }
+
+    @include respond(bp-medium) {
+      grid-template-columns: repeat(1, minmax(36rem, 54rem));
+      row-gap: 15rem;
+      grid-auto-rows: 62rem;
+    }
 
     .label {
       text-align: center;
@@ -50,43 +64,56 @@
       .mainphoto {
         height: 28.8rem;
         object-fit: cover;
-      }
 
-      .admin_heading-3 {
-        text-align: center;
-        font-size: 2.6rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 31rem;
-        margin: 2rem auto;
-        // white-space: nowrap;
+        @include respond(bp-large) {
+          height: 27.8rem;
+        }
 
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-
-        a {
-          text-decoration: none;
+        @include respond(bp-medium) {
+          height: 33.5rem;
         }
       }
 
-      .author {
-        text-align: center;
-        color: $secondary;
-        padding-bottom: 2rem;
-        font-weight: bold;
-        font-size: 1.6rem;
+      .info {
+        padding: 0 2rem;
+
+        .admin_heading-3 {
+          text-align: center;
+          font-size: 2.6rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          // width: 31rem;
+          margin: 2rem auto;
+          // white-space: nowrap;
+
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+
+          a {
+            text-decoration: none;
+          }
+        }
+
+        .author {
+          text-align: center;
+          color: $secondary;
+          padding-bottom: 2rem;
+          font-weight: bold;
+          font-size: 1.6rem;
+        }
+
+        .excerpt {
+          width: 80%;
+          margin: 0 auto;
+          margin-bottom: 4rem;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
       }
 
-      .excerpt {
-        width: 80%;
-        margin: 0 auto;
-        margin-bottom: 4rem;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-      }
 
       .buttons {
         display: flex;

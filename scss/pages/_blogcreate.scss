@@ -33,6 +33,11 @@
   position: relative;
   margin-top: 7.3rem;
 
+  @include respond(bp-small) {
+    margin-top: 1.4rem;
+    height: 39rem;
+  }
+
 
   .heading {
     display: flex;
@@ -47,6 +52,7 @@
       font-size: 2.9rem;
       z-index: 3000;
       margin-bottom: 3rem;
+      text-align: center;
     }
   }
 
@@ -63,6 +69,13 @@
       bottom: 5rem;
       right: 30rem;
       z-index: 200;
+
+      @include respond(bp-small) {
+        left: 50%;
+        transform: translateX(-50%);
+        right: 0;
+        width: 42rem;
+      }
 
       .admin_heading-4 {
         font-size: 3rem;
@@ -108,6 +121,10 @@
   grid-column-gap: 3rem;
   grid-column: col-start 2 / col-end 11;
   margin-top: 8rem;
+
+  @include respond(bp-small) {
+    grid-column: col-start 1/col-end 12;
+  }
 
   .inputFields {
     grid-column: 1 / 6;
@@ -172,6 +189,10 @@
         width: 33%;
         margin-bottom: 3rem;
         display: flex;
+
+        @include respond(bp-tiny) {
+          width: 50%;
+        }
       }
     }
   }

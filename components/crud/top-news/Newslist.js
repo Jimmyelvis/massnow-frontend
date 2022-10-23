@@ -109,16 +109,21 @@ const NewsList = ({ listFrom }) => {
           <div className="card story">
             <img src={topnewsblog.mainphoto} alt="" className="mainphoto" />
 
-            <h3 className="admin_heading-3">
-              <Link href={`/blogs/${topnewsblog.slug}`}>
-                <a>{topnewsblog.title}</a>
-              </Link>
-            </h3>
+            <div className="info">
 
-            <p className="author">
-              By {topnewsblog.postedBy.name} -{" "}
-              {moment(topnewsblog.createdAt).fromNow()}
-            </p>
+              <h3 className="admin_heading-3">
+                <Link href={`/blogs/${topnewsblog.slug}`}>
+                  <a>{topnewsblog.title}</a>
+                </Link>
+              </h3>
+
+              <p className="author">
+                By {topnewsblog.postedBy.name} -{" "}
+                {moment(topnewsblog.createdAt).fromNow()}
+              </p>
+
+            </div>
+
 
             {/* <p className="excerpt">{topnewsblog.mdesc}</p> */}
 

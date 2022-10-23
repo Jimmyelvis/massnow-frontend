@@ -8,6 +8,21 @@ $cardpadding: 6rem;
   margin-bottom: 8rem;
   min-height: 60rem;
 
+  @include respond(bp-large) {
+    grid-auto-rows: 50rem;
+    grid-template-columns: repeat(2, minmax(37rem, 50rem));
+    justify-content: space-around;
+  }
+
+  @include respond(bp-medium) {
+    grid-auto-rows: 43rem;
+    grid-template-columns: repeat(2, minmax(30rem, 50rem));
+  }
+
+  @include respond(bp-small) {
+    grid-template-columns: repeat(1, minmax(30rem, 42rem));
+  }
+
   .comment_card {
     display: flex;
     flex-direction: column;
@@ -16,6 +31,11 @@ $cardpadding: 6rem;
     height: 43.5rem;
 
     @include createAvatar(4rem);
+
+    @include respond(bp-medium) {
+      padding: 5rem 2rem;
+      height: 100%;
+    }
 
     .flagged_icon {
       width: 2.7rem;
@@ -64,6 +84,12 @@ $cardpadding: 6rem;
         overflow: hidden;
         border: 0px solid #fff;
         margin-right: 4rem;
+
+        @include respond(bp-medium) {
+          width: 6rem;
+          height: 6rem;
+          margin-right: 3rem;
+        }
 
         img {
           height: 100%;
@@ -120,4 +146,15 @@ $cardpadding: 6rem;
 .filter_comments {
   grid-column: 11/13;
   margin-bottom: 8rem;
+
+  @include respond(bp-medium) {
+    grid-column: 9 / 13;
+  }
+
+  @include respond(bp-small) {
+    grid-column: 1/15;
+    justify-self: center;
+    min-width: 32rem;
+    max-width: 42rem;
+  }
 }
