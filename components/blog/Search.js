@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { listSearch } from "../../actions/blog";
 import { BsSearch } from "react-icons/bs";
 import { useGlobalContext } from "../../context/context";
+import { CardOverlayVersion } from "../pageelements/Cards";
 
 const Search = () => {
   const refContainer = useRef(null);
@@ -15,7 +16,7 @@ const Search = () => {
   });
 
   const { search, results, searched, message } = values;
-  const { isModalOpen, openModal, openOverlay, closeOverlay, isOverlayOpen, mobileMenuActive, mobileMenu_Active, mobileMenu_InActive } = useGlobalContext();
+  const { isModalOpen, openModal, openOverlay, closeOverlay, isOverlayOpen, mobileMenuActive, mobileMenu_Active, mobileMenu_InActive, closeModal } = useGlobalContext();
 
   const handleChange = (e) => {
     setValues({
@@ -73,7 +74,7 @@ const Search = () => {
   }, [search]);
 
   const closeAndClear = () => {
-    closeOverlay();
+    closeModal();
     mobileMenu_InActive();
     setValues({
       ...values,
@@ -89,20 +90,16 @@ const Search = () => {
       <div className="blogs">
         {results.map((blog, i) => {
           return (
-            <div className="card-OverlayType" key={i}>
-              <div className="card-info">
-                <Link href={`/blogs/${blog.slug}`}>
-                  <a onClick={closeAndClear}>
-                    <h2 className="heading-2">{blog.title}</h2>
-                    <h3 className="heading-3">{blog.subtitle}</h3>
-                    <h4 className="heading-4">By: {blog.postedBy.name}</h4>
-                  </a>
-                </Link>
-              </div>
 
-              <div className="overlay"></div>
-              <img src={blog.mainphoto} alt="" className="card-bg" />
-            </div>
+            <CardOverlayVersion 
+              key={i}
+              title={blog.title}
+              mainphoto={blog.mainphoto}
+              subtitle={blog.subtitle}
+              author={blog.postedBy.name}
+              slug={blog.slug}
+              clickFunction={closeAndClear}
+              />
           );
         })}
       </div>
