@@ -6,13 +6,12 @@ import { singleTag } from "../../actions/tag";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
 import renderHTML from "react-render-html";
 import moment from "moment";
+import { CardOverlayVersion } from "../../components/pageelements/Cards";
+
 
 const Tag = ({ tag, blogs, query }) => {
   let theBlogs = blogs[0];
 
-  console.log("==================theBlogs==================");
-  console.log(theBlogs.postedBy.name);
-  console.log("====================================");
 
   const head = () => (
     <Head>
@@ -74,20 +73,15 @@ const Tag = ({ tag, blogs, query }) => {
 
           <div className="blogs">
             {blogs.map((blog, i) => (
-              <div className="card-OverlayType" key={i}>
-                <div className="card-info">
-                  <Link href={`/blogs/${blog.slug}`}>
-                    <a>
-                      <h2 className="heading-2">{blog.title}</h2>
-                      <h3 className="heading-3">{blog.subtitle}</h3>
-                      <h4 className="heading-4">By: {blog.postedBy.name}</h4>
-                    </a>
-                  </Link>
-                </div>
+             <CardOverlayVersion 
+                key={i}
+                title={blog.title}
+                subtitle={blog.subtitle}
+                author={blog.postedBy && blog.postedBy.name}
+                mainphoto={blog.mainphoto}
+                slug={blog.slug}
 
-                <div className="overlay"></div>
-                <img src={blog.mainphoto} alt="" className="card-bg" />
-              </div>
+              />
             ))}
           </div>
         </div>

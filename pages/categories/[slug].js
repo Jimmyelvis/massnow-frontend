@@ -79,20 +79,6 @@ const Category = ({ category, blogs, query }) => {
 
           <div className="blogs">
             {blogs.map((blog, i) => (
-              // <div className="card-OverlayType" key={i}>
-              //   <div className="card-info">
-              //     <Link href={`/blogs/${blog.slug}`}>
-              //       <a>
-              //         <h2 className="heading-2">{blog.title}</h2>
-              //         <h3 className="heading-3">{blog.subtitle}</h3>
-              //         <h4 className="heading-4">By: {blog.postedBy && blog.postedBy.name}</h4>
-              //       </a>
-              //     </Link>
-              //   </div>
-
-              //   <div className="overlay"></div>
-              //   <img src={blog.mainphoto} alt="" className="card-bg" />
-              // </div>
 
               <CardOverlayVersion 
                 key={i}
