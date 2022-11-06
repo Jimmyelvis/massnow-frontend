@@ -6,7 +6,7 @@ import { useState } from "react";
 import { listBlogsWithCategoriesAndTags } from "../../actions/blog";
 import renderHTML from "react-render-html";
 import moment from "moment";
-import Card from "../../components/blog/Card";
+// import Card from "../../components/blog/Card";
 import { API, DOMAIN, APP_NAME } from "../../config";
 
 const Blogs = ({ blogs, categories, tags, totalBlogs, router, blogsLimit, blogSkip }) => {
