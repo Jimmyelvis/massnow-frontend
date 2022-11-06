@@ -12,6 +12,7 @@ import renderHTML from "react-render-html";
 import { FaEdit } from "react-icons/fa";
 import { Tab, Tabs } from "../../components/pageelements/Tabs";
 import { ShowCommentList } from "../../components/profile/showCommentList";
+import { CardOverlayVersion } from "../../components/pageelements/Cards";
 
 
  
@@ -78,20 +79,14 @@ const UserProfile = ({ user, blogs, query }) => {
   const showUserBlogs = () => {
     return blogs.map((blog, i) => {
       return (
-        <div className="card-OverlayType" key={i}>
-          <div className="card-info">
-            <Link href={`/blogs/${blog.slug}`}>
-              <a>
-                <div className="heading-3">{blog.title}</div>
 
-                <div className="heading-4">{blog.subtitle}</div>
-              </a>
-            </Link>
-          </div>
-
-          <div className="overlay"></div>
-          <img src={blog.mainphoto} alt="" className="card-bg" />
-        </div>
+         <CardOverlayVersion
+          key={i}
+          title={blog.title}
+          subtitle={blog.subtitle}
+          link={`/blogs/${blog.slug}`}
+          mainphoto={blog.mainphoto}
+        />
       );
     });
   };
@@ -99,20 +94,13 @@ const UserProfile = ({ user, blogs, query }) => {
   const showFavArticles = () => {
     return user.favorite_articles.map((blog, i) => {
       return (
-        <div className="card-OverlayType" key={i}>
-          <div className="card-info">
-            <Link href={`/blogs/${blog.slug}`}>
-              <a>
-                <div className="heading-3">{blog.post_title}</div>
 
-                <div className="heading-4">{blog.postAuthor}</div>
-              </a>
-            </Link>
-          </div>
-
-          <div className="overlay"></div>
-          <img src={blog.mainPhoto} alt="" className="card-bg" />
-        </div>
+        <CardOverlayVersion
+          key={i}
+          title={blog.post_title}
+          link={`/blogs/${blog.slug}`}
+          mainphoto={blog.mainPhoto}
+        />
       );
     });
   };

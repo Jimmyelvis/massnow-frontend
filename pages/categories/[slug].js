@@ -7,7 +7,7 @@ import { singleCategory } from "../../actions/category";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
 import renderHTML from "react-render-html";
 import moment from "moment";
-import Card from "../../components/blog/Card";
+import { CardOverlayVersion } from "../../components/pageelements/Cards";
 
 const Category = ({ category, blogs, query }) => {
   const [featuredBlog, setFeaturedBlog] = useState("");
@@ -60,7 +60,7 @@ const Category = ({ category, blogs, query }) => {
             <h2 className="heading-2">{featuredBlog.title}</h2>
             <h3 className="heading-3">{featuredBlog.subtitle}</h3>
 
-            <h4 className="heading-4">By: {theBlogs.postedBy.name}</h4>
+            <h4 className="heading-4">By: {theBlogs.postedBy && theBlogs.postedBy.name}</h4>
             {renderHTML(theBlogs.excerpt)}
 
             <Link href={`/blogs/${theBlogs.slug}`}>
@@ -79,24 +79,36 @@ const Category = ({ category, blogs, query }) => {
 
           <div className="blogs">
             {blogs.map((blog, i) => (
-              <div className="card-OverlayType" key={i}>
-                <div className="card-info">
-                  <Link href={`/blogs/${blog.slug}`}>
-                    <a>
-                      <h2 className="heading-2">{blog.title}</h2>
-                      <h3 className="heading-3">{blog.subtitle}</h3>
-                      <h4 className="heading-4">By: {blog.postedBy.name}</h4>
-                    </a>
-                  </Link>
-                </div>
+              // <div className="card-OverlayType" key={i}>
+              //   <div className="card-info">
+              //     <Link href={`/blogs/${blog.slug}`}>
+              //       <a>
+              //         <h2 className="heading-2">{blog.title}</h2>
+              //         <h3 className="heading-3">{blog.subtitle}</h3>
+              //         <h4 className="heading-4">By: {blog.postedBy && blog.postedBy.name}</h4>
+              //       </a>
+              //     </Link>
+              //   </div>
 
-                <div className="overlay"></div>
-                <img src={blog.mainphoto} alt="" className="card-bg" />
-              </div>
+              //   <div className="overlay"></div>
+              //   <img src={blog.mainphoto} alt="" className="card-bg" />
+              // </div>
+
+              <CardOverlayVersion 
+                key={i}
+                title={blog.title}
+                subtitle={blog.subtitle}
+                author={blog.postedBy && blog.postedBy.name}
+                mainphoto={blog.mainphoto}
+                slug={blog.slug}
+
+              />
             ))}
           </div>
         </div>
       </Layout>
+
+      
     </React.Fragment>
   );
 };

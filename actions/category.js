@@ -27,6 +27,16 @@ export const getCategories = () => {
       .catch(err => console.log(err));
 };
 
+export const getCategoriesWithBlogs = () => {
+  return fetch(`${API}/api/blogs/categories`, {
+    method: "GET",
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 export const singleCategory = slug => {
   return fetch(`${API}/api/category/${slug}`, {
       method: 'GET'

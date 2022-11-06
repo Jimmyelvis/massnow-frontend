@@ -26,6 +26,7 @@
   }
 }
 
+$margintop: 8rem;
 
 .content-detail {
   grid-column: col-start 2 / col-end 11;
@@ -36,96 +37,74 @@
   z-index: 200;
 
   display: grid;
-  grid-template-columns: minmax(6rem, 1fr) minmax(70%, 100rem) minmax(6rem, 1fr);
-  padding: 14rem 0;
+  @include gridTempColumn;
+  padding: 11rem 10rem;
+
+  @include respond(bp-largest) {
+    padding: 11rem 7rem;
+  }
 
 
   @include respond(bp-large) {
     margin-top: 0;
-    padding: 8rem 0;
+    padding: 11rem 3rem;
     background-color: transparent;
   }
 
   @include respond(bp-medium) {
-    grid-template-columns: minmax(0rem, 1fr) minmax(70%, 100rem) minmax(0rem, 1fr);
+    grid-column: col-start 1/col-end 12;
   }
 
-  &>* {
-    grid-column: 2 / 3;
-  }
 
-  .heading-2 {
-    margin-bottom: 1rem;
 
-    @include respond(bp-small) {
-      font-size: 3.2rem;
-    }
+  .article_header {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-bottom: 9rem;
 
-    @include respond(bp-tiny) {
-      font-size: 2.8rem;
-    }
-  }
-
-  .subheading {
-    color: $secondary;
-    ;
-    font-weight: bold;
-  }
-
-  .author {
-    font-weight: bold;
-    color: $primary;
-    margin: 3rem 0;
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    align-items: center;
-
-    @include createAvatar(13rem);
-
-    .avatar {
-      border: 4px solid #fff;
-      grid-row: 1 / -1;
-      margin-right: 3rem;
+    .heading-2 {
+      margin-bottom: 1rem;
 
       @include respond(bp-small) {
-        width: 7.5rem;
-        height: 7.5rem;
-        border: 0px solid #fff;      
+        font-size: 3.2rem;
+      }
+
+      @include respond(bp-tiny) {
+        font-size: 2.8rem;
       }
     }
 
+    .subheading {
+      color: $secondary;
+      font-weight: bold;
+    }
+
     .written-by {
-      align-self: end;
-      padding-bottom: 1rem;
+      font-weight: bold;
+      color: $primary;
+      margin-top: 1.5rem;
 
       .published {
         color: $secondary;
       }
     }
 
-    .social {
+
+    .article_actions {
       display: flex;
-      width: 40%;
-      justify-content: space-between;
-      grid-column: 2 / -1;
-      grid-row: 2 / -1;
       align-items: center;
+      margin-top: 2rem;
+      gap: 2rem;
 
-      @include respond(bp-small) {
-        width: 70%;
-      }
 
-      li {
-        list-style: none;
-      }
-
-      .author_icon {
-
-        @include respond(bp-smallest) {
-          width: 3.9rem;
-          height: 3.9rem;
-        }
+      .favorite {
+        grid-row: 2 / -1;
+        grid-column: 2 / -1;
+        width: 3.5rem;
+        justify-self: self-end;
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
       }
 
       .commentsIcon {
@@ -148,22 +127,17 @@
           color: $night-time;
         }
       }
-    }
 
-    .favorite {
-      grid-row: 2 / -1;
-      grid-column: 2 / -1;
-      width: 3.5rem;
-      justify-self: self-end;
-      cursor: pointer;
-      border: none;
-      background-color: transparent;
     }
-
 
   }
 
   .content {
+    grid-column: 1/10;
+
+    @include respond(bp-medium) {
+      grid-column: 1/ -1;
+    }
 
     p {
       margin-bottom: 1rem;
@@ -175,96 +149,230 @@
       object-position: top;
     }
 
-    .categories {
-      margin-top: 4rem;
 
-      .heading-3 {
-        color: $secondary;
-        ;
-        font-size: 2.3rem;
-        font-weight: 500;
-      }
+  }
 
-      ul {
-        display: flex;
-        margin-top: 2rem;
-        flex-wrap: wrap;
+  .recent-stories {
+    grid-column: 11 / -1;
 
-        a {
-          list-style: none;
-          font-weight: bold;
-          background-color: $primary;
-          color: $white;
-          padding: 0.5rem 2rem;
-          border-radius: 2.4rem;
-          font-size: 1.4rem;
-          margin-right: .5rem;
-          text-align: center;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          cursor: pointer;
-          margin-bottom: 1.6rem;
+    @include respond(bp-medium) {
+      display: none;
+    }
+
+    .heading-3 {
+      font-size: 3.5rem;
+    }
+
+    .articles {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+
+      .card-OverlayType {
+        height: 26.8rem;
+
+        .card-info {
+
+          @include respond(bp-large) {
+            padding-top: 34%;
+            padding-left: 2rem;
+          }
+
+          .title {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+          }
+
+          .subtitle {
+            font-size: 1.6rem;
+          }
+        }
+
+
+        .overlay {
+          background: linear-gradient(to bottom, rgb(0 0 0 / 17%) 0%, rgb(0 0 0 / 42%) 70%);
         }
       }
     }
+  }
 
-    .related {
-      margin-top: 10rem;
+  .categories {
+    margin-top: 4rem;
+    grid-column: 1 / -1;
 
-      .heading-3 {
+    .heading-3 {
+      color: $secondary;
+      ;
+      font-size: 2.3rem;
+      font-weight: 500;
+    }
+
+    ul {
+      display: flex;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+
+      a {
+        list-style: none;
+        font-weight: bold;
+        background-color: $primary;
+        color: $white;
+        padding: 0.5rem 2rem;
+        border-radius: 2.4rem;
+        font-size: 1.4rem;
+        margin-right: .5rem;
         text-align: center;
-        font-size: 3.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 1.6rem;
+      }
+    }
+  }
+
+
+  .author {
+    margin-top: $margintop;
+    grid-column: 1 / 11;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    border-top: 1px solid rgb(173 190 213 / 49%);
+    border-bottom: 1px solid rgb(173 190 213 / 49%);
+
+    @include respond(bp-medium) {
+      grid-column: 1 / -1;
+    }
+
+    @include respond(bp-tiny) {
+      grid-column: 1/ -1;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .left {
+      flex: 0 0 20rem;
+
+      .avatar {
+        width: 15.3rem;
+        height: 15.3rem;
+      }
+    }
+
+    .right {
+      flex: 1;
+
+      .name {
+        font-size: 2.3rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+
+        @include respond(bp-tiny) {
+          text-align: center;
+        }
       }
 
-      .related-blogs {
+      .email {
+        font-size: 1.6rem;
+        color: $secondary;
+        margin-bottom: 2.3rem;
+
+        @include respond(bp-tiny) {
+          text-align: center;
+        }
+      }
+
+      .about {
+
+        @include lineClamp(4);
+      }
+
+      .social {
+        list-style: none;
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        gap: 4rem;
         margin-top: 3rem;
 
-        @include respond(bp-medium) {
+        @include respond(bp-tiny) {
           justify-content: center;
         }
+      }
+    }
+  }
 
-        .card-OverlayType {
-          width: calc(33% - 0.1rem);
-          height: 30rem;
-          padding-top: 18rem;
-          margin-bottom: 0.2rem;
+  .related {
+    grid-column: 1/14;
+    margin-top: $margintop;
 
-          @include respond(bp-medium) {
-            width: calc(75% - 0.1rem);
-            height: 35rem;
-            padding-top: 21rem;
-            margin-bottom: 0.9rem;
-          }
+    @include respond(bp-large) {
+      grid-column: 1/14;
+    }
 
-          @include respond(bp-small) {
-            width: calc(85% - 0.1rem);
-          }
+    @include respond(bp-medium) {
+      grid-column: 1/ -1;
+    }
 
-          @include respond(bp-smallest) {
-            width: calc(100% - 0.1rem);
-          }
+    .heading-3 {
+      text-align: center;
+      font-size: 3.5rem;
+    }
 
+    .related-blogs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 3rem;
 
-          img {
-            height: 100%;
-          }
+      @include respond(bp-medium) {
+        justify-content: center;
+      }
 
-          .heading-3 {
+      .card-OverlayType {
+        width: calc(33% - 0.1rem);
+        height: 31rem;
+        margin-bottom: 7.2rem;
+
+        @include respond(bp-large) {
+          height: 28rem;
+        }
+
+        @include respond(bp-medium) {
+          width: 50rem;
+          height: 35rem;
+          padding-top: 3rem;
+          margin-bottom: 0.9rem;
+        }
+
+        img {
+          height: 100%;
+        }
+
+        .card-info {
+          padding: 0 2rem;
+          padding-top: 17rem;
+          width: 95%;
+
+          .title {
             text-align: left;
             font-size: 2.1rem;
 
+            @include respond(bp-medium) {
+              font-size: 2.6rem;
+            }
           }
 
+          .subtitle {
+            font-size: 1.6rem;
+          }
         }
-      }
 
+      }
     }
 
   }
+
 
   .divider {
     margin: 6rem auto;
@@ -400,6 +508,45 @@
     font-weight: bold;
   }
 
+  // .social {
+  //   display: flex;
+  //   width: 40%;
+  //   justify-content: space-between;
+  //   grid-column: 2 / -1;
+  //   grid-row: 2 / -1;
+  //   align-items: center;
 
+  //   @include respond(bp-small) {
+  //     width: 70%;
+  //   }
+
+  //   li {
+  //     list-style: none;
+  //   }
+
+  //   .author_icon {
+
+  //     @include respond(bp-smallest) {
+  //       width: 3.9rem;
+  //       height: 3.9rem;
+  //     }
+  //   }
+
+  // 
+  // }
+
+  // @include createAvatar(13rem);
+
+  // .avatar {
+  //   border: 4px solid #fff;
+  //   grid-row: 1 / -1;
+  //   margin-right: 3rem;
+
+  //   @include respond(bp-small) {
+  //     width: 7.5rem;
+  //     height: 7.5rem;
+  //     border: 0px solid #fff;
+  //   }
+  // }
 
 }

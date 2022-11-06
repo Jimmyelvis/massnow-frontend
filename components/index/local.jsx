@@ -1,61 +1,131 @@
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { sortElems } from "../../helpers/sorting";
 import { Smallblogcard } from "../pageelements/Cards";
+import { Avatar } from "../../components/pageelements/Avatar";
+import moment from "moment";
+import renderHTML from "react-render-html";
 
- /**
-     *  This section (News) is for the rest of the articles
-     *  First filter for every
-     *  article that is NOT a top story, or featured sports article.
-     *  Then slice out the first 7 articles, the remaining articles
-     *  after that will be passed to here.
-     */
 
 const local = ({ articles }) => {
-  /**
-   * Initialize the variable blogs
-   * this will contain the blogs that will be fed
-   * into this component
-   */
-  let blogs;
-  let therestof;
+  useEffect(() => {
+    getBlogs();
+  }, []);
 
-  if (articles.length > 0) {
+  const getBlogs = () => {
 
-    blogs = articles;
+    let sortArticles;
 
-    therestof = blogs.filter((blog) => {
-      return !blog.featuredTopstory > 0 && !blog.featuredSports > 0;
-    });
-    therestof = therestof.slice(7);
-
-  }
-
-   
-
-  const showBlogs = () => {
-
-    if (therestof.length > 0) {
-
-     return  therestof.map((blog) => {
-        return (
-           <Smallblogcard
-            mainphoto={blog.mainphoto}
-            title={blog.title}
-            slug={blog.slug}
-          />
-        );
-      });
-      
+    if (articles.length > 0) {
+      sortArticles = [...articles]
+        .sort((art1, art2) => {
+          return sortElems(art1, art2, "featuredLocal");
+        })
+        .filter((article) => {
+          return article.featuredLocal > 0;
+        });
     }
 
+    console.log('========bfdb============================');
+    console.log(sortArticles);
+    console.log('====================================');
+
+    
+    let firstArticle = sortArticles[0];
+    let secondArticle = sortArticles[1];
+
+    let theRest = sortArticles.slice(2, 7);
+
+    console.log('=================rest===================');
+    console.log(theRest);
+    console.log('====================================');
+
+    return (
+      <>
+
+        <div className="left">
+          <div className="article">
+            <div className="mainphoto">
+              <img src={firstArticle.mainphoto} alt="" />
+            </div>
+
+            <Link href={`/article/${firstArticle.slug}`}>
+              <a className="heading-3 title">{firstArticle.title} </a>
+            </Link>
+            
+            <div className="author">
+              <Avatar user={firstArticle.postedBy} />
+
+              <div className="date">{moment(firstArticle.createdAt).format("MMM Do YYYY")}</div>
+
+              <div className="name">{firstArticle.postedBy && firstArticle.postedBy.name}</div>
+            </div>
+          </div>
+
+          <div className="article">
+            <div className="mainphoto">
+              <img src={secondArticle.mainphoto} alt="" />
+            </div>
+
+
+            <Link href={`blogs/${secondArticle.slug}`}>
+              <a className="heading-3 title">{secondArticle.title}</a>
+            </Link>
+
+            <div className="author">
+              <Avatar user={secondArticle.postedBy} />
+
+              <div className="date">{moment(secondArticle.createdAt).format("MMM Do YYYY")}</div>
+
+              <div className="name">{secondArticle.postedBy && secondArticle.postedBy.name}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="right"> 
+        
+          {theRest.map((article) => {
+
+            return (
+              <div className="article">
+                <div className="mainphoto">
+                  <img src={article.mainphoto} alt="" />
+                </div>
+
+                <div className="info">
+
+                  <Link href={`blogs/${article.slug}`}>
+                    <a className="heading-3 title">{article.title}</a>
+                  </Link>
+
+                  <div className="execrpt">{renderHTML(article.excerpt)}</div>
+
+                  <div className="author">
+                    <Avatar user={article.postedBy} />
+
+                    <div className="date">{moment(article.createdAt).format("MMM Do YYYY")}</div>
+
+                    <div className="name">{article.postedBy && article.postedBy.name}</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
+        </div>
+      </>
+    );
+     
   };
+
+
 
   return (
     <div className="local">
       <div className="secheading">
-        <h2 className="heading-2 u-margin-bottom-big">News</h2>
+        <h2 className="heading-2 u-margin-bottom-big">Local</h2>
       </div>
-      <div className="content">{showBlogs()}</div>
+      <div className="content">{getBlogs()}</div>
     </div>
   );
 };

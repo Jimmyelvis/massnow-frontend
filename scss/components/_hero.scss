@@ -10,7 +10,7 @@
   justify-content: center;
   padding-top: 7rem;
 
-  @include respond(bp-medium) {
+  @include respond(bp-large) {
     padding: 19rem 0 12rem 0;
     height: auto;
   }
@@ -26,28 +26,31 @@
   }
 
   .overlay {
-    background-color: rgba(0, 0, 0, 0.49);
+    background-color: rgba(0, 0, 0, 0.55);
     position: absolute;
     z-index: 10;
     width: 100%;
     height: 100%;
 
     @include respond(bp-medium) {
-      background-color: rgba(0, 0, 0, 0.57);
+      background-color: rgba(0, 0, 0, 0.71);
     }
   }
 
- 
+
   .content {
     grid-column: col-start 2 / col-end 11;
     display: grid;
     justify-content: space-between;
     position: relative;
     z-index: 100;
-    height: auto;
+    height: 46rem;
     overflow: hidden;
     position: relative;
-   
+
+    @include respond(bp-large) {
+      height: auto;
+    }
 
     @include respond(bp-medium) {
       grid-template-columns: 1fr;
@@ -74,25 +77,28 @@
 
         @include respond(bp-large) {
           font-size: 6rem;
+          width: auto;
         }
 
         @include respond(bp-medium) {
-          width: 100%;
           font-size: 5.5rem;
         }
 
         @include respond(bp-small) {
           font-size: 4rem;
-          width: 100%;
           margin: 0 auto;
         }
       }
 
       p {
         font-size: 2.3rem;
-        color: $thirdcolor;;
+        color: $thirdcolor;
         width: 80%;
         font-weight: bold;
+
+        @include respond(bp-large) {
+          width: auto;
+        }
 
         @include respond(bp-small) {
           font-size: 2rem;
@@ -107,12 +113,20 @@
         justify-content: space-between;
         width: 15rem;
 
+        @include respond(bp-large) {
+          width: auto;
+        }
+
 
         .readstory {
-          color: $secondary;
           font-weight: bold;
 
+          @include respond(bp-large) {
+            font-size: 2.3rem;
+          }
+
           a {
+            color: $secondary;
             text-decoration: none;
           }
         }
@@ -131,11 +145,18 @@
       display: grid;
       height: 100%;
       justify-content: center;
-      align-content: center;
       position: relative;
 
+      @include respond(bp-large) {
+        margin-top: 3rem;
+      }
+
       @include respond(bp-small) {
-        padding-top: 8rem;
+        margin-top: 9rem;
+      }
+
+      @include respond(bp-tiny) {
+        margin-top: 14rem;
       }
 
 
@@ -147,59 +168,71 @@
         border-left: 1px solid rgba(255, 255, 255, 0.3);
         position: absolute;
 
-        @include respond(bp-medium) {
+        @include respond(bp-large) {
           display: none;
         }
       }
 
       ul {
         display: grid;
-        grid-template-rows: repeat(4, 8rem);
+        grid-template-rows: repeat(4, 1fr);
         grid-row-gap: 3rem;
         position: relative;
         width: 90%;
         justify-self: center;
 
-        @include respond(bp-medium) {
+        @include respond(bp-large) {
+          grid-template-rows: 1fr;
           grid-template-columns: repeat(4, 1fr);
-          grid-template-rows: max-content;
-          grid-column-gap: 2rem;
-          justify-self: start;
-          width: 100%;
+          padding: 5rem 0;
+          column-gap: 1rem;
+          width: auto;
+        }
+
+        @include respond(bp-medium) {
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 13rem;
         }
 
         @include respond(bp-small) {
-          grid-template-columns: 1fr;
-          grid-template-rows: max-content;
-          grid-row-gap: 1rem
+          column-gap: 5rem;
+        }
+
+        @include respond(bp-smallest) {
+          grid-template-rows: 12.0rem;
+          grid-template-columns: repeat(1, 1fr);
         }
 
         .story {
           display: grid;
-          grid-template-columns: 30% 65%;
+          grid-template-columns: 10.1rem 1fr;
+          column-gap: 1.7rem;
           justify-content: space-between;
           align-items: center;
           width: 100%;
           position: relative;
           transition: all 300ms linear;
-          background-color: rgba(240,248,255,0.00);
+          background-color: rgba(240, 248, 255, 0.00);
+          color: $white;
+
+          @include respond(bp-large) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 14rem 1fr;
+            row-gap: 3rem;
+          }
 
           @include respond(bp-medium) {
-            grid-template-columns: 1fr;
-            grid-template-rows: 11rem min-content;
+            grid-template-rows: 19rem 1fr;
           }
 
-          @include respond(bp-small) {
-            grid-template-columns: 10rem 70%;
-            grid-template-rows: 9rem;
-          }
-
-          @include respond(bp-tiny) {
-            grid-template-columns: 10rem 60%;
+          @include respond(bp-smallest) {
+            grid-template-columns: 15rem 1fr;
+            grid-template-rows: 13rem;
+            align-items: start;
           }
 
           &:hover {
-             background-color: rgba(240, 248, 255, 0.329);
+            background-color: rgba(240, 248, 255, 0.329);
           }
 
 
@@ -212,7 +245,7 @@
             position: absolute;
             margin-top: 10rem;
 
-            @include respond(bp-medium) {
+            @include respond(bp-large) {
               display: none;
             }
           }
@@ -232,8 +265,9 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
 
-            @include respond(bp-medium) {
-              padding: 2rem 0;
+            @include respond(bp-large) {
+              width: auto;
+              font-size: 2rem;
             }
 
           }
@@ -241,19 +275,19 @@
 
         .story:last-of-type {
 
-           &::after {
-             content: " ";
-             display: block;
-             width: 100%;
-             padding-top: 1rem;
-             border-bottom: none;
-             position: absolute;
-             margin-top: 10rem;
+          &::after {
+            content: " ";
+            display: block;
+            width: 100%;
+            padding-top: 1rem;
+            border-bottom: none;
+            position: absolute;
+            margin-top: 10rem;
 
-             @include respond(bp-medium) {
-               display: none;
-             }
-           }
+            @include respond(bp-medium) {
+              display: none;
+            }
+          }
         }
       }
 
@@ -270,9 +304,9 @@
   .narrow-wide {
     grid-template-columns: 70% 30%;
 
-      @include respond(bp-medium) {
-        grid-template-columns: 100%;
-      }
+    @include respond(bp-large) {
+      grid-template-columns: 100%;
+    }
 
   }
 
@@ -303,7 +337,7 @@
     }
 
     .currentslideinfo {
-      
+
       .heading-2 {
         font-size: 5rem;
       }
@@ -333,7 +367,7 @@
   @include respond(bp-small) {
     padding: 0;
   }
-  
+
 
   .content {
     grid-column: center-start / center-end;
@@ -353,9 +387,9 @@
       font-size: 6rem;
       text-align: center;
 
-       @include respond(bp-medium) {
-         font-size: 5rem;
-       }
+      @include respond(bp-medium) {
+        font-size: 5rem;
+      }
     }
 
   }
@@ -366,38 +400,38 @@
   height: 55rem;
   padding-top: 0;
 
-    .content {
-      padding-top: 15rem;
-      grid-column: col-start 5 / col-end 8;
-      justify-content: center;
+  .content {
+    padding-top: 15rem;
+    grid-column: col-start 5 / col-end 8;
+    justify-content: center;
 
-      @include respond(bp-medium) {
-        grid-template-rows: min-content;
-      }
-
-      @include respond(bp-small) {
-        padding-top: 0;
-      }
-
-
-      
-      .heading-2 {
-        position: relative;
-        z-index: 200;
-        color: #fff;
-        font-size: 6rem;
-        text-align: center;
-      }
+    @include respond(bp-medium) {
+      grid-template-rows: min-content;
     }
+
+    @include respond(bp-small) {
+      padding-top: 0;
+    }
+
+
+
+    .heading-2 {
+      position: relative;
+      z-index: 200;
+      color: #fff;
+      font-size: 6rem;
+      text-align: center;
+    }
+  }
 }
 
 .page-hero {
-  height: 70rem;
+  height: 67rem;
+  padding-top: 9rem;
 
   @include respond(bp-large) {
-    .narrow-wide {
-      grid-template-columns: 60% 40%;
-    }
+    height: auto;
+    padding: 23rem 0 12rem 0;
   }
 
   @include respond(bp-medium) {
@@ -411,17 +445,20 @@
   }
 
   .content {
-    
+    height: auto;
+
     .currentslideinfo {
 
       @include respond(bp-medium) {
         margin-bottom: 4rem;
       }
-      
+
       .heading-2 {
         font-size: 4.6rem;
+
+        @include lineClamp(2);
       }
-    
+
       p {
         font-size: 2rem;
       }
@@ -430,21 +467,28 @@
     .otherstories {
 
       ul {
-         @include respond(bp-largest) {
-            grid-template-rows: repeat(2, 12rem) !important;
-         }
+        grid-template-rows: repeat(2, 1fr) !important;
 
-        @include respond(bp-medium) {
+        @include respond(bp-large) {
           grid-template-rows: 1fr !important;
-
-           .story {
-             grid-template-rows: 14rem min-content;
-           }
         }
+
+        .story {
+   
+
+          @include respond(bp-medium) {
+
+            .story {
+              grid-template-rows: 14rem min-content;
+
+            }
+
+          }
+        }
+
 
         @include respond(bp-small) {
           .story {
-            grid-template-columns: 30% 60%;
 
             p {
               font-size: 2rem;

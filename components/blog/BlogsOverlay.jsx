@@ -5,10 +5,7 @@ import Link from "next/link";
 import { singleCategory } from "../../actions/category";
 import moment from "moment";
 
-
-const BlogsOverlay = ({ articlelist, title, target}) => {
-
-  
+const BlogsOverlay = ({ articlelist, title, target }) => {
   const [blogs, setBlogs] = useState([]);
 
   const loadBlogs = () => {
@@ -17,24 +14,20 @@ const BlogsOverlay = ({ articlelist, title, target}) => {
         console.log(data.error);
       } else {
         setBlogs(data.blogs);
-        console.log('==========blog overlay==========================');
-        console.log(data.blogs);
-        console.log('====================================');
       }
     });
   };
 
   useEffect(() => {
-     loadBlogs();
-     document.body.style.overflow = "hidden";
+    loadBlogs();
+    document.body.style.overflow = "hidden";
 
-     return () => {
-       document.body.style.overflow = null;
-     };
-   }, []);
+    return () => {
+      document.body.style.overflow = null;
+    };
+  }, []);
 
-  const getArticles = () => { 
-
+  const getArticles = () => {
     return blogs.map((entry) => {
       let { title, slug, subtitle, postedBy, createdAt, mainphoto } = entry;
       let { name } = postedBy;
@@ -60,16 +53,15 @@ const BlogsOverlay = ({ articlelist, title, target}) => {
         </div>
       );
     });
-  }
-   
+  };
 
   return (
     <div className="card blogs_overlay_List">
-      <Pageheading title={title}/>
+      <Pageheading title={title} />
 
       <div className="entries blogs">{getArticles()}</div>
     </div>
   );
-}
+};
 
-export default BlogsOverlay
+export default BlogsOverlay;

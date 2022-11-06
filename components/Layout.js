@@ -19,8 +19,8 @@ const Layout = ({ children }) => {
         <Header />
         {children}
         <ScrollToTop />
-        <Footer />
       </div>
+      <Footer />
 
     </React.Fragment>
   );

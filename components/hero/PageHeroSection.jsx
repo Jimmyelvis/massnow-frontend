@@ -133,8 +133,8 @@ const PageHeroSection = ({ articles, linkFrom }) => {
           </div>
         </div>
 
-        <div className="otherstories" style={otherStoriesStyles}>
-          <ul style={rows}>{showBlogs()}</ul>
+        <div className="otherstories">
+          <ul>{showBlogs()}</ul>
         </div>
       </div>
 

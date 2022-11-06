@@ -17,3 +17,24 @@ export const Smallblogcard = ({ mainphoto, title, author, slug}) => {
   );
 }
 
+export const CardOverlayVersion = ({ mainphoto, title, subtitle, author, slug, key}) => { 
+  return (
+    <div className="card-OverlayType" key={key}>
+      <div className="card-info">
+        <Link href={`/blogs/${slug}`}>
+          <a>
+            <h2 className="heading-2 title">{title}</h2>
+            <h3 className="heading-3 subtitle">{subtitle}</h3>
+            {
+              author ? <h4 className="heading-4 author">{author}</h4> : ""
+            }
+          </a>
+        </Link>
+      </div>
+
+      <div className="overlay"></div>
+      <img src={mainphoto} alt="" className="card-bg" />
+    </div>
+  );
+}
+

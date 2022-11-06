@@ -6,8 +6,9 @@ $font-primary-bold: interstate-condensed, sans-serif;
 
 
 %heading {
-  font-family: ivypresto-headline, sans-serif;
-  font-weight: 500;
+  // font-family: ivypresto-headline, sans-serif;
+  font-family: interstate-condensed, sans-serif;
+  font-weight: bold;
   line-height: 1.2;
   color: $primary
 }

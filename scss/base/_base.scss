@@ -42,16 +42,17 @@ p {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 /* unvisited link */
 a:link {
-  color: inherit;
+  // color: inherit;
 }
 
 /* visited link */
 a:visited {
-  color: inherit;
+  // color: inherit;
 }
 
 /* mouse over link */
